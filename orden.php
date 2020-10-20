@@ -146,7 +146,7 @@
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <!--Campo Marca -->
-                                                            <div class="col-xl-3 col-md-6 col-sm-6 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Marca:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -168,7 +168,7 @@
                                                                 </div>
                                                             </div>
                                                             <!--Campo Modelo -->
-                                                            <div class="col-xl-3 col-md-6 col-sm-6 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Modelo:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -182,7 +182,7 @@
                                                                 </div>
                                                             </div>
                                                             <!--Campo Adicional -->
-                                                            <div class="col-xl-3 col-md-6 col-sm-6 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Adicional*:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -193,20 +193,6 @@
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Adicional" name="forOrdAdd"
                                                                         required>
-                                                                </div>
-                                                            </div>
-                                                            <!--Campo Observaciones -->
-                                                            <div class="col-xl-3 col-md-6 col-sm-6 col-lg-3">
-                                                                <label>Observaciones:</label>
-                                                                <div class="input-group ">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text">
-                                                                            <i class="fas fa-tasks"></i>
-                                                                        </span>
-                                                                    </div>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Observaciones herramienta"
-                                                                        name="forOrdCar" required>
                                                                 </div>
                                                             </div>
                                                             <!--/. form producto -->
@@ -227,7 +213,7 @@
                                                     <legend class='w-auto'>Datos del Servicio:</legend>
                                                     <div class="row">
                                                         <!--Campo diagnostico -->
-                                                        <div class="col-xl-9 col-lg-9 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <label>Diagnostico de la Herramienta:</label>
                                                             <div class="input-group ">
                                                                 <div class="input-group-prepend">
@@ -238,20 +224,6 @@
                                                                 <textarea rows="2" cols="25" class="form-control"
                                                                     placeholder="Diagnostico y observaciones de la herramienta entregada"
                                                                     name="forOrdDet" required></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <!--Campo costo -->
-                                                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                                            <label>Costo Por Revision:</label>
-                                                            <div class="input-group ">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
-                                                                        <i class="fas fa-dollar-sign"></i>
-                                                                    </span>
-                                                                </div>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Costo por revision" name="forOrdCos"
-                                                                    required>
                                                             </div>
                                                         </div>
                                                         <!--/. form detalles -->
@@ -368,7 +340,7 @@
                             <div class="row">
 
                                 <!--Campo municipio -->
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <label>Municipio:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
@@ -382,7 +354,7 @@
                                 </div>
 
                                 <!--Campo Codigo Postal -->
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <label>Codigo Postal:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
@@ -395,10 +367,8 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="row">
                                 <!--Campo Teléfono -->
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <label>Teléfono:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
@@ -408,6 +378,22 @@
                                         </div>
                                         <input type="tel" class="form-control" placeholder="Teléfono cliente"
                                             name="formCliTel" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <!--Campo Correo -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <label>Correo:</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-at"></i>
+                                            </span>
+                                        </div>
+                                        <input type="email" class="form-control" placeholder="Correo cliente"
+                                            name="formCliMail" required>
                                     </div>
                                 </div>
                                 <!--Campo RFC -->

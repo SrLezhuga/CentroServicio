@@ -101,7 +101,7 @@
                                                 </div>
 
                                                 <!--Campo Codigo Postal -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label>Codigo Postal:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -114,12 +114,8 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row">
-
                                                 <!--Campo Teléfono -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label>Teléfono:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -129,6 +125,24 @@
                                                         </div>
                                                         <input type="tel" class="form-control"
                                                             placeholder="Teléfono cliente" name="formCliTel" required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <!--Campo Correo -->
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <label>Correo:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-at"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="email" class="form-control"
+                                                            placeholder="Correo cliente" name="formCliMail" required>
                                                     </div>
                                                 </div>
 

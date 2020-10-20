@@ -10,6 +10,7 @@ $clienteTelefono   = $_POST['formCliTel'];
 $clienteRfc        = $_POST['formCliRfc'];
 $clienteCP         = $_POST['formCliCP'];
 $clienteMunicipio  = $_POST['formCliMun'];
+$clienteCorreo     = $_POST['formCliMail'];
 
 // Consulta segura para evitar inyecciones SQL.
 
@@ -19,7 +20,8 @@ SET   nom_cliente  = '".$clienteNombre."',
       mun_cliente  = '".$clienteMunicipio."',
       cp_cliente   = '".$clienteCP."',
       tel_cliente  = '".$clienteTelefono."',
-      rfc_cliente  = '".$clienteRfc."'
+      rfc_cliente  = '".$clienteRfc."',
+      mail_cliente = '".$clienteCorreo."'
 WHERE id_cliente   = ".$clienteId.";";
 
 if (mysqli_query($con, $sql)) {

@@ -138,22 +138,6 @@
                   <a>&nbsp;&nbsp;".$Orden[tipo_herramienta]."</a>
                   </span>
                </div>
-               <!--Campo Observaciones -->
-               <div class='col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12'>
-                  <label>Observaciones:</label>
-                  <span class='input-group-text' style='background-color:white'>
-                  <i class='fas fa-tasks'></i>
-                  <a>&nbsp;&nbsp;".$Orden[obs_herramienta]."</a>
-                  </span>
-               </div>
-               <!--Campo costo -->
-               <div class='col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12'>
-                  <label>Costo Por Revision:</label>
-                  <span class='input-group-text' style='background-color:white'>
-                  <i class='fas fa-dollar-sign'></i>
-                  <a>&nbsp;&nbsp;".$Orden[costo_servicio].".00</a>
-                  </span>
-               </div>
                <!--/. form producto -->
             </div>
             <div>

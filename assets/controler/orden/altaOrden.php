@@ -10,15 +10,13 @@ $ordenHerramienta        = $_POST['forOrdHer'];
 $ordenMarca              = $_POST['fromOrdMar'];
 $ordenModelo             = $_POST['forOrdMod'];
 $ordenAdicional          = $_POST['forOrdAdd'];
-$ordenCaracteristicas    = $_POST['forOrdCar'];
 $ordenDetalles           = $_POST['forOrdDet'];
-$ordenCosto              = $_POST['forOrdCos'];
 $ordenUser               = $_SESSION['name_user'];
 
 // Consulta segura para evitar inyecciones SQL.
 
 echo $sql = "INSERT INTO tab_orden VALUES 
-('', '$clienteDatos', '$ordenUser', '$ordenFecha', '', 'EN ESPERA', DEFAULT, '$ordenCaracteristicas', '$ordenMarca', '$ordenModelo', '$ordenAdicional','$ordenHerramienta', '$ordenServicio', '$ordenDetalles', $ordenCosto, 'Sin Asignar')";
+('', '$clienteDatos', '$ordenUser', '$ordenFecha', '', 'EN ESPERA', DEFAULT, '$ordenCaracteristicas', '$ordenMarca', '$ordenModelo', '$ordenAdicional','$ordenHerramienta', '$ordenServicio', 'Sin Asignar')";
 
 if (mysqli_query($con, $sql)) {
 

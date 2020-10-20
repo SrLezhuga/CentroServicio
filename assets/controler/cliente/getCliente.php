@@ -44,7 +44,7 @@ echo "
 
     <div class='row'>
     <!--Campo municipio -->
-    <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+    <div class='col-lg-5 col-md-5 col-sm-12 col-xs-12'>
         <label>Municipio:</label>
         <div class='input-group'>
             <div class='input-group-prepend'>
@@ -57,7 +57,7 @@ echo "
     </div>
 
     <!--Campo Codigo Postal -->
-    <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+    <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
         <label>Codigo Postal:</label>
         <div class='input-group'>
             <div class='input-group-prepend'>
@@ -68,12 +68,9 @@ echo "
             <input type='text' class='form-control' placeholder='Codigo Postal' name='formCliCP' value='".$item[cp_cliente]."' required />
         </div>
     </div>
-    </div>
 
-    <div class='row'>
-
-        <!--Campo Teléfono -->
-        <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+    <!--Campo Teléfono -->
+        <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
             <label>Teléfono:</label>
             <div class='input-group '>
                 <div class='input-group-prepend'>
@@ -84,6 +81,23 @@ echo "
                 <input type='tel' class='form-control' placeholder='Teléfono cliente' name='formCliTel' value='".$item[tel_cliente]."' required>
             </div>
         </div>
+
+    </div>
+
+    <div class='row'>
+
+    <!--Campo Correo -->
+    <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+        <label>Correo:</label>
+        <div class='input-group '>
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fas fa-at'></i>
+                </span>
+            </div>
+            <input type='email' class='form-control' placeholder='Correo cliente' name='formCliMail' value='".$item[mail_cliente]."' required>
+        </div>
+    </div>
 
         <!--Campo RFC -->
         <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>

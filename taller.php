@@ -50,7 +50,8 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                     <fieldset class='border p-2'>
                                         <legend class='w-auto'>Folio: N/A</legend>
                                         <div class="alert alert-warning text-center">
-                                            <h5><strong><i class="fas fa-exclamation-triangle"></i> Aviso: </strong>No tienes orden asignada, selecciona una de la
+                                            <h5><strong><i class="fas fa-exclamation-triangle"></i> Aviso: </strong>No
+                                                tienes orden asignada, selecciona una de la
                                                 <a href="listaOrden.php" class="alert-link">lista de Ordenes</a> ;D
                                             </h5>
                                         </div>
@@ -128,85 +129,161 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                         </form>
                                     </fieldset>
 
-                                    <!-- form cliente -->
-                                    <form class="form" action="assets/controler/refaccion/restRefaccion.php" method="POST">
-                                        <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Agregar Refacciones</legend>
-                                            <div class="row">
-                                                <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                    <label>Nueva Refacción:</label>
-                                                    <button type="button" class="btn btn-outline-secondary btn-block"
-                                                        data-toggle="modal" data-target="#modalRefaccion"><i
-                                                            class="fas fa-plus"></i><i class="fas fa-cog"></i></button>
-                                                </div>
-                                                <div class="col-xl-8 col-md-8 col-sm-12 col-lg-8">
-                                                    <label>Diagnostico de la Herramienta:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-cog"></i>
-                                                            </span>
+                                    <!-- form Observaciones -->
+                                    <div class="row">
+                                        <div class="col-xl-9 col-md-9 col-sm-12 col-lg-9">
+                                            <form class="form" action="assets/controler/taller/modOrdenTaller.php"
+                                                method="POST">
+                                                <fieldset class='border p-2'>
+                                                    <legend class='w-auto'>Observaciones</legend>
+                                                    <div class="row">
+                                                        <div class="col-xl-10 col-md-10 col-sm-12 col-lg-10">
+                                                            <label>Diagnostico de la Herramienta:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-file-alt"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <?php 
+                                                                $queryDetalle = "SELECT detalle_servicio FROM tab_orden WHERE id_Orden=".$id.";"; 
+                                                                $rsDetalle = mysqli_query($con, $queryDetalle) or die ("Error de consulta"); 
+                                                                $Detalle = mysqli_fetch_array($rsDetalle);?>
+                                                                <textarea rows="3" class="form-control"
+                                                                    placeholder="Diagnostico y observaciones de la herramienta"
+                                                                    name="forObs"
+                                                                    required><?php echo $Detalle[0]; ?></textarea>
+                                                                <input type="hidden" required name="formMun"
+                                                                    value=<?php echo $id; ?>>
+                                                            </div>
                                                         </div>
-                                                        <select name="fromRefId" class="custom-select" required>
-                                                            <option value="" selected disabled>Seleccione refacción
-                                                            </option>
-                                                            <?php $listRef = "SELECT * FROM tab_refaccion WHERE cant_refaccion > 0 ORDER BY marca_refaccion ASC"; 
+                                                        <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
+                                                            <label>Agregar Nota:</label>
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-block"><i
+                                                                    class="fas fa-file-alt"></i> Agregar Observación
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <div class="col-xl-3 col-md-3 col-sm-12 col-lg-3">
+                                            <img class='img-fluid mx-auto d-block'
+                                                src='../CentroServicio/assets/img/Logo/logo.webp'
+                                                style='height: 135px;    width: 135px; z-index: 0; opacity: 0.15; filter: grayscale(1);'
+                                                onContextMenu='return false;' draggable='false'>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <!-- form cliente -->
+                                    <div class="row">
+                                        <div class="col-xl-6 col-md-6 col-sm-12 col-lg-6">
+                                            <form class="form" action="assets/controler/refaccion/restRefaccion.php"
+                                                method="POST">
+                                                <fieldset class='border p-2'>
+                                                    <legend class='w-auto'>Agregar Refacciones</legend>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 col-md-3 col-sm-12 col-lg-3">
+                                                            <label>Nueva Refacción:</label>
+                                                            <button type="button"
+                                                                class="btn btn-outline-secondary btn-block"
+                                                                data-toggle="modal" data-target="#modalRefaccion"><i
+                                                                    class="fas fa-plus"></i><i
+                                                                    class="fas fa-cog"></i></button>
+                                                        </div>
+                                                        <div class="col-xl-9 col-md-9 col-sm-12 col-lg-9">
+                                                            <label>Inventario de Refacciones:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-cog"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <select name="fromRefId" class="custom-select" required>
+                                                                    <option value="" selected disabled>Seleccione
+                                                                        refacción
+                                                                    </option>
+                                                                    <?php $listRef = "SELECT * FROM tab_refaccion WHERE cant_refaccion > 0 ORDER BY marca_refaccion ASC"; 
                                                                     $rsRef = mysqli_query($con, $listRef) or die ("Error de consulta");      
                                                                         while ($itemRef = mysqli_fetch_array($rsRef)) {
                                                                         echo "<option value='".$itemRef[id_refaccion]."'>".$itemRef[cod_refaccion]." | ".$itemRef[desc_refaccion]." | ".$itemRef[marca_refaccion]." | $ ".$itemRef[costo_refaccion].".00</option>";}?>
-                                                        </select>
-                                                        <input type="hidden" name="formOrdId" required
-                                                            value=<?php echo $id; ?>>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                    <label>Agregar Refacción:</label>
-                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                            class="fas fa-cog"></i>
-                                                        Agregar</button>
-                                                </div>
-                                        </fieldset>
-                                    </form>
-
-                                    <!-- form Observaciones -->
-                                    <form class="form" action="assets/controler/taller/modOrdenTaller.php"
-                                        method="POST">
-                                        <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Observaciones</legend>
-                                            <div class="row">
-                                                <div class="col-xl-10 col-md-10 col-sm-12 col-lg-10">
-                                                    <label>Diagnostico de la Herramienta:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-file-alt"></i>
-                                                            </span>
+                                                                </select>
+                                                                <input type="hidden" name="formOrdId" required
+                                                                    value=<?php echo $id; ?>>
+                                                            </div>
                                                         </div>
-                                                        <?php 
-                                                            $queryDetalle = "SELECT detalle_servicio FROM tab_orden WHERE id_Orden=".$id.";"; 
-                                                            $rsDetalle = mysqli_query($con, $queryDetalle) or die ("Error de consulta"); 
-                                                            $Detalle = mysqli_fetch_array($rsDetalle);?>
-                                                        <textarea rows="3" class="form-control"
-                                                            placeholder="Diagnostico y observaciones de la herramienta"
-                                                            name="forObs" required><?php echo $Detalle[0]; ?></textarea>
-                                                        <input type="hidden" required name="formMun"
-                                                            value=<?php echo $id; ?>>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                    <label>Agregar Nota:</label>
-                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                            class="fas fa-file-alt"></i> Agregar Observación
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                    <!-- form Refacciones -->
-                                    <fieldset class='border p-2'>
-                                        <legend class='w-auto'>Refacciones</legend>
-                                        <div class="row">
-                                            <div class="col-xl-10 col-md-10 col-sm-12 col-lg-10">
+                                                        <div class="col-xl-12 col-md-12 col-sm-12 col-lg-12">
+                                                            <label>Agregar Refacción:</label>
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-block"><i
+                                                                    class="fas fa-cog"></i>
+                                                                Agregar</button>
+
+                                                        </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6 col-sm-12 col-lg-6">
+                                            <form class="form" action="assets/controler/refaccion/restRefaccion.php"
+                                                method="POST">
+                                                <fieldset class='border p-2'>
+                                                    <legend class='w-auto'>Agregar Servicio</legend>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 col-md-3 col-sm-12 col-lg-3">
+                                                            <label>Nuevo Servicio:</label>
+                                                            <button type="button"
+                                                                class="btn btn-outline-secondary btn-block"
+                                                                data-toggle="modal" data-target="#modalRefaccion"><i
+                                                                    class="fas fa-plus"></i><i
+                                                                    class="fas fa-cog"></i></button>
+                                                        </div>
+                                                        <div class="col-xl-9 col-md-9 col-sm-12 col-lg-9">
+                                                            <label>Lista de Servicios:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-cog"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <select name="fromRefId" class="custom-select" required>
+                                                                    <option value="" selected disabled>Seleccione
+                                                                        servicio
+                                                                    </option>
+                                                                    <?php $listSer = "SELECT * FROM tab_servicio ORDER BY desc_servicio ASC"; 
+                                                                    $rsSer = mysqli_query($con, $listSer) or die ("Error de consulta");      
+                                                                        while ($itemSer = mysqli_fetch_array($rsSer)) {
+                                                                        echo "<option value='".$itemSer[cod_servicio]."'>".$itemSer[cod_servicio]." | ".$itemSer[desc_servicio]." | $ ".$itemSer[costo_servicio].".00</option>";}?>
+                                                                </select>
+                                                                <input type="hidden" name="formOrdId" required
+                                                                    value=<?php echo $id; ?>>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-12 col-md-12 col-sm-12 col-lg-12">
+                                                            <label>Agregar Servicio:</label>
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-block"><i
+                                                                    class="fas fa-cog"></i>
+                                                                Agregar</button>
+                                                        </div>
+                                                </fieldset>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- form cliente -->
+                                    <div class="row">
+                                        <div class="col-xl-6 col-md-6 col-sm-12 col-lg-6">
+                                            <fieldset class='border p-2'>
+                                                <legend class='w-auto'>Refacciones</legend>
+
+
                                                 <div class="table-responsive">
                                                     <table class="table table-hover table-sm table-borderless"
                                                         id="dataTableRefacciones" width="100%" cellspacing="0">
@@ -221,7 +298,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                                         </thead>
                                                         <tbody>
                                                             <?php 
-                                                        $queryrefaccion = "CALL Refacciones(".$id.")"; 
+                                                        $queryrefaccion = "CALL Servicios($id)"; 
                                                         $rsrefaccion = mysqli_query($con, $queryrefaccion) or die ("Error de consulta"); 
                                                             while ($refaccion = mysqli_fetch_array($rsrefaccion)) {
                                                                 echo "
@@ -239,16 +316,58 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>
-                                            <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                <img class='img-fluid mx-auto d-block'
-                                                    src='../CentroServicio/assets/img/Logo/logo.webp'
-                                                    style='height: 135px;    width: 135px; z-index: 0; opacity: 0.15; filter: grayscale(1);'
-                                                    onContextMenu='return false;' draggable='false'>
-                                            </div>
-                                            <fieldset>
 
+                                            </fieldset>
                                         </div>
+                                        <div class="col-xl-6 col-md-6 col-sm-12 col-lg-6">
+                                            <fieldset class='border p-2'>
+                                                <legend class='w-auto'>Servicios</legend>
+
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover table-sm table-borderless"
+                                                        id="dataTableservicios" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Codigo</th>
+                                                                <th>Descripción</th>
+                                                                <th>Costo</th>
+                                                                <th>Acción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php 
+                                                        $queryServicio = "CALL Servicios($id)";
+                                                        ($rsServicio = mysqli_query($con, $queryServicio)) or die("Error de consulta");
+                                                        while ($servicio = mysqli_fetch_array($rsServicio)) {
+                                                            echo "
+                                                       <tr>
+                                                          <td>" .
+                                                                $servicio[cod_servicio] .
+                                                                "</td>
+                                                          <td>" .
+                                                                $servicio[desc_servicio] .
+                                                                "</td>
+                                                          <td>$ " .
+                                                                $servicio[costo_servicio] .
+                                                                ".00" .
+                                                                "</td>
+                                                        <td> 
+                                                                <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccion' data-toggle='modal' data-target='#modalDownRefaccion 'value='".$id."|".$servicio[id_servicio]."'>
+                                                                <i class='fas fa-trash-alt'></i></button>
+                                                            </td>
+                                                        </tr>";
+                                                        } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                             </div>
                             <br>
@@ -342,7 +461,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        
+
 
 
                     </div>
@@ -381,11 +500,12 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
         // Modal tarjeta Refaccion
         $('.BtnRefaccion').on('click', function() {
             var id_button = $(this).val();
-            $('.getRefaccion').load('./assets/controler/refaccion/getOrdenRefaccion.php?id=' + id_button, function() {
-                $('#modalDownRefaccion').modal({
-                    show: true
+            $('.getRefaccion').load('./assets/controler/refaccion/getOrdenRefaccion.php?id=' + id_button,
+                function() {
+                    $('#modalDownRefaccion').modal({
+                        show: true
+                    });
                 });
-            });
         });
         </script>
 
