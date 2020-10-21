@@ -19,7 +19,7 @@
       if(mysqli_query($con, $listUp)){
 
         header("HTTP/1.0 404 Not Found");
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=2'");
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=1'");
       }
    }
 

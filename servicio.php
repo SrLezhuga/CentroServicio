@@ -227,8 +227,6 @@
         </div>
     </div>
 
-  
-
     <script type="text/javascript">
     // Modal tarjeta Mod
     $('.BtnservicioMod').on('click', function() {
@@ -241,17 +239,14 @@
     });
     </script>
 
-
-
-
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registro la refaccion")
+    toastr["success"]("Se registro el servicio")
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
-    toastr["success"]("Se modifico la refaccion")
+    toastr["success"]("Se modifico el servicio")
     </script>
     <?php } ?>
     <script>

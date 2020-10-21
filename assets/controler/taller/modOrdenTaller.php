@@ -6,13 +6,12 @@ include("../conexion.php");
 $OrdenDetalle  = $_POST['forObs'];
 $IdOrden       = $_POST['formMun'];
 
-
-echo nl2br($OrdenDetalle);
+//echo nl2br($OrdenDetalle);
 // Consulta segura para evitar inyecciones SQL.
 
 $sql = "UPDATE tab_orden 
 SET detalle_servicio = '".$OrdenDetalle."'
-WHERE id_cliente = ".$IdOrden.";";
+WHERE id_orden = ".$IdOrden.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
