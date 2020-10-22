@@ -483,7 +483,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form class="form" id="cleanFormRefaccion" action="assets/controler/refaccion/altarefaccion.php"
+                    <form class="form" id="cleanFormRefaccion" action="assets/controler/refaccion/altaRefaccionTaller.php"
                         method="POST">
 
                         <!-- form refaccion -->
@@ -614,7 +614,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form class="form" id="cleanFormServicio" action="assets/controler/servicio/altaServicio.php"
+                    <form class="form" id="cleanFormServicio" action="assets/controler/servicio/altaServicioTaller.php"
                         method="POST">
 
                         <!-- form Servicio -->
@@ -704,6 +704,14 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
     toastr["success"]("Estado de la orden actualizado!")
+    </script>
+    <?php } if(isset($_GET['alert']) && $_GET['alert']==2){ ?>
+    <script>
+    toastr["success"]("Se registro Servicio")
+    </script>
+    <?php } if(isset($_GET['alert']) && $_GET['alert']==3){ ?>
+    <script>
+    toastr["success"]("Se registro Refacción")
     </script>
     <?php } ?>
 

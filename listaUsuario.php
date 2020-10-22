@@ -39,60 +39,7 @@
                         </div>
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-
-
-                        <!-- Card -->
-                        <div class="col">
-                            <div class="card border-left-danger shadow ">
-                                <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Cartera de Clientes</h1>
-                                    <br>
-                                    <!-- DataTales -->
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-sm" id="dataTableCliente" width="100%"
-                                            cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Dirección</th>
-                                                    <th>Municipio</th>
-                                                    <th>CP</th>
-                                                    <th>Teléfono</th>
-                                                    <th>RFC</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
-                                        $queryCliente = "SELECT * FROM tab_cliente"; 
-                                        $rsCliente = mysqli_query($con, $queryCliente) or die ("Error de consulta"); 
-                                          while ($Cliente = mysqli_fetch_array($rsCliente)) {
-                                            echo "
-                                            <tr>
-                                                    <td>".$Cliente[nom_cliente]."</td>
-                                                    <td>".$Cliente[dir_cliente]."</td>
-                                                    <td>".$Cliente[mun_cliente]."</td>
-                                                    <td>".$Cliente[cp_cliente]."</td>
-                                                    <td>".$Cliente[tel_cliente]."</td>
-                                                    <td>".$Cliente[rfc_cliente]."</td>
-                                                    <td><button type='button' class='btn btn-outline-light text-dark btn-sm BtnCliente' data-toggle='modal' data-target='#modalCliente'value=".$Cliente[id_cliente].">
-                                                    <i class='fas fa-pencil-alt'></i></button></td>
-                                                </tr>
-                                            "; } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <!-- DataTales End -->
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-
-                    </div>
+                   
 
                     <!-- Content Row -->
 

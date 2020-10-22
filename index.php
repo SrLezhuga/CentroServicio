@@ -75,9 +75,13 @@
 
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
-    <script>
-    toastr["success"]("Vuelve Pronto! 😃")
-    </script>
+        <script>
+            toastr["success"]("Vuelve Pronto! 😃")
+        </script>
+    <?php } if(isset($_GET['alert']) && $_GET['alert']==1){?>
+        <script>
+            toastr["error"]("Error al iniciar sesión intenta de nuevo 😅")
+        </script>
     <?php } ?>
 </body>
 

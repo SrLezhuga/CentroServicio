@@ -1,9 +1,9 @@
-<?php session_start();?>
+<?php session_start(); include("assets/controler/conexion.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Alta Cliente</title>
+    <title> Centro de Servicio FMA | Alta Personal</title>
     <?php  include("assets/common/header.php");?>
 </head>
 
@@ -32,7 +32,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Cliente > Alta Clientes</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Usuario > Alta Usuario</h1>
                             <div id="reloj" style="text-align: left;"></div>
                         </div>
                     </div>
@@ -46,122 +46,79 @@
                                 <div class="card-body">
                                     <h1 class='h3 text-gray-800'>Ingrese los datos</h1>
                                     <br>
-                                    <form class="form" id="cleanForm" action="assets/controler/cliente/altaCli.php"
+                                    <form class="form" id="cleanForm" action="assets/controler/usuario/altaUsuario.php"
                                         method="POST">
 
-                                        <!-- form cliente -->
+                                        <!-- form usuario -->
                                         <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Datos del Cliente:</legend>
+                                            <legend class='w-auto'>Datos del personal:</legend>
                                             <div class="row">
 
-                                                <!--Campo cliente -->
+
+
+                                                <!--Campo Nombre -->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>Cliente:</label>
+                                                    <label>Nombres:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="fas fa-user-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Nombre cliente" name="formCliNom" required>
+                                                        <input type="text" class="form-control" placeholder="Nombre"
+                                                            name="formUseNom" required>
                                                     </div>
                                                 </div>
 
-                                                <!--Campo Domicilio -->
+                                                <!--Campo usuario -->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>Domicilio:</label>
+                                                    <label>Usuario:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
-                                                                <i class="fas fa-home"></i>
+                                                                <i class="fas fa-user-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Domicilio cliente" name="formCliDom" required>
+                                                        <input type="text" class="form-control" placeholder="Usuario"
+                                                            name="formUseUsu" required>
+                                                    </div>
+                                                </div>
+
+                                                <!--Campo Contraseña -->
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <label>Contraseña:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-user-alt"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="password" class="form-control" placeholder="Contraseña"
+                                                            name="formUseCon" aria-describedby="passwordHelpInline" required>
+                                                    </div>
+                                                </div>
+
+                                                <!--Campo Privilegios -->
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <label>Privilegios:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </div>
+                                                        <select name="fromUsePriv" class="custom-select" required>
+                                                            <option value="" selected disabled>SELECCIONE UNO
+                                                            </option>
+                                                            <option value="1">ADMINISTRADOR</option>
+                                                            <option value="2">VENDEDOR/MOSTRADOR</option>
+                                                            <option value="3">TALLER/TÉCNICO</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                             </div>
 
-                                            <div class="row">
-
-                                                <!--Campo municipio -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>Municipio:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-map-marker-alt"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Municipio"
-                                                            name="formCliMun" required>
-                                                    </div>
-                                                </div>
-
-                                                <!--Campo Codigo Postal -->
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <label>Codigo Postal:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-hashtag"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Codigo Postal" name="formCliCP" required>
-                                                    </div>
-                                                </div>
-
-                                                <!--Campo Teléfono -->
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <label>Teléfono:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-phone-alt"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="tel" class="form-control"
-                                                            placeholder="Teléfono cliente" name="formCliTel" required>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <!--Campo Correo -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>Correo:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-at"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="email" class="form-control"
-                                                            placeholder="Correo cliente" name="formCliMail" required>
-                                                    </div>
-                                                </div>
-
-                                                <!--Campo RFC -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>RFC:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-address-card"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="RFC cliente" name="formCliRfc" required>
-                                                    </div>
-                                                </div>
-
-                                                <!-- /. form cliente -->
-                                            </div>
 
                                             <br>
                                             <hr>
@@ -181,6 +138,49 @@
                                             <!--/. form-->
                                         </fieldset>
                                     </form>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="col-xl-12 col-md-12 mb-12">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Perfiles de Usuarios</h1>
+                                    <br>
+                                    <!-- DataTales -->
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-sm" id="dataTableCliente" width="100%"
+                                            cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Usuario</th>
+                                                    <th>Contraseña</th>
+                                                    <th>Privilegios</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                $queryCliente = "SELECT * FROM tab_users"; 
+                $rsCliente = mysqli_query($con, $queryCliente) or die ("Error de consulta"); 
+                  while ($Cliente = mysqli_fetch_array($rsCliente)) {
+                    echo "
+                    <tr>
+                            <td>".$Cliente[name_user]."</td>
+                            <td>".$Cliente[nick_user]."</td>
+                            <td>".$Cliente[pass_user]."</td>
+                            <td>".$Cliente[priv_user]."</td>
+                            <td><button type='button' class='btn btn-outline-light text-dark btn-sm BtnCliente' data-toggle='modal' data-target='#modalCliente'value=".$Cliente[id_cliente].">
+                            <i class='fas fa-pencil-alt'></i></button></td>
+                        </tr>
+                    "; } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- DataTales End -->
                                 </div>
                             </div>
                             <br>
@@ -212,7 +212,7 @@
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registro el Cliente")
+    toastr["success"]("Se registro el Usuario")
     </script>
     <?php } ?>
     <script>

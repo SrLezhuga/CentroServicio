@@ -84,9 +84,8 @@
                                                             required>
                                                     </div>
                                                 </div>
-
-                                                 <!--Campo Costo -->
-                                                 <div class="col-2">
+                                                <!--Campo Costo -->
+                                                <div class="col-2">
                                                     <label>Costo:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">

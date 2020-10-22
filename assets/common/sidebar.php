@@ -122,8 +122,7 @@
                     <span>Administrador</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="#.php">Alta Usuario</a>
-                <a class="collapse-item" href="listaUsuario.php">Lista Usuario</a>
+                <a class="collapse-item" href="usuario.php">Alta Usuario</a>
                 <a class="collapse-item" href="#.php">Configuración</a>
             </div>
         </div>

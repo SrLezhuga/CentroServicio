@@ -32,7 +32,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Prestamo > Alta refaccion</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Refacción > Alta Refacción</h1>
                             <div id="reloj" style="text-align: left;">
                             </div>
                         </div>

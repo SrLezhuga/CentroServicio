@@ -33,7 +33,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <script src="assets/js/demo/code.js"></script>
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Orden > Lista ordenes</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Orden > Ordenes Completas</h1>
                             <div id="reloj" style="text-align: left;">
                             </div>
                         </div>
