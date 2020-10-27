@@ -1,9 +1,9 @@
-<?php session_start();?> 
+<?php session_start();  include("../conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Reportes</title>
+    <title> Centro de Servicio FMA | Alta Cliente</title>
     <?php  include("assets/common/header.php");?>
 </head>
 
@@ -15,9 +15,6 @@
         <!-- Sidebar -->
         <?php  include("assets/common/sidebar.php");?>
         <!-- End of Sidebar -->
-
-        <!-- Dark overlay -->
-        <div class="overlay"></div>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -35,9 +32,8 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Reportes</h1>
-                            <div id="reloj" style="text-align: left;">
-                            </div>
+                            <h1 class='h3 mb-0 text-gray-800'>Cliente > Alta Clientes</h1>
+                            <div id="reloj" style="text-align: left;"></div>
                         </div>
                     </div>
 
@@ -48,7 +44,7 @@
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Reporte de transferencias</h1>
+                                <h1 class='h3 text-gray-800'>Reporte de transferencias</h1>
                                     <br>
 
                                     <form class="form" action="/action_page.php">
@@ -130,11 +126,10 @@
                                     </form>
                                 </div>
                             </div>
+                            <br>
                         </div>
-                    </div>
-                    <!-- /.container-fluid -->
 
-                    <br><br>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -157,6 +152,19 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- Alerts! -->
+    <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
+    <script>
+    toastr["success"]("Se registro el Cliente")
+    </script>
+    <?php } ?>
+    <script>
+    //Limpiar formularios
+    function clean() {
+        document.getElementById("cleanForm").reset();
+        toastr["success"]("Formulario vacío")
+    }
+    </script>
 </body>
 
 </html>

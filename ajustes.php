@@ -1,4 +1,12 @@
-<?php session_start(); include("assets/controler/conexion.php");?>
+<?php session_start(); include("assets/controler/conexion.php");
+
+$queryUser = "SELECT * FROM tab_users WHERE code_user =".$_SESSION['code_user']; 
+$rsUser = mysqli_query($con, $queryUser) or die ("Error de consulta"); 
+$user = mysqli_fetch_array($rsUser);
+$contralOld =  $user['pass_user'];
+$items      =  explode("-", $user['conf_user']);
+                    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,288 +55,203 @@
                                     <h1 class='h3 text-gray-800'>Ajustes</h1>
                                     <br>
                                     <div class="row">
-                                    <div class="col-xl-6 col-md-6 mb-6">
-                                    <form class="form" id="cleanForm" action="assets/controler/usuario/altaUsuario.php"
-                                        method="POST">
+                                        <div class="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+                                            <form class="form" id="cleanForm"
+                                                action="assets/controler/usuario/altaUsuario.php" method="POST">
 
-                                        <!-- form usuario -->
-                                        <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Cambio contraseña:</legend>
-                                            <div class="row">
+                                                <!-- form usuario -->
+                                                <fieldset class='border p-2'>
+                                                    <legend class='w-auto'>Cambio contraseña:</legend>
+                                                    <div class="row">
 
-                                                <!--Campo Contraseña -->
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <label>Contraseña actual:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-key"></i>
-                                                            </span>
+                                                        <!--Campo Contraseña -->
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <label>Contraseña actual:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-key"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="password" class="form-control"
+                                                                    placeholder="Contraseña actual" name="formUseOld"
+                                                                    aria-describedby="passwordHelpInline" required>
+                                                            </div>
                                                         </div>
-                                                        <input type="password" class="form-control"
-                                                            placeholder="Contraseña actual" name="formUseOld"
-                                                            aria-describedby="passwordHelpInline" required>
-                                                    </div>
-                                                </div>
 
-                                                <!--Campo Contraseña -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>Nueva Contraseña:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-key"></i>
-                                                            </span>
+                                                        <!--Campo Contraseña -->
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <label>Nueva Contraseña:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-key"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="password" class="form-control"
+                                                                    placeholder="Nueva Contraseña" name="formUseNew1"
+                                                                    aria-describedby="passwordHelpInline" required>
+                                                            </div>
                                                         </div>
-                                                        <input type="password" class="form-control"
-                                                            placeholder="Nueva Contraseña" name="formUseNew1"
-                                                            aria-describedby="passwordHelpInline" required>
-                                                    </div>
-                                                </div>
 
-                                                <!--Campo Contraseña -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>Confirma Contraseña:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-key"></i>
-                                                            </span>
+                                                        <!--Campo Contraseña -->
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <label>Confirma Contraseña:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-key"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="password" class="form-control"
+                                                                    placeholder="Repetir Contraseña" name="formUseNew2"
+                                                                    aria-describedby="passwordHelpInline" required>
+                                                            </div>
                                                         </div>
-                                                        <input type="password" class="form-control"
-                                                            placeholder="Repetir Contraseña" name="formUseNew2"
-                                                            aria-describedby="passwordHelpInline" required>
+
                                                     </div>
-                                                </div>
-
-                                            </div>
 
 
-                                            <br>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <button type="button" onClick=clean()
-                                                        class="btn btn-outline-secondary btn-block"><i
-                                                            class="fas fa-eraser"></i> Borrar</button>
-                                                </div>
+                                                    <br>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                            <button type="button" onClick=clean()
+                                                                class="btn btn-outline-secondary btn-block"><i
+                                                                    class="fas fa-eraser"></i> Borrar</button>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-block"><i
+                                                                    class="fas fa-save"></i> Actualizar</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--/. form-->
+                                                </fieldset>
+                                            </form>
+                                        </div>
+
+
+                                        <div class="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+                                            <form class="form" id="cleanForm"
+                                                action="assets/controler/usuario/altaUsuario.php" method="POST">
+
+                                                <!-- form usuario -->
+                                                <fieldset class='border p-2'>
+                                                    <legend class='w-auto'>Cambio color:</legend>
+                                                    <div class="row">
+
+                                                        <!--Campo Contraseña -->
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <label>Color:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-palette"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <select name="fromOrdSer" class="custom-select"
+                                                                    required>
+                                                                    <option value="" selected disabled>Selecciones
+                                                                        color
+                                                                    </option>
+                                                                    <option value="1">Rojo</option>
+                                                                    <option value="2">Azul</option>
+                                                                    <option value="3">Verde</option>
+                                                                    <option value="4">Negro</option>
+                                                                    <option value="5">Gris</option>
+                                                                    <option value="6">Rosa</option>
+                                                                    <option value="7">Naranja</option>
+                                                                    <option value="8">Morado</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <br>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                            <button type="button" onClick=clean()
+                                                                class="btn btn-outline-secondary btn-block"><i
+                                                                    class="fas fa-eraser"></i> Borrar</button>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-block"><i
+                                                                    class="fas fa-save"></i> Actualizar</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--/. form-->
+                                                </fieldset>
                                                 <br>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                            class="fas fa-paper-plane"></i> Enviar</button>
+                                                <div class="alert alert-info" style="text-align: center;">
+                                                    <strong>Nota:</strong> Los cambios seran reflejados en el siguiente
+                                                    inicio de
+                                                    sesion.
                                                 </div>
-                                            </div>
+                                            </form>
+                                        </div>
 
-                                            <!--/. form-->
-                                        </fieldset>
-                                    </form>
-                                    </div>
+                                        <div class="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+                                            <form class="form" id="cleanForm"
+                                                action="assets/controler/usuario/altaUsuario.php" method="POST">
 
-                                    <div class="col-xl-6 col-md-6 mb-6">
-                                    <form class="form" id="cleanForm" action="assets/controler/usuario/altaUsuario.php"
-                                        method="POST">
+                                                <!-- form usuario -->
+                                                <fieldset class='border p-2'>
+                                                    <legend class='w-auto'>Cambio avatar:</legend>
+                                                    <div class="row">
 
-                                        <!-- form usuario -->
-                                        <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Cambio Avatar:</legend>
-                                            <div class="row">
-
-                                                <!--Campo servicio -->
-                                                <div class="col-xl-12 col-md-12 col-sm-12 col-lg-12" style="
+                                                        <!--Campo servicio -->
+                                                        <div class="col-xl-12 col-md-12 col-sm-12 col-lg-12" style="
                                                 text-align: center;">
+                                                            <?php 
+                                                    for ($i=1; $i < 41 ; $i++) { 
+                                                      if ($i==$items[0]) {
+                                                          $check="checked";
+                                                      }else{
+                                                          $check="";
+                                                      }
                                                     
-
-                                                        <label>
-                                                            <input type="radio" name="Avatar" value="m1" checked>
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (1).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-                                                          
+                                                      echo "
                                                           <label>
-                                                            <input type="radio" name="Avatar" value="m2">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (2).png" style='height: 61px;    width: 61px;' 
+                                                            <input type='radio' name='Avatar' value='m2' ".$check.">
+                                                            <img src='../CentroServicio/assets/img/Avatar/".$i.".png' style='height: 50px; width: 50px;' 
                                                             onContextMenu='return false;' draggable='false'>
                                                           </label>
+                                                      ";}
+                                                    ?>
 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m3">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (3).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
+                                                        </div>
+                                                    </div>
 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m4">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (4).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-block"><i
+                                                                    class="fas fa-save"></i> Actualizar</button>
+                                                        </div>
+                                                    </div>
 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m5">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (5).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
+                                                    <!--/. form-->
+                                                </fieldset>
+                                            </form>
 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m6">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (6).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
+                                        </div>
 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m7">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (7).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m8">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (8).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-                                                 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m9">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (9).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m10">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (10).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m11">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (11).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="m12">
-                                                            <img src="../CentroServicio/assets/img/Avatar/man (12).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w1" >
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (1).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-                                                          
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w2">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (2).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w3">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (3).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w4">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (4).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w5">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (5).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w6">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (6).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w7">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (7).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w8">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (8).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-                                                 
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w9">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (9).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w10">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (10).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w11">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (11).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                          <label>
-                                                            <input type="radio" name="Avatar" value="w12">
-                                                            <img src="../CentroServicio/assets/img/Avatar/woman (12).png" style='height: 61px;    width: 61px;' 
-                                                            onContextMenu='return false;' draggable='false'>
-                                                          </label>
-
-                                                </div>
-
-                                                <style>
-                                                    /* HIDE RADIO */
-[type=radio] { 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* IMAGE STYLES */
-[type=radio] + img {
-  cursor: pointer;
-}
-
-/* CHECKED STYLES */
-[type=radio]:checked + img {
-  outline: 2px solid #f00;
-}
-                                                </style>
-
-                                             
-                                            </div>
-                                            <br>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <button type="button" onClick=clean()
-                                                        class="btn btn-outline-secondary btn-block"><i
-                                                            class="fas fa-eraser"></i> Borrar</button>
-                                                </div>
-                                                <br>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                            class="fas fa-paper-plane"></i> Enviar</button>
-                                                </div>
-                                            </div>
-
-                                            <!--/. form-->
-                                        </fieldset>
-                                    </form>
                                     </div>
+
                                 </div>
-                                </div>
+
                             </div>
-                            <br>
+
                         </div>
 
 
