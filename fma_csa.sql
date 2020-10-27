@@ -11,7 +11,7 @@
  Target Server Version : 100413
  File Encoding         : 65001
 
- Date: 24/10/2020 13:45:29
+ Date: 27/10/2020 14:00:51
 */
 
 SET NAMES utf8mb4;
@@ -249,7 +249,7 @@ CREATE TABLE `tab_users`  (
   `nick_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `pass_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `priv_user` int(1) NOT NULL,
-  `conf_user` int(10) NOT NULL,
+  `conf_user` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `taller` int(11) NOT NULL,
   PRIMARY KEY (`code_user`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -257,12 +257,12 @@ CREATE TABLE `tab_users`  (
 -- ----------------------------
 -- Records of tab_users
 -- ----------------------------
-INSERT INTO `tab_users` VALUES (1, 'Administrador', 'CSA', '123', 1, 1111111111, 0);
-INSERT INTO `tab_users` VALUES (2, 'Nombre Apellido', 'VENDEDOR', '123', 2, 1111111111, 0);
-INSERT INTO `tab_users` VALUES (3, 'Apellido Nombre', 'INVENTARIO', '123', 3, 1111111111, 0);
-INSERT INTO `tab_users` VALUES (4, 'BRANDON LECHUGA', 'BRALEC', '123', 1, 1111111111, 0);
-INSERT INTO `tab_users` VALUES (5, 'Pedro Loza', 'PEDLOZ', '123', 2, 1111111111, 0);
-INSERT INTO `tab_users` VALUES (6, 'Rafael Garcia', 'RAFGAR', '123', 3, 1111111111, 0);
+INSERT INTO `tab_users` VALUES (1, 'Administrador', 'CSA', '123', 1, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (2, 'Nombre Apellido', 'VENDEDOR', '123', 2, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (3, 'Apellido Nombre', 'INVENTARIO', '123', 3, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (4, 'BRANDON LECHUGA', 'BRALEC', '123', 1, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (5, 'Pedro Loza', 'PEDLOZ', '123', 2, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (6, 'Rafael Garcia', 'RAFGAR', '123', 3, '1-1-1-1-1', 0);
 
 -- ----------------------------
 -- Procedure structure for Refacciones
