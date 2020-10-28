@@ -193,7 +193,7 @@
                                                         $rsrefaccion = mysqli_query($con, $queryrefaccion) or die ("Error de consulta"); 
                                                             while ($refaccion = mysqli_fetch_array($rsrefaccion)) {
 
-                                                                if($refaccion[cant_refaccion]==0){
+                                                                if($refaccion['cant_refaccion']==0){
                                                                     echo "<tr class='table-danger' style='color: brown;'>";
                                                                     $disable="";
                                                                 }else{
@@ -201,15 +201,15 @@
                                                                     $disable="disabled";
                                                                 }
                                                                 echo "
-                                                                        <td>".$refaccion[cod_refaccion]."</td>        
-                                                                        <td>".$refaccion[desc_refaccion]."</td>
-                                                                        <td>".$refaccion[marca_refaccion]."</td>
-                                                                        <td>".$refaccion[cant_refaccion]."</td>
-                                                                        <td>$ ".$refaccion[costo_refaccion].".00</td>
+                                                                        <td>".$refaccion['cod_refaccion']."</td>        
+                                                                        <td>".$refaccion['desc_refaccion']."</td>
+                                                                        <td>".$refaccion['marca_refaccion']."</td>
+                                                                        <td>".$refaccion['cant_refaccion']."</td>
+                                                                        <td>$ ".$refaccion['costo_refaccion'].".00</td>
                                                                         <td> 
-                                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccionMod' data-toggle='modal' data-target='#modalRefaccionMod'value='".$refaccion[id_refaccion]."'>
+                                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccionMod' data-toggle='modal' data-target='#modalRefaccionMod'value='".$refaccion['id_refaccion']."'>
                                                                             <i class='fas fa-eye'></i></button>
-                                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccionDown' ".$disable." data-toggle='modal' data-target='#modalRefaccionDown'value='".$refaccion[id_refaccion]."'>
+                                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccionDown' ".$disable." data-toggle='modal' data-target='#modalRefaccionDown'value='".$refaccion['id_refaccion']."'>
                                                                             <i class='fas fa-trash-alt'></i></button>
                                                                         </td>
                                                                     </tr>

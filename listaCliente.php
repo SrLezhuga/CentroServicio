@@ -72,13 +72,13 @@
                                           while ($Cliente = mysqli_fetch_array($rsCliente)) {
                                             echo "
                                             <tr>
-                                                    <td>".$Cliente[nom_cliente]."</td>
-                                                    <td>".$Cliente[dir_cliente]."</td>
-                                                    <td>".$Cliente[mun_cliente]."</td>
-                                                    <td>".$Cliente[cp_cliente]."</td>
-                                                    <td>".$Cliente[tel_cliente]."</td>
-                                                    <td>".$Cliente[rfc_cliente]."</td>
-                                                    <td><button type='button' class='btn btn-outline-light text-dark btn-sm BtnCliente' data-toggle='modal' data-target='#modalCliente'value=".$Cliente[id_cliente].">
+                                                    <td>".$Cliente['nom_cliente']."</td>
+                                                    <td>".$Cliente['dir_cliente']."</td>
+                                                    <td>".$Cliente['mun_cliente']."</td>
+                                                    <td>".$Cliente['cp_cliente']."</td>
+                                                    <td>".$Cliente['tel_cliente']."</td>
+                                                    <td>".$Cliente['rfc_cliente']."</td>
+                                                    <td><button type='button' class='btn btn-outline-light text-dark btn-sm BtnCliente' data-toggle='modal' data-target='#modalCliente'value=".$Cliente['id_cliente'].">
                                                     <i class='fas fa-pencil-alt'></i></button></td>
                                                 </tr>
                                             "; } ?>

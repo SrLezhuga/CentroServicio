@@ -6,7 +6,7 @@ $id = $_GET['id'];
 $queryOrden = "SELECT *  FROM tab_orden WHERE id_orden =" . $id;
 ($rsOrden = mysqli_query($con, $queryOrden)) or die("Error de consulta");
 while ($Orden = mysqli_fetch_array($rsOrden)) {
-    $folio = $Orden[id_orden];
+    $folio = $Orden['id_orden'];
     if (strlen($folio) == 1) {
         $folio = "0000" . $folio;
     } elseif (strlen($folio) == 2) {
@@ -34,7 +34,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-user-alt'></i>
          <a>&nbsp;&nbsp;" .
-            $Cliente[nom_cliente] .
+            $Cliente['nom_cliente'] .
             "</a>
          </span>
       </div>
@@ -44,7 +44,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-home'></i>
          <a>&nbsp;&nbsp;" .
-            $Cliente[dir_cliente] .
+            $Cliente['dir_cliente'] .
             "</a>
          </span>
       </div>
@@ -56,7 +56,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
       <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-map-marker-alt'></i>
       <a>&nbsp;&nbsp;" .
-            $Cliente[mun_cliente] .
+            $Cliente['mun_cliente'] .
             "</a>
       </span>
    </div>
@@ -66,7 +66,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
       <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-hashtag'></i>
       <a>&nbsp;&nbsp;" .
-            $Cliente[cp_cliente] .
+            $Cliente['cp_cliente'] .
             "</a>
       </span>
    </div>
@@ -76,7 +76,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-phone-alt'></i>
          <a>&nbsp;&nbsp;" .
-            $Cliente[tel_cliente] .
+            $Cliente['tel_cliente'] .
             "</a>
          </span>
       </div>
@@ -88,7 +88,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-at'></i>
          <a>&nbsp;&nbsp;" .
-            $Cliente[mail_cliente] .
+            $Cliente['mail_cliente'] .
             "</a>
          </span>
       </div>
@@ -98,7 +98,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-address-card'></i>
          <a>&nbsp;&nbsp;" .
-            $Cliente[rfc_cliente] .
+            $Cliente['rfc_cliente'] .
             "</a>
          </span>
       </div>
@@ -116,7 +116,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-cogs'></i>
                   <a>&nbsp;&nbsp;" .
-            $Orden[tipo_servicio] .
+            $Orden['tipo_servicio'] .
             "</a>
                   </span>
                </div>
@@ -126,7 +126,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-calendar-alt'></i>
                   <a>&nbsp;&nbsp;" .
-            $Orden[fech_entrada] .
+            $Orden['fech_entrada'] .
             "</a>
                   </span>
                </div>
@@ -136,7 +136,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tools'></i>
                   <a>&nbsp;&nbsp;" .
-            $Orden[desc_herramienta] .
+            $Orden['desc_herramienta'] .
             "</a>
                   </span>
                </div>
@@ -150,7 +150,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tag'></i>
                   <a>&nbsp;&nbsp;" .
-            $Orden[marca_herramienta] .
+            $Orden['marca_herramienta'] .
             "</a>
                   </span>
                </div>
@@ -160,7 +160,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tags'></i>
                   <a>&nbsp;&nbsp;" .
-            $Orden[mod_herramienta] .
+            $Orden['mod_herramienta'] .
             "</a>
                   </span>
                </div>
@@ -170,7 +170,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-puzzle-piece'></i>
                   <a>&nbsp;&nbsp;" .
-            $Orden[tipo_herramienta] .
+            $Orden['tipo_herramienta'] .
             "</a>
                   </span>
                </div>
@@ -188,7 +188,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
       <fieldset class='border p-2'>
       <legend class='w-auto'>Observaciones:</legend>
       " .
-            nl2br($Orden[detalle_servicio]) .
+            nl2br($Orden['detalle_servicio']) .
             "
       </fieldset>
       
@@ -213,13 +213,13 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
         echo "
    <tr>
       <td>" .
-            $servicio[cod_servicio] .
+            $servicio['cod_servicio'] .
             "</td>
       <td>" .
-            $servicio[desc_servicio] .
+            $servicio['desc_servicio'] .
             "</td>
       <td>$ " .
-            $servicio[costo_servicio] .
+            $servicio['costo_servicio'] .
             ".00" .
             "</td>
     </tr>";
@@ -251,16 +251,16 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
         echo "
    <tr>
       <td>" .
-            $Refaccion[cod_refaccion] .
+            $Refaccion['cod_refaccion'] .
             "</td>
       <td>" .
-            $Refaccion[desc_refaccion] .
+            $Refaccion['desc_refaccion'] .
             "</td>
       <td>" .
-            $Refaccion[marca_refaccion] .
+            $Refaccion['marca_refaccion'] .
             "</td>
       <td>$ " .
-            $Refaccion[costo_refaccion] .
+            $Refaccion['costo_refaccion'] .
             ".00" .
             "</td>
     </tr>";

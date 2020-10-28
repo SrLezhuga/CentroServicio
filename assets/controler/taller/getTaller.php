@@ -7,7 +7,7 @@
    $rsOrden = mysqli_query($con, $queryOrden) or die("Error de consulta");
    while ($Orden = mysqli_fetch_array($rsOrden)) {
        
-       $folio = $Orden[id_orden];
+       $folio = $Orden['id_orden'];
        if (strlen($folio) == 1) {
            $folio = "0000" . $folio;
        } else if (strlen($folio) == 2) {
@@ -31,7 +31,7 @@
          <label>Cliente:</label>
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-user-alt'></i>
-         <a>&nbsp;&nbsp;".$Cliente[nom_cliente]."</a>
+         <a>&nbsp;&nbsp;".$Cliente['nom_cliente']."</a>
          </span>
       </div>
       <!--Campo Domicilio -->
@@ -39,7 +39,7 @@
          <label>Domicilio:</label>
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-home'></i>
-         <a>&nbsp;&nbsp;".$Cliente[dir_cliente]."</a>
+         <a>&nbsp;&nbsp;".$Cliente['dir_cliente']."</a>
          </span>
       </div>
    </div>
@@ -49,7 +49,7 @@
       <label>Municipio:</label>
       <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-map-marker-alt'></i>
-      <a>&nbsp;&nbsp;".$Cliente[mun_cliente]."</a>
+      <a>&nbsp;&nbsp;".$Cliente['mun_cliente']."</a>
       </span>
    </div>
     <!--Campo Codigo Postal -->
@@ -57,7 +57,7 @@
       <label>Codigo Postal:</label>
       <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-hashtag'></i>
-      <a>&nbsp;&nbsp;".$Cliente[cp_cliente]."</a>
+      <a>&nbsp;&nbsp;".$Cliente['cp_cliente']."</a>
       </span>
    </div>
     </div>
@@ -67,7 +67,7 @@
          <label>Teléfono:</label>
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-phone-alt'></i>
-         <a>&nbsp;&nbsp;".$Cliente[tel_cliente]."</a>
+         <a>&nbsp;&nbsp;".$Cliente['tel_cliente']."</a>
          </span>
       </div>
       <!--Campo RFC -->
@@ -75,7 +75,7 @@
          <label>RFC:</label>
          <span class='input-group-text' style='background-color:white'>
          <i class='fas fa-address-card'></i>
-         <a>&nbsp;&nbsp;".$Cliente[rfc_cliente]."</a>
+         <a>&nbsp;&nbsp;".$Cliente['rfc_cliente']."</a>
          </span>
       </div>
    </div>
@@ -91,7 +91,7 @@
                   <label>Tipo de servicio:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-cogs'></i>
-                  <a>&nbsp;&nbsp;".$Orden[tipo_servicio]."</a>
+                  <a>&nbsp;&nbsp;".$Orden['tipo_servicio']."</a>
                   </span>
                </div>
                <!--Campo Fecha -->
@@ -99,7 +99,7 @@
                   <label>Fecha:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-calendar-alt'></i>
-                  <a>&nbsp;&nbsp;".$Orden[fech_entrada]."</a>
+                  <a>&nbsp;&nbsp;".$Orden['fech_entrada']."</a>
                   </span>
                </div>
                <!--Campo Herramienta -->
@@ -107,7 +107,7 @@
                   <label>Herramienta:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tools'></i>
-                  <a>&nbsp;&nbsp;".$Orden[desc_herramienta]."</a>
+                  <a>&nbsp;&nbsp;".$Orden['desc_herramienta']."</a>
                   </span>
                </div>
             </div>
@@ -119,7 +119,7 @@
                   <label>Marca:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tag'></i>
-                  <a>&nbsp;&nbsp;".$Orden[marca_herramienta]."</a>
+                  <a>&nbsp;&nbsp;".$Orden['marca_herramienta']."</a>
                   </span>
                </div>
                <!--Campo Modelo -->
@@ -127,7 +127,7 @@
                   <label>Modelo:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tags'></i>
-                  <a>&nbsp;&nbsp;".$Orden[mod_herramienta]."</a>
+                  <a>&nbsp;&nbsp;".$Orden['mod_herramienta']."</a>
                   </span>
                </div>
                <!--Campo Adicional -->
@@ -135,7 +135,7 @@
                   <label>Adicional:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-puzzle-piece'></i>
-                  <a>&nbsp;&nbsp;".$Orden[tipo_herramienta]."</a>
+                  <a>&nbsp;&nbsp;".$Orden['tipo_herramienta']."</a>
                   </span>
                </div>
                <!--/. form producto -->

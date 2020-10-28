@@ -161,7 +161,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                                                     <?php $listRef = "SELECT * FROM tab_refaccion WHERE cant_refaccion > 0 ORDER BY marca_refaccion ASC"; 
                                                                     $rsRef = mysqli_query($con, $listRef) or die ("Error de consulta");      
                                                                         while ($itemRef = mysqli_fetch_array($rsRef)) {
-                                                                        echo "<option value='".$itemRef[id_refaccion]."'>".$itemRef[cod_refaccion]." | ".$itemRef[desc_refaccion]." | ".$itemRef[marca_refaccion]." | $ ".$itemRef[costo_refaccion].".00</option>";}?>
+                                                                        echo "<option value='".$itemRef['id_refaccion']."'>".$itemRef['cod_refaccion']." | ".$itemRef['desc_refaccion']." | ".$itemRef['marca_refaccion']." | $ ".$itemRef['costo_refaccion'].".00</option>";}?>
                                                                 </select>
                                                                 <input type="hidden" name="formOrdId" required
                                                                     value=<?php echo $id; ?>>
@@ -209,7 +209,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                                                     <?php $listSer = "SELECT * FROM tab_servicio ORDER BY desc_servicio ASC"; 
                                                                     $rsSer = mysqli_query($con, $listSer) or die ("Error de consulta");      
                                                                         while ($itemSer = mysqli_fetch_array($rsSer)) {
-                                                                        echo "<option value='".$itemSer[cod_servicio]."'>".$itemSer[cod_servicio]." | ".$itemSer[desc_servicio]." | $ ".$itemSer[costo_servicio].".00</option>";}?>
+                                                                        echo "<option value='".$itemSer['cod_servicio']."'>".$itemSer['cod_servicio']." | ".$itemSer['desc_servicio']." | $ ".$itemSer['costo_servicio'].".00</option>";}?>
                                                                 </select>
                                                                 <input type="hidden" name="formOrdId" required
                                                                     value=<?php echo $id; ?>>
@@ -254,12 +254,12 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                                                 while ($refaccion = mysqli_fetch_array($rsrefaccion)) {
                                                                     echo "
                                                                         <tr>
-                                                                            <td>".$refaccion[cod_refaccion]."</td>        
-                                                                            <td>".$refaccion[desc_refaccion]."</td>
-                                                                            <td>".$refaccion[marca_refaccion]."</td>
-                                                                            <td>$ ".$refaccion[costo_refaccion].".00</td>
+                                                                            <td>".$refaccion['cod_refaccion']."</td>        
+                                                                            <td>".$refaccion['desc_refaccion']."</td>
+                                                                            <td>".$refaccion['marca_refaccion']."</td>
+                                                                            <td>$ ".$refaccion['costo_refaccion'].".00</td>
                                                                             <td> 
-                                                                                <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccion' data-toggle='modal' data-target='#modalDownRefaccion 'value='".$id."|".$refaccion[cod_refaccion]."'>
+                                                                                <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccion' data-toggle='modal' data-target='#modalDownRefaccion 'value='".$id."|".$refaccion['cod_refaccion']."'>
                                                                                 <i class='fas fa-trash-alt'></i></button>
                                                                             </td>
                                                                         </tr>
@@ -295,11 +295,11 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
                                                                 while ($servicio = mysqli_fetch_array($rsServicio)) {
                                                                     echo "
                                                                 <tr>
-                                                                    <td>".$servicio[cod_servicio]."</td>
-                                                                    <td>".$servicio[desc_servicio]."</td>
-                                                                    <td>$ ".$servicio[costo_servicio].".00</td>
+                                                                    <td>".$servicio['cod_servicio']."</td>
+                                                                    <td>".$servicio['desc_servicio']."</td>
+                                                                    <td>$ ".$servicio['costo_servicio'].".00</td>
                                                                     <td> 
-                                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnServicio' data-toggle='modal' data-target='#modalDownServicio 'value='".$id."|".$servicio[cod_servicio]."'>
+                                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnServicio' data-toggle='modal' data-target='#modalDownServicio 'value='".$id."|".$servicio['cod_servicio']."'>
                                                                         <i class='fas fa-trash-alt'></i></button>
                                                                     </td>
                                                                 </tr>";

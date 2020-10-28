@@ -152,11 +152,11 @@
                                                             while ($servicio = mysqli_fetch_array($rsservicio)) {
 
                                                                     echo "<tr>
-                                                                        <td>".$servicio[cod_servicio]."</td>        
-                                                                        <td>".$servicio[desc_servicio]."</td>
-                                                                        <td>$ ".$servicio[costo_servicio].".00</td>
+                                                                        <td>".$servicio['cod_servicio']."</td>        
+                                                                        <td>".$servicio['desc_servicio']."</td>
+                                                                        <td>$ ".$servicio['costo_servicio'].".00</td>
                                                                         <td> 
-                                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnservicioMod' data-toggle='modal' data-target='#modalservicioMod'value='".$servicio[id_servicio]."'>
+                                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnservicioMod' data-toggle='modal' data-target='#modalservicioMod'value='".$servicio['id_servicio']."'>
                                                                             <i class='fas fa-eye'></i></button>
                                                                         </td>
                                                                     </tr>

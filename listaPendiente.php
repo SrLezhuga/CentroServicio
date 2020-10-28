@@ -73,7 +73,7 @@
                                         $rsOrden = mysqli_query($con, $queryOrden) or die ("Error de consulta"); 
                                           while ($Orden = mysqli_fetch_array($rsOrden)) {
                                             
-                                            $folio=$Orden[id_orden];
+                                            $folio=$Orden['id_orden'];
                                             if(strlen($folio)==1){
                                                 $folio="0000".$folio;
                                             }else if(strlen($folio)==2){
@@ -92,15 +92,15 @@
                                             echo "
                                                 <tr>
                                                     <td>".$folio."</td>
-                                                    <td>".$Cliente[nom_cliente]."</td>
-                                                    <td>".$Orden[marca_herramienta]."</td>
-                                                    <td>".$Orden[mod_herramienta]."</td>
-                                                    <td>".$Orden[fech_entrada]."</td>
-                                                    <td>".$Orden[status_orden]."</td>
-                                                    <td>".$Orden[tipo_servicio]."</td>
-                                                    <td>".$Orden[tec_taller]."</td>
+                                                    <td>".$Cliente['nom_cliente']."</td>
+                                                    <td>".$Orden['marca_herramienta']."</td>
+                                                    <td>".$Orden['mod_herramienta']."</td>
+                                                    <td>".$Orden['fech_entrada']."</td>
+                                                    <td>".$Orden['status_orden']."</td>
+                                                    <td>".$Orden['tipo_servicio']."</td>
+                                                    <td>".$Orden['tec_taller']."</td>
                                                     <td> 
-                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden[id_orden].">
+                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
                                                         <i class='far fa-eye'></i></button>
                                                     </td>
                                                 </tr>
