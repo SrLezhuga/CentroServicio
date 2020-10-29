@@ -2,6 +2,8 @@
 require_once '../../vendor/dompdf/autoload.inc.php';
 include("../conexion.php");
 $reporte=1;
+$recibe="Nombre Apellido";
+$mostrador="Mostrador";
 
 $queryOrden = "SELECT * FROM tab_orden WHERE id_orden =".$reporte; 
 $rsOrden = mysqli_query($con, $queryOrden) or die ("Error de consulta"); 
@@ -60,14 +62,13 @@ $SumRef = mysqli_fetch_array($rsSumRef);
 $querySumSer = "SELECT SUM(costo_servicio) FROM tab_ordenservicio WHERE id_orden = ".$reporte; 
 $rsSumSer = mysqli_query($con, $querySumSer) or die ("Error de consulta"); 
 $SumSer = mysqli_fetch_array($rsSumSer);
-/*
+
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
-$dompdf->loadHtml('*/
-echo '
+$dompdf->loadHtml('
 <!DOCTYPE html>
 <html>
     <head>
@@ -288,10 +289,10 @@ echo '
                 </table>
             </fieldset>
             <div class="row">
-                <div class="col-8">
-                    <fieldset class="border p-2">
+                <div class="col-8" >
+                    <fieldset class="border p-2" style="height: 11rem;">
                         <legend class="w-auto">Observaciones del Servicio:</legend>
-                        <a>'.nl2br($Orden[detalle_servicio]).'</a>
+                        <a>'.$Orden[detalle_servicio].'</a>
                     </fieldset>
                 </div>
                 <div class="col-4">
@@ -305,7 +306,7 @@ echo '
                                 <br />
                                 <a><b>Impuestos: $</b></a>
                                 <br />
-                                <a><b>Total: $</b></a>
+                                <h3><b>Total: $</b></h3>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <a>'.$SumRef[0].'.00</a>
@@ -314,7 +315,7 @@ echo '
                                 <br />
                                 <a>'.(($SumRef[0]+$SumSer[0])*.16).'</a>
                                 <br />
-                                <a>'.(($SumRef[0]+$SumSer[0])*1.16).'</a>
+                                <h3>'.(($SumRef[0]+$SumSer[0])*1.16).'</h3>
                             </div>
                         </div>
                     </fieldset>
@@ -325,30 +326,54 @@ echo '
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
                     <p>Técnico<br>
-                    _________________________<br>
+                    ______________________________<br>
                     '.$Orden[tec_taller].'</p>
                 </div>
                 <div class="col">
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
                     <p>Mostrador<br>
-                    _________________________<br>
-                    **Mostrador**</p>
+                    ______________________________<br>
+                    '.$mostrador.'</p>
                 </div>
                 <div class="col">
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
                     <p>Cliente<br>
-                    _________________________<br>
-                    **Cliente**</p>
+                    ______________________________<br>
+                    '.$recibe.'</p>
                 </div>
             </div>
+            <br>
+            <hr>
+            <h1 class="display-4 text-center"><strong>Centro de servicio</strong></h1>
+            <fieldset class="border p-2">
+                <legend class="w-auto">Talonario para el cliente:</legend>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Recibido por:</p>
+                            <p>'.$recibe.'</p>
+                        </div>
+                        <div class="col-4">
+                            <p>Atendido por:</p>
+                            <p>'.$mostrador.'</p>
+                        </div>
+                        <div class="col-4 text-right">
+                            <h4 class="folio"><strong>FOLIO:'.$folio.'</strong></h4>
+                            <h4>26 de Septiembre del 2020</h4>
+                        </div>
+                    </div>
+             </fieldset>
+             <p>
+             Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
+             recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+             Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
+             honorarios.
+             </p>
         </div>
     </body>
 </html>
 
-';
-/*
 ');
 
 // (Optional) Setup the paper size and orientation
@@ -360,5 +385,5 @@ $dompdf->render();
 // Output the generated PDF to Browser
 
 $dompdf->stream('document.pdf',array('Attachment'=>0));
-*/
+
 ?>
