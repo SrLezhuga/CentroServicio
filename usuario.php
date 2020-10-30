@@ -91,7 +91,7 @@ include("assets/controler/conexion.php"); ?>
                                                                 <i class="fas fa-user-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="password" class="form-control" placeholder="Contraseña" name="formUseCon" aria-describedby="passwordHelpInline" required>
+                                                        <input type="password"  class="form-control" placeholder="Contraseña" name="formUseCon" aria-describedby="passwordHelpInline" required>
                                                     </div>
                                                 </div>
 

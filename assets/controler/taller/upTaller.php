@@ -13,9 +13,16 @@ SET   status_orden  = '".$Status."'
 WHERE id_orden = ".$Id.";"; 
 
 if (mysqli_query($con, $sql)) {
-    unset($_SESSION['id_Orden']);
-    header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=1'");
+
+    $sql2 = "UPDATE tab_users
+    SET   taller  = 0
+    WHERE code_user = ".$_SESSION['code_user'].";"; 
+
+    if (mysqli_query($con, $sql2)) {
+        header("HTTP/1.0 404 Not Found");
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=1'");
+    }
+   
 }
 
 // close connection

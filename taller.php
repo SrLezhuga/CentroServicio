@@ -1,6 +1,9 @@
 <?php session_start(); include("assets/controler/conexion.php"); 
-if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
-?>
+$ordenPendiente = "SELECT taller FROM tab_users WHERE code_user=".$_SESSION['code_user']; 
+$rsordenPendiente = mysqli_query($con, $ordenPendiente) or die ("Error de consulta");      
+$pendiente = mysqli_fetch_array($rsordenPendiente);
+$id=$pendiente['taller'];?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +44,7 @@ if(!empty($_SESSION['id_Orden'])){$id=$_SESSION['id_Orden'];}else{$id=0;}
 
 
                     <!-- Content Row -->
-                    <div class="row" <?php if($id!==0){ echo "style='content-visibility: hidden;'"; } ?>>
+                    <div class="row" <?php if($id>0){ echo "style='content-visibility: hidden;'"; } ?>>
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">

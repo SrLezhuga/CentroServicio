@@ -4,10 +4,30 @@
 <head>
     <?php  include("assets/common/bg.php");?>
     <?php  include("assets/common/header.php");?>
+    <script src="assets/js/demo/loader.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg'>
+    </script>
+    <script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg', {
+                action: 'formulario'
+            })
+            .then(function(token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+    });
+    </script>
     <title> Centro de Servicio FMA | Login</title>
 </head>
 
 <body <?php echo $bgn; ?>>
+    <div class="lds-ring loader-in" id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
     <div class="container">
 
@@ -36,6 +56,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Centro de Servicio</h1>
                                     </div>
                                     <form class="user" action="./assets/controler/login.php" method="POST">
+                                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
                                         <div class="input-group ">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
@@ -75,13 +96,13 @@
 
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
-        <script>
-            toastr["success"]("Vuelve Pronto! 😃")
-        </script>
+    <script>
+    toastr["success"]("Vuelve Pronto! 😃")
+    </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){?>
-        <script>
-            toastr["error"]("Error al iniciar sesión intenta de nuevo 😅")
-        </script>
+    <script>
+    toastr["error"]("Error al iniciar sesión intenta de nuevo 😅")
+    </script>
     <?php } ?>
 </body>
 
