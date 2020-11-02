@@ -12,7 +12,7 @@ echo "
     <fieldset class='border p-2'>
         <legend class='w-auto'>Datos de la refaccion</legend>
         <div class='row'>
-            <input type='hidden' class='form-control' placeholder='Id cliente' name='formRefId' value='".$item[id_refaccion]."' required/>
+            <input type='hidden' class='form-control' placeholder='Id cliente' name='formRefId' value='".$item['id_refaccion']."' required/>
 
             <!-- form refaccion -->
 
@@ -25,7 +25,7 @@ echo "
                                 <i class='fas fa-barcode'></i>
                             </span>
                         </div>
-                        <input type='text' class='form-control' placeholder='Código refaccion' name='forRefCod' required value='".$item[cod_refaccion]."'/>
+                        <input type='text' class='form-control' placeholder='Código refaccion' name='forRefCod' required value='".$item['cod_refaccion']."'/>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@ echo "
                                 <i class='fas fa-tasks'></i>
                             </span>
                         </div>
-                        <input type='text' class='form-control' placeholder='Descripción refaccion' name='forRefDes' value='".$item[desc_refaccion]."' required />
+                        <input type='text' class='form-control' placeholder='Descripción refaccion' name='forRefDes' value='".$item['desc_refaccion']."' required />
                     </div>
                 </div>
          
@@ -53,7 +53,7 @@ echo "
                                 <i class='fas fa-tag'></i>
                             </span>
                         </div>
-                        <input type='text' class='form-control' placeholder='Marca refaccion' name='forRefMar' value='".$item[marca_refaccion]."' required />
+                        <input type='text' class='form-control' placeholder='Marca refaccion' name='forRefMar' value='".$item['marca_refaccion']."' required />
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@ echo "
                                 <i class='fas fa-hashtag'></i>
                             </span>
                         </div>
-                        <input type='number' class='form-control' placeholder='Cantidad en stock' max='50' min='1' name='forRefCan' value='".$item[cant_refaccion]."' required />
+                        <input type='number' class='form-control' placeholder='Cantidad en stock' max='50' min='1' name='forRefCan' value='".$item['cant_refaccion']."' required />
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@ echo "
                                 <i class='fas fa-dollar-sign'></i>
                             </span>
                         </div>
-                        <input type='text' class='form-control' placeholder='Costo refaccion' name='forRefCos' value='".$item[costo_refaccion]."' required />
+                        <input type='text' class='form-control' placeholder='Costo refaccion' name='forRefCos' value='".$item['costo_refaccion']."' required />
                     </div>
                 </div>
 

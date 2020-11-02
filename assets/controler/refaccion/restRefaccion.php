@@ -11,11 +11,11 @@ $refaccionId  = $_POST['fromRefId'];
 $listRef = "SELECT * FROM tab_refaccion WHERE id_refaccion = $refaccionId"; 
     $rsRef = mysqli_query($con, $listRef) or die ("Error de consulta");      
     while ($itemRef = mysqli_fetch_array($rsRef)) { 
-        $CantOld     =  $itemRef[cant_refaccion];
-        $Codigo      =  $itemRef[cod_refaccion];
-        $Descipcion  =  $itemRef[desc_refaccion];
-        $Marca       =  $itemRef[marca_refaccion];
-        $Costo       =  $itemRef[costo_refaccion];
+        $CantOld     =  $itemRef['cant_refaccion'];
+        $Codigo      =  $itemRef['cod_refaccion'];
+        $Descipcion  =  $itemRef['desc_refaccion'];
+        $Marca       =  $itemRef['marca_refaccion'];
+        $Costo       =  $itemRef['costo_refaccion'];
         
     }
 
@@ -30,7 +30,7 @@ $listUp = "INSERT INTO tab_ordenrefaccion VALUES ($OrdenId , '$Codigo', '$Descip
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=1'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=1'");
 }
 
     }

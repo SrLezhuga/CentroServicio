@@ -16,7 +16,7 @@ if (mysqli_query($con, $sql)) {
 
     if (mysqli_query($con, $sql2)) {
         header("HTTP/1.0 404 Not Found");
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php");
+        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller");
     }
     
 }

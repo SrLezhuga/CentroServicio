@@ -12,7 +12,7 @@ $servicioCosto        = $_POST['forSerCos'];
 $sql = "INSERT INTO tab_servicio VALUES ('','$servicioCodigo','$servicioDescripcion',$servicioCosto)";
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=0'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=0'");
 }
 
 // close connection

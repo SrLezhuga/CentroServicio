@@ -73,7 +73,7 @@
                                                                     <?php $listCli = "SELECT * FROM tab_cliente ORDER BY nom_cliente ASC"; 
                                                                     $rsCli = mysqli_query($con, $listCli) or die ("Error de consulta");      
                                                                     while ($itemCli = mysqli_fetch_array($rsCli)) {
-                                                                    echo "<option value='".$itemCli[0]."'>".$itemCli[nom_cliente]." | ".$itemCli[dir_cliente]." | ".$itemCli[tel_cliente]."</option>";}?>
+                                                                    echo "<option value='".$itemCli[0]."'>".$itemCli['nom_cliente']." | ".$itemCli['dir_cliente']." | ".$itemCli['tel_cliente']."</option>";}?>
                                                                 </select>
                                                             </div>
                                                         </div>

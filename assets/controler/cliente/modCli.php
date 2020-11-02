@@ -26,7 +26,7 @@ WHERE id_cliente   = ".$clienteId.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/listaCliente.php?alert=0'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/listaCliente?alert=0'");
 }
 
 // close connection

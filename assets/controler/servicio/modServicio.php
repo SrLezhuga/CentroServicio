@@ -18,7 +18,7 @@ WHERE id_servicio   = ".$servicioId.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/servicio.php?alert=1'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/servicio?alert=1'");
 }
 
 // close connection

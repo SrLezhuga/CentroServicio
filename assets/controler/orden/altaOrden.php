@@ -21,7 +21,7 @@ echo $sql = "INSERT INTO tab_orden VALUES
 if (mysqli_query($con, $sql)) {
 
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/orden.php?alert=0'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/orden?alert=0'");
 
 }
 

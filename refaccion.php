@@ -292,6 +292,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <h3 class="text-center">Se eliminara la refaccion ¿Deseas continuar?</h3>
                     <div class="getDatosDown">
                     </div>
                 </div>

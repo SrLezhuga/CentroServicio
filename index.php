@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-    <?php  include("assets/common/bg.php");?>
-    <?php  include("assets/common/header.php");?>
+    <?php include("assets/common/bg.php"); ?>
+    <?php include("assets/common/header.php"); ?>
     <script src="assets/js/demo/loader.js"></script>
     <script src='https://www.google.com/recaptcha/api.js?render=6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg'>
     </script>
     <script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg', {
-                action: 'formulario'
-            })
-            .then(function(token) {
-                var recaptchaResponse = document.getElementById('recaptchaResponse');
-                recaptchaResponse.value = token;
-            });
-    });
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg', {
+                    action: 'formulario'
+                })
+                .then(function(token) {
+                    var recaptchaResponse = document.getElementById('recaptchaResponse');
+                    recaptchaResponse.value = token;
+                });
+        });
     </script>
     <title> Centro de Servicio FMA | Login</title>
 </head>
@@ -44,8 +44,7 @@
                             <div class="col-xl-5 col-lg-5 col-md-6 col-sm-5 col-xs-5">
                                 <div class="p-4">
                                     <div class="text-center">
-                                        <center><img src="assets\img\Logo\logo.webp" class="mx-auto d-block"
-                                                style="width: 100%;" onContextMenu="return false;" draggable="false" />
+                                        <center><img src="assets\img\Logo\logo.webp" class="mx-auto d-block" style="width: 100%;" onContextMenu="return false;" draggable="false" />
                                         </center>
                                     </div>
                                 </div>
@@ -63,8 +62,7 @@
                                                     <i class="fas fa-user-alt"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control form-control-lg" name="formUser"
-                                                placeholder="Usuario" required>
+                                            <input type="text" class="form-control form-control-lg" name="formUser" placeholder="Usuario" required>
                                         </div>
 
                                         <div class="input-group ">
@@ -73,13 +71,11 @@
                                                     <i class="fas fa-key"></i>
                                                 </span>
                                             </div>
-                                            <input type="password" class="form-control form-control-lg" name="formPass"
-                                                placeholder="Contraseña" aria-describedby="passwordHelpInline" required>
+                                            <input type="password" class="form-control form-control-lg" name="formPass" placeholder="Contraseña" aria-describedby="passwordHelpInline" required>
                                         </div>
                                         <br>
 
-                                        <button type="submit" class="btn btn-outline-danger btn-block btn-lg"><i
-                                                class="fas fa-paper-plane"></i> Inicio Sesion</button>
+                                        <button type="submit" class="btn btn-outline-danger btn-block btn-lg"><i class="fas fa-sign-in-alt"></i> Inicio Sesion</button>
                                     </form>
                                 </div>
                             </div>
@@ -95,14 +91,15 @@
 
 
     <!-- Alerts! -->
-    <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
-    <script>
-    toastr["success"]("Vuelve Pronto! 😃")
-    </script>
-    <?php } if(isset($_GET['alert']) && $_GET['alert']==1){?>
-    <script>
-    toastr["error"]("Error al iniciar sesión intenta de nuevo 😅")
-    </script>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
+        <script>
+            toastr["success"]("Vuelve Pronto! 😃")
+        </script>
+    <?php }
+    if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
+        <script>
+            toastr["error"]("Error al iniciar sesión intenta de nuevo 😅")
+        </script>
     <?php } ?>
 </body>
 

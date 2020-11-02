@@ -12,7 +12,7 @@ echo "
     <fieldset class='border p-2'>
         <legend class='w-auto'>Datos de la servicio</legend>
         <div class='row'>
-            <input type='hidden' class='form-control' placeholder='Id cliente' name='formSerId' value='".$item[id_servicio]."' required />
+            <input type='hidden' class='form-control' placeholder='Id cliente' name='formSerId' value='".$item['id_servicio']."' required />
 
             <!--Campo Código -->
             <div class='col-2'>
@@ -23,7 +23,7 @@ echo "
                             <i class='fas fa-barcode'></i>
                         </span>
                     </div>
-                    <input type='text' class='form-control' placeholder='Código servicio' name='forSerCod' value='".$item[cod_servicio]."' required />
+                    <input type='text' class='form-control' placeholder='Código servicio' name='forSerCod' value='".$item['cod_servicio']."' required />
                 </div>
             </div>
 
@@ -36,7 +36,7 @@ echo "
                             <i class='fas fa-tasks'></i>
                         </span>
                     </div>
-                    <input type='text' class='form-control' placeholder='Descripción servicio' name='forSerDes' value='".$item[desc_servicio]."' required />
+                    <input type='text' class='form-control' placeholder='Descripción servicio' name='forSerDes' value='".$item['desc_servicio']."' required />
                 </div>
             </div>
 
@@ -49,7 +49,7 @@ echo "
                             <i class='fas fa-dollar-sign'></i>
                         </span>
                     </div>
-                    <input type='text' class='form-control' placeholder='Costo servicio' name='forSerCos' value='".$item[costo_servicio]."' required />
+                    <input type='text' class='form-control' placeholder='Costo servicio' name='forSerCos' value='".$item['costo_servicio']."' required />
                 </div>
             </div>
             <hr />

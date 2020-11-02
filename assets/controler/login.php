@@ -30,20 +30,20 @@ $items      =  explode("-", $rs['conf_user']);
 $avatar     =  "assets/img/Avatar/".$items[0].".png";
 
 if ($user_id == 0) {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index.php?alert=1");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index?alert=1");
 } else {
     session_start();
     $_SESSION['priv_user'] = $rs['priv_user'];
     $_SESSION['name_user'] = $rs['name_user'];
     $_SESSION['code_user'] = $user_id;
     $_SESSION['avatar']    = $avatar;
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/inicio.php");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/inicio");
 }
 
 mysqli_close($con);
 } else {
    // Código para aviso de error
-   header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index.php?alert=1");
+   header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index?alert=1");
 }
 
 

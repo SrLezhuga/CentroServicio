@@ -39,6 +39,3 @@
 <script src="assets/js/demo/code.js"></script>
 <script src="assets/vendor/toastr/toastr.min.js"></script>
 <script src="assets/js/demo/datatables-demo.js"></script>
-
-
-

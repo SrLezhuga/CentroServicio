@@ -16,7 +16,7 @@ $clienteMail       = $_POST['formCliMail'];
 $sql = "INSERT INTO tab_cliente VALUES ('','$clienteNombre','$clienteDomicilio','$clienteMunicipio',$clienteCP,'$clienteTelefono','$clienteRfc', '$clienteMail')";
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/cliente.php?alert=0'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/cliente?alert=0'");
 }
 
 // close connection

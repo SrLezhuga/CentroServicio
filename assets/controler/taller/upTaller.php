@@ -6,26 +6,52 @@ include("../conexion.php");
 $Status     = $_POST['formStatus'];
 $Id         = $_POST['formId'];
 
-// Consulta segura para evitar inyecciones SQL.
+if ($Status == "REPARADA") {
+    $Fecha = date('Y-m-d');
 
-$sql = "UPDATE tab_orden
-SET   status_orden  = '".$Status."'
-WHERE id_orden = ".$Id.";"; 
+    // Consulta segura para evitar inyecciones SQL.
 
-if (mysqli_query($con, $sql)) {
+    $sql = "UPDATE tab_orden
+            SET   status_orden  = '" . $Status . "',
+                  fech_salida   =  '" . $Fecha . "'
+            WHERE id_orden      = " . $Id . ";";
 
-    $sql2 = "UPDATE tab_users
-    SET   taller  = 0
-    WHERE code_user = ".$_SESSION['code_user'].";"; 
+    if (mysqli_query($con, $sql)) {
 
-    if (mysqli_query($con, $sql2)) {
-        header("HTTP/1.0 404 Not Found");
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=1'");
+        $sql2 = "UPDATE tab_users
+                SET   taller    = 0
+                WHERE code_user = " . $_SESSION['code_user'] . ";";
+
+        if (mysqli_query($con, $sql2)) {
+            header("HTTP/1.0 404 Not Found");
+            header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=1'");
+        }
     }
-   
+
+    // close connection
+    mysqli_close($con);
+} else {
+
+    // Consulta segura para evitar inyecciones SQL.
+
+    $sql = "UPDATE tab_orden
+            SET   status_orden  = '" . $Status . "'
+            WHERE id_orden      = " . $Id . ";";
+
+    if (mysqli_query($con, $sql)) {
+
+        $sql2 = "UPDATE tab_users
+                SET   taller    = 0
+                WHERE code_user = " . $_SESSION['code_user'] . ";";
+
+        if (mysqli_query($con, $sql2)) {
+            header("HTTP/1.0 404 Not Found");
+            header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=1'");
+        }
+    }
+
+    // close connection
+
+    mysqli_close($con);
 }
-
-// close connection
-
-mysqli_close($con);
 ?>

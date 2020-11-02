@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="inicio.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="inicio">
         <div class="sidebar-brand-icon">
             <center><img src="assets\img\Logo\logo.webp" class="img-responsive" style="width: 45px;" />
             </center>
@@ -25,7 +25,7 @@
                     <span>Informe</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="lobby.php">Informe</a>
+                <a class="collapse-item" href="lobby">Informe</a>
             </div>
         </div>
     </li>
@@ -43,8 +43,8 @@
                     <span>Cliente</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="cliente.php">Nuevo Cliente</a>
-                <a class="collapse-item" href="listaCliente.php">Lista Clientes</a>
+                <a class="collapse-item" href="cliente">Nuevo Cliente</a>
+                <a class="collapse-item" href="listaCliente">Lista Clientes</a>
             </div>
         </div>
     </li>
@@ -63,10 +63,10 @@
                     <span>Orden</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="orden.php">Nueva orden</a>
-                <a class="collapse-item" href="listaOrden.php">Lista ordenes</a>
-                <a class="collapse-item" href="listaPendiente.php">Ordenes Prendientes</a>
-                <a class="collapse-item" href="listaCompleta.php">Ordenes Completas</a>
+                <a class="collapse-item" href="orden">Nueva orden</a>
+                <a class="collapse-item" href="listaOrden">Lista ordenes</a>
+                <a class="collapse-item" href="listaPendiente">Ordenes Prendientes</a>
+                <a class="collapse-item" href="listaCompleta">Ordenes Completas</a>
             </div>
         </div>
     </li>
@@ -84,9 +84,9 @@
                     <span>Prestamos</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="herramienta.php">Alta Herramienta</a>
-                <a class="collapse-item" href="prestamo.php">Nuevo Prestamo</a>
-                <a class="collapse-item" href="listaPrestamo.php">Lista Prestamo</a>
+                <a class="collapse-item" href="herramienta">Alta Herramienta</a>
+                <a class="collapse-item" href="prestamo">Nuevo Prestamo</a>
+                <a class="collapse-item" href="listaPrestamo">Lista Prestamo</a>
             </div>
         </div>
     </li>
@@ -104,7 +104,7 @@
                     <span>Reportes</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="reportes.php">Reportes</a>
+                <a class="collapse-item" href="reportes">Reportes</a>
             </div>
         </div>
     </li>
@@ -122,8 +122,8 @@
                     <span>Administrador</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="usuario.php">Alta Usuario</a>
-                <a class="collapse-item" href="#.php">Configuración</a>
+                <a class="collapse-item" href="usuario">Alta Usuario</a>
+                <a class="collapse-item" href="#">Configuración</a>
             </div>
         </div>
     </li>
@@ -141,8 +141,8 @@
                     <span>Refacciones</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="refaccion.php">Alta Refacciones</a>
-                <a class="collapse-item" href="servicio.php">Alta Servicios</a>
+                <a class="collapse-item" href="refaccion">Alta Refacciones</a>
+                <a class="collapse-item" href="servicio">Alta Servicios</a>
             </div>
         </div>
     </li>
@@ -161,8 +161,8 @@
                     <span>Taller</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="taller.php">Mesa de Trabajo</a>
-                <a class="collapse-item" href="listaTaller.php">Ordenes Pendientes</a>
+                <a class="collapse-item" href="taller">Mesa de Trabajo</a>
+                <a class="collapse-item" href="listaTaller">Ordenes Pendientes</a>
             </div>
         </div>
     </li>

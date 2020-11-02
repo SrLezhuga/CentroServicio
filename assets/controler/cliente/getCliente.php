@@ -13,7 +13,7 @@ echo "
         <legend class='w-auto'>Datos del Cliente:</legend>
     <div class='row'>
 
-        <input type='hidden' class='form-control' placeholder='Id cliente' name='formCliId' value='".$item[id_cliente]."' required>
+        <input type='hidden' class='form-control' placeholder='Id cliente' name='formCliId' value='".$item['id_cliente']."' required>
 
         <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
             <label>Cliente:</label>
@@ -23,7 +23,7 @@ echo "
                         <i class='fas fa-user-alt'></i>
                     </span>
                 </div>
-                <input type='text' class='form-control' placeholder='Nombre cliente' name='formCliNom' value='".$item[nom_cliente]."' required>
+                <input type='text' class='form-control' placeholder='Nombre cliente' name='formCliNom' value='".$item['nom_cliente']."' required>
             </div>
         </div>
 
@@ -36,7 +36,7 @@ echo "
                         <i class='fas fa-home'></i>
                     </span>
                 </div>
-                <input type='text' class='form-control' placeholder='Domicilio cliente' name='formCliDom' value='".$item[dir_cliente]."' required>
+                <input type='text' class='form-control' placeholder='Domicilio cliente' name='formCliDom' value='".$item['dir_cliente']."' required>
             </div>
         </div>
 
@@ -52,7 +52,7 @@ echo "
                     <i class='fas fa-map-marker-alt'></i>
                 </span>
             </div>
-            <input type='text' class='form-control' placeholder='Municipio' name='formCliMun'  value='".$item[mun_cliente]."' required />
+            <input type='text' class='form-control' placeholder='Municipio' name='formCliMun'  value='".$item['mun_cliente']."' required />
         </div>
     </div>
 
@@ -65,7 +65,7 @@ echo "
                     <i class='fas fa-hashtag'></i>
                 </span>
             </div>
-            <input type='text' class='form-control' placeholder='Codigo Postal' name='formCliCP' value='".$item[cp_cliente]."' required />
+            <input type='text' class='form-control' placeholder='Codigo Postal' name='formCliCP' value='".$item['cp_cliente']."' required />
         </div>
     </div>
 
@@ -78,7 +78,7 @@ echo "
                         <i class='fas fa-phone-alt'></i>
                     </span>
                 </div>
-                <input type='tel' class='form-control' placeholder='Teléfono cliente' name='formCliTel' value='".$item[tel_cliente]."' required>
+                <input type='tel' class='form-control' placeholder='Teléfono cliente' name='formCliTel' value='".$item['tel_cliente']."' required>
             </div>
         </div>
 
@@ -95,7 +95,7 @@ echo "
                     <i class='fas fa-at'></i>
                 </span>
             </div>
-            <input type='email' class='form-control' placeholder='Correo cliente' name='formCliMail' value='".$item[mail_cliente]."' required>
+            <input type='email' class='form-control' placeholder='Correo cliente' name='formCliMail' value='".$item['mail_cliente']."' required>
         </div>
     </div>
 
@@ -108,7 +108,7 @@ echo "
                         <i class='fas fa-address-card'></i>
                     </span>
                 </div>
-                <input type='text' class='form-control' placeholder='RFC cliente' name='formCliRfc' value='".$item[rfc_cliente]."' required>
+                <input type='text' class='form-control' placeholder='RFC cliente' name='formCliRfc' value='".$item['rfc_cliente']."' required>
             </div>
         </div>
 

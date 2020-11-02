@@ -24,21 +24,21 @@ echo "
         <label>Código:</label>
         <span class='input-group-text' style='background-color: white;'>
           <i class='fas fa-barcode'></i>
-          <a>&nbsp;&nbsp;".$item[cod_refaccion]."</a>
+          <a>&nbsp;&nbsp;".$item['cod_refaccion']."</a>
         </span>
       </div>
       <div class='col-12'>
         <label>Descripción:</label>
         <span class='input-group-text' style='background-color: white;'>
           <i class='fas fa-tasks'></i>
-          <a>&nbsp;&nbsp;".$item[desc_refaccion]."</a>
+          <a>&nbsp;&nbsp;".$item['desc_refaccion']."</a>
         </span>
       </div>
       <div class='col-12'>
         <label>Marca:</label>
         <span class='input-group-text' style='background-color: white;'>
           <i class='fas fa-tag'></i>
-          <a>&nbsp;&nbsp;".$item[marca_refaccion]."</a>
+          <a>&nbsp;&nbsp;".$item['marca_refaccion']."</a>
         </span>
       </div></div>
     </div>

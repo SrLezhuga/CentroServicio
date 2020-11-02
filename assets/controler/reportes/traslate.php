@@ -335,7 +335,7 @@ $num = (int)$num;
 
 $numf = milmillon($num);
 
-return $numf." PESOS CON ".$cents."/100 CENTAVOS";
+return $numf." PESOS CON ".$cents."/100 M.N.";
 }
 
 //convertir($numero);

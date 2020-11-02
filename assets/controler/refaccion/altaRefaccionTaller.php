@@ -14,7 +14,7 @@ $refaccionCosto        = $_POST['forRefCos'];
 $sql = "INSERT INTO tab_refaccion VALUES ('','$refaccionCodigo','$refaccionDescripcion','$refaccionMarca',$refaccionCantidad,$refaccionCosto)";
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller.php?alert=3'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=3'");
 }
 
 // close connection

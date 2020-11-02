@@ -5,13 +5,13 @@ require_once "traslate.php";
 $reporte=1;
 $recibe="Nombre Apellido";
 $mostrador="Mostrador";
-$pago="efectivo";
+$pago="EFECTIVO";
 
 $queryOrden = "SELECT * FROM tab_orden WHERE id_orden =".$reporte; 
 $rsOrden = mysqli_query($con, $queryOrden) or die ("Error de consulta"); 
 $Orden = mysqli_fetch_array($rsOrden);
     
-    $folio=$Orden[id_orden];
+    $folio=$Orden['id_orden'];
     if(strlen($folio)==1){
         $folio="0000".$folio;
     }else if(strlen($folio)==2){
@@ -22,7 +22,7 @@ $Orden = mysqli_fetch_array($rsOrden);
         $folio="0".$folio;
     }
 
-$queryCliente = "SELECT * FROM tab_cliente WHERE id_cliente = ".$Orden[id_cliente]; 
+$queryCliente = "SELECT * FROM tab_cliente WHERE id_cliente = ".$Orden['id_cliente']; 
 $rsCliente = mysqli_query($con, $queryCliente) or die ("Error de consulta"); 
 $Cliente = mysqli_fetch_array($rsCliente);
 
@@ -35,10 +35,10 @@ for ($i=0; $i < 10 ; $i++) {
 $i=0;
 while($Refaccion = mysqli_fetch_array($rsRefaccion)){
     
-    $itemRef[$i][cod_refaccion]=$Refaccion[cod_refaccion];
-    $itemRef[$i][desc_refaccion]=$Refaccion[desc_refaccion];
-    $itemRef[$i][marca_refaccion]=$Refaccion[marca_refaccion];
-    $itemRef[$i][costo_refaccion]=$Refaccion[costo_refaccion];
+    $itemRef[$i]['cod_refaccion']=$Refaccion['cod_refaccion'];
+    $itemRef[$i]['desc_refaccion']=$Refaccion['desc_refaccion'];
+    $itemRef[$i]['marca_refaccion']=$Refaccion['marca_refaccion'];
+    $itemRef[$i]['costo_refaccion']=$Refaccion['costo_refaccion'];
     $i++;
 }
 
@@ -51,9 +51,9 @@ for ($i=0; $i < 5 ; $i++) {
 $i=0;
 while($Servicio = mysqli_fetch_array($rsServicio)){
     
-    $itemSer[$i][cod_servicio]=$Servicio[cod_servicio];
-    $itemSer[$i][desc_servicio]=$Servicio[desc_servicio];
-    $itemSer[$i][costo_servicio]=$Servicio[costo_servicio];
+    $itemSer[$i]['cod_servicio']=$Servicio['cod_servicio'];
+    $itemSer[$i]['desc_servicio']=$Servicio['desc_servicio'];
+    $itemSer[$i]['costo_servicio']=$Servicio['costo_servicio'];
     $i++;
 }
 
@@ -71,15 +71,19 @@ $totalEnLetra=convertir($totalIva);
 
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 // instantiate and use the dompdf class
-$dompdf = new Dompdf();
+$options = new Options();
+$options->set('isRemoteEnabled', TRUE);
+$dompdf = new Dompdf($options);
 $dompdf->loadHtml('
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="icon" href="MFA.ico" />
-    </head>
+  <head>
+    <title> Centro de Servicio MFA | Reporte</title>
+    <link rel="icon" href="MFA.ico" />
+  </head>
     <style>    
     @page {
             margin-top: 0.3em;
@@ -282,11 +286,11 @@ img {
 }
     </style>
     <body>
-        <img src="logo.png"  />
+        <img src="http://localhost/CentroServicio/assets/controler/reportes/logo.png" />
         <div class="container-fluid">
             <h1 class="display-4 text-center"><strong>Centro de servicio</strong></h1>
 
-            <fieldset class="border-out p-2" style="height: 4.5rem;">
+            <fieldset class="border-out p-2" style="height: 4.2rem;">
                 <div class="row">
                     <div class="col-6">
                         <a>
@@ -302,56 +306,56 @@ img {
                     </div>
                 </div>
             </fieldset>
-            <fieldset class="border p-2" style="height: 4.5rem;">
+            <fieldset class="border p-2" style="height: 4.2rem;">
                 <legend class="w-auto"><strong>Datos del Cliente:</strong></legend>
                 <div class="row">
                     <div class="col-6">
                         <label><b>Nombre:</b></label>
-                        <a>'.$Cliente[nom_cliente].'</a>
+                        <a>'.$Cliente['nom_cliente'].'</a>
                         <br />
                         <label><b>Domicilio:</b></label>
-                        <a>'.$Cliente[dir_cliente].'</a>
+                        <a>'.$Cliente['dir_cliente'].'</a>
                         <br />
                         <label><b>Municipio:</b></label>
-                        <a>'.$Cliente[mun_cliente].'</a>
+                        <a>'.$Cliente['mun_cliente'].'</a>
                         <br />
                         <label><b>Teléfono:</b></label>
-                        <a>'.$Cliente[tel_cliente].'</a>
+                        <a>'.$Cliente['tel_cliente'].'</a>
                     </div>
                     <div class="col-6 offset-6">
                         <label><b>RFC:</b></label>
-                        <a>'.$Cliente[rfc_cliente].'</a>
+                        <a>'.$Cliente['rfc_cliente'].'</a>
                         <br />
                         <label><b>C.P:</b></label>
-                        <a>'.$Cliente[cp_cliente].'</a>
+                        <a>'.$Cliente['cp_cliente'].'</a>
                         <br />
                         <label><b>Correo:</b></label>
-                        <a>'.$Cliente[mail_cliente].'</a>
+                        <a>'.$Cliente['mail_cliente'].'</a>
                     </div>
                 </div>
             </fieldset>
-            <fieldset class="border p-2" style="height: 3.5rem;">
+            <fieldset class="border p-2" style="height: 3.2rem;">
                 <legend class="w-auto"><strong>Datos del Servicio:</strong></legend>
                 <div class="row">
                     <div class="col-8">
                         <label><b>Servicio:</b></label>
-                        <a>'.$Orden[tipo_servicio].'</a>
+                        <a>'.$Orden['tipo_servicio'].'</a>
                         <br />
                         <label><b>Herramienta:</b></label>
-                        <a>'.$Orden[desc_herramienta].'</a>
+                        <a>'.$Orden['desc_herramienta'].'</a>
                         <br />
                         <label><b>Modelo:</b></label>
-                        <a>'.$Orden[mod_herramienta].'</a>
+                        <a>'.$Orden['mod_herramienta'].'</a>
                     </div>
                     <div class="col-4 offset-8">
                         <label><b>Fecha:</b></label>
-                        <a>'.$Orden[fech_entrada].'</a>
+                        <a>'.$Orden['fech_entrada'].'</a>
                         <br />
                         <label><b>Marca:</b></label>
-                        <a>'.$Orden[marca_herramienta].'</a>
+                        <a>'.$Orden['marca_herramienta'].'</a>
                         <br />
                         <label><b>Adicional:</b></label>
-                        <a>'.$Orden[tipo_herramienta].'</a>
+                        <a>'.$Orden['tipo_herramienta'].'</a>
                     </div>
                 </div>
             </fieldset>
@@ -363,24 +367,24 @@ img {
                             
                             <tbody>
                                 <tr>
-                                    <td>'.$itemRef[0][desc_refaccion].'</td>
-                                    <td>'.$itemRef[0][costo_refaccion].'</td>
+                                    <td>'.$itemRef[0]['desc_refaccion'].'</td>
+                                    <td>'.$itemRef[0]['costo_refaccion'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemRef[1][desc_refaccion].'</td>
-                                    <td>'.$itemRef[1][costo_refaccion].'</td>
+                                    <td>'.$itemRef[1]['desc_refaccion'].'</td>
+                                    <td>'.$itemRef[1]['costo_refaccion'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemRef[2][desc_refaccion].'</td>
-                                    <td>'.$itemRef[2][costo_refaccion].'</td>
+                                    <td>'.$itemRef[2]['desc_refaccion'].'</td>
+                                    <td>'.$itemRef[2]['costo_refaccion'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemRef[3][desc_refaccion].'</td>
-                                    <td>'.$itemRef[3][costo_refaccion].'</td>
+                                    <td>'.$itemRef[3]['desc_refaccion'].'</td>
+                                    <td>'.$itemRef[3]['costo_refaccion'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemRef[4][desc_refaccion].'</td>
-                                    <td>'.$itemRef[4][costo_refaccion].'</td>
+                                    <td>'.$itemRef[4]['desc_refaccion'].'</td>
+                                    <td>'.$itemRef[4]['costo_refaccion'].'</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -393,40 +397,45 @@ img {
                             
                             <tbody>
                                 <tr>
-                                    <td>'.$itemSer[0][desc_servicio].'</td>
-                                    <td>'.$itemSer[0][costo_servicio].'</td>
+                                    <td>'.$itemSer[0]['desc_servicio'].'</td>
+                                    <td>'.$itemSer[0]['costo_servicio'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemSer[1][desc_servicio].'</td>
-                                    <td>'.$itemSer[1][costo_servicio].'</td>
+                                    <td>'.$itemSer[1]['desc_servicio'].'</td>
+                                    <td>'.$itemSer[1]['costo_servicio'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemSer[2][desc_servicio].'</td>
-                                    <td>'.$itemSer[2][costo_servicio].'</td>
+                                    <td>'.$itemSer[2]['desc_servicio'].'</td>
+                                    <td>'.$itemSer[2]['costo_servicio'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemSer[3][desc_servicio].'</td>
-                                    <td>'.$itemSer[3][costo_servicio].'</td>
+                                    <td>'.$itemSer[3]['desc_servicio'].'</td>
+                                    <td>'.$itemSer[3]['costo_servicio'].'</td>
                                 </tr>
                                 <tr>
-                                    <td>'.$itemSer[4][desc_servicio].'</td>
-                                    <td>'.$itemSer[4][costo_servicio].'</td>
+                                    <td>'.$itemSer[4]['desc_servicio'].'</td>
+                                    <td>'.$itemSer[4]['costo_servicio'].'</td>
                                 </tr>
                             </tbody>
                         </table>
                     </fieldset>
                 </div>
             </div>
-            <div class="row"  style="height: 5.5rem;">
+            <fieldset class="border p-2" style="height: 2.2rem;">
+              <legend class="w-auto"><strong>Observaciones del Servicio:</strong></legend>
+              <a>'.$Orden['detalle_servicio'].'</a>
+          </fieldset>
+            <div class="row"  style="height: 4.8rem;">
                 <div class="col-5" >
-                    <fieldset class="border p-2" style="height: 3.5rem;">
-                        <legend class="w-auto"><strong>Observaciones del Servicio:</strong></legend>
+                    <fieldset class="border p-2" style="height: 3.2rem;">
+                        <legend class="w-auto"><strong>Conseptos de pago:</strong></legend>
                        <a><b>Tipo de pago:</b> '.$pago.'</a><br>
-                       <a><b>Forma de pago:</b> PUE</a><br>
+                       <a><b>Forma de pago:</b> UNA EXHIBICIÓN</a><br>
+                       <a><b>Condiciones de pago:</b> CONTADO</a><br>
                     </fieldset>
                 </div>
                 <div class="col-4 offset-5">
-                    <fieldset class="border p-2" style="height: 3.5rem;">
+                    <fieldset class="border p-2" style="height: 3.2rem;">
                         <legend class="w-auto"><strong>Deducciones:</strong></legend>
                         <div class="row">
                             <div class="col-6 text-right">
@@ -443,7 +452,7 @@ img {
                     </fieldset>
                 </div>
                 <div class="col-3 offset-9 text-center">
-                    <fieldset class="border p-2" style="height: 3.5rem;">
+                    <fieldset class="border p-2" style="height: 3.2rem;">
                         <legend class="w-auto"><strong>Total:</strong></legend>
                         <div class="row">
                                 <h3>$ '.$totalIva.'</h3>
@@ -451,7 +460,7 @@ img {
                     </fieldset>
                 </div>
             </div>
-            <div class="col-12 text-center" style="height: 2rem; padding-top: 0; border-top: 0;">
+            <div class="col-12 text-center" style="height: 1rem; padding-top: 0; border-top: 0;">
                 <h5>'.$totalEnLetra.'</h5>
             </div>    
  
@@ -463,7 +472,7 @@ img {
                             <div class="col-4 text-center" style="height: 5.5rem;">
                                 <p>Técnico<br>
                                 _______________________<br>
-                                '.$Orden[tec_taller].'</p>
+                                '.$Orden['tec_taller'].'</p>
                             </div>
                             <div class="col-4 offset-4 text-center" style="height: 5.5rem;">
                                 <p>Mostrador<br>
@@ -481,7 +490,7 @@ img {
             </div>
             <hr>
             <h1 class="display-4 text-center"><strong>Centro de servicio</strong></h1>
-            <fieldset class="border-out p-2" style="height: 3.5rem;">
+            <fieldset class="border-out p-2" style="height: 3rem;">
                 <div class="row">
                     <div class="col-6">
                         <a>
@@ -498,7 +507,7 @@ img {
             </fieldset>
             <div class="row" style="height: 5.5rem;">
                 <div class="col-8">
-                    <fieldset class="border-info" style="height: 5.5rem;">
+                    <fieldset class="border-info" style="height: 5.2rem;">
                         <a class="display-1">
                             Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
                             recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
@@ -508,7 +517,7 @@ img {
                     </fieldset>
                 </div>
                 <div class="col-4 offset-8 ">
-                    <fieldset class="border" style="height: 5.5rem;">
+                    <fieldset class="border" style="height: 5.2rem;">
                         <a><b>Recibido por:</b></a><br>
                         <a>'.$recibe.'</a><br>
                         <a><b>Atendido por:</b></a><br>
