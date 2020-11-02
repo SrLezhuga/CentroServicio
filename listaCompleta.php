@@ -68,7 +68,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php 
-                                        $queryOrden = "SELECT id_orden, id_cliente, marca_herramienta, mod_herramienta, fech_entrada, status_orden, tipo_servicio  FROM tab_orden WHERE status_orden = 'CANCELADA' OR status_orden = 'REPARADA' OR status_orden = 'ENTREGADA'"; 
+                                        $queryOrden = "SELECT id_orden, id_cliente, marca_herramienta, mod_herramienta, fech_entrada, status_orden, tipo_servicio  FROM tab_orden WHERE status_orden = 'CANCELADA' OR status_orden = 'REPARADA' OR status_orden = 'ENTREGADA' order by id_orden desc"; 
                                         $rsOrden = mysqli_query($con, $queryOrden) or die ("Error de consulta"); 
                                           while ($Orden = mysqli_fetch_array($rsOrden)) {
                                             
@@ -100,6 +100,8 @@
                                                     <td> 
                                                         <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
                                                         <i class='far fa-eye'></i></button>
+                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnPDF' data-toggle='modal' data-target='#modalPDF'value=".$Orden['id_orden'].">
+                                                        <i class='far fa-file-pdf'></i></button>
                                                     </td>
                                                 </tr>
                                             "; 
@@ -173,24 +175,120 @@
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div class="modal fade" id="modalPDF">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
 
-    <script>
-    // Display an info toast with no title
-    toastr["success"]("Are you the six fingered man?")
-    </script>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Reporte</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
 
-    <script type="text/javascript">
-    // Modal tarjeta Orden
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form class='form' action='assets/controler/reportes/reporteOrdenes.php' method='POST' target="_blank">
 
-    $('.BtnOrden').on('click', function() {
-        var id_button = $(this).val();
-        $('.getOrden').load('./assets/controler/orden/getOrden.php?id=' + id_button, function() {
-            $('#modalOrden').modal({
-                show: true
+                        <!-- form cliente -->
+
+                        <div class="getPDF">
+                        </div>
+
+
+                        <div class='row'>
+
+
+                            <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                                <label>Pago:</label>
+                                <div class='input-group '>
+
+                                    <input type='checkbox' checked data-toggle='toggle' data-width='240' name='pago'
+                                        data-onstyle='outline-danger' data-offstyle='outline-secondary'
+                                        data-on="<i class='far fa-money-bill-alt'></i> Efectivo"
+                                        data-off="<i class='far fa-credit-card'></i> Tarjeta">
+                                </div>
+                            </div>
+
+                            <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                                <label>Factura:</label>
+                                <div class='input-group '>
+
+                                    <input type='checkbox' checked data-toggle='toggle' data-width='240' name='factura'
+                                        data-onstyle='outline-danger' data-offstyle='outline-secondary'
+                                        data-on="<i class='fas fa-check'></i> Cobrar IVA"
+                                        data-off="<i class='fas fa-times'></i> No Cobrar">
+                                </div>
+                            </div>
+
+                            <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                                <label>Correo:</label>
+                                <div class='input-group '>
+
+                                    <input type='checkbox' data-toggle='toggle' data-width='240' name='correo'
+                                        data-onstyle='outline-danger' data-offstyle='outline-secondary'
+                                        data-on="<i class='fas fa-check'></i> Enviar"
+                                        data-off="<i class='fas fa-times'></i> No Enviar">
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="alert alert-info text-center">
+                            <strong>Info!</strong> Solo se podra generar la nota una vez, revisa que los datos sean
+                            correctos!
+                        </div>
+
+
+                        <hr>
+                        <div class='row'>
+                            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                <button type='submit' class='btn btn-outline-danger btn-block'><i
+                                        class='fas fa-file-pdf'></i>
+                                    Generar PDF</button>
+                            </div>
+                        </div>
+
+                        <!--/. form-->
+                    </form>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                            Cerrar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Display an info toast with no title
+        toastr["success"]("Are you the six fingered man?")
+        </script>
+
+        <script type="text/javascript">
+        // Modal tarjeta Orden
+
+        $('.BtnOrden').on('click', function() {
+            var id_button = $(this).val();
+            $('.getOrden').load('./assets/controler/orden/getOrden.php?id=' + id_button, function() {
+                $('#modalOrden').modal({
+                    show: true
+                });
             });
         });
-    });
-    </script>
+        // Modal tarjeta PDF
+
+        $('.BtnPDF').on('click', function() {
+            var id_button = $(this).val();
+            $('.getPDF').load('./assets/controler/reportes/getPDF.php?id=' + id_button, function() {
+                $('#modalPDF').modal({
+                    show: true
+                });
+            });
+        });
+        </script>
 
 </body>
 

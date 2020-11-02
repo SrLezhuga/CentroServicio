@@ -2,10 +2,74 @@
 require_once '../../vendor/dompdf/autoload.inc.php';
 include("../conexion.php");
 require_once "traslate.php";
-$reporte=1;
-$recibe="Nombre Apellido";
-$mostrador="Mostrador";
-$pago="EFECTIVO";
+
+
+$reporte=$_POST['reporte'];
+$recibe=$_POST['recibe'];
+$mostrador=$_POST['mostrador'];
+$pagoOn=$_POST['pago'];
+$facturaOn=$_POST['factura'];
+$correoOn=$_POST['correo'];
+$fecha=$_POST['fecha'];
+
+if ($pagoOn=="on") {
+    $pago="EFECTIVO";
+}else{
+    $pago="TARJETA";
+}
+$pago;
+
+if ($correoOn=="on") {
+    //falta correo
+}
+
+$items = explode("-", $fecha);
+$dia=$items[2];
+$mes=$items[1];
+$año=$items[0];
+
+switch ($mes) {
+    case '01':
+        $m="Enero";
+        break;
+    case '02':
+        $m="Febrero";
+        break;
+    case '03':
+        $m="Marzo";
+        break;
+    case '04':
+        $m="Abril";
+        break;
+    case '05':
+        $m="Mayo";
+        break;
+    case '06':
+        $m="Junio";
+        break;
+     case '07':
+        $m="Julio";
+        break;
+    case '08':
+         $m="Agosto";
+        break;        
+    case '09':
+        $m="Septiembre";
+        break;
+    case '10':
+        $m="Octubre";
+        break;
+    case '11':
+        $m="Noviembre";
+        break;
+    case '12':
+        $m="Diciembre";
+        break;
+}
+
+
+$fechaLetra =$dia . " de " . $m . " del " . $año;
+
 
 $queryOrden = "SELECT * FROM tab_orden WHERE id_orden =".$reporte; 
 $rsOrden = mysqli_query($con, $queryOrden) or die ("Error de consulta"); 
@@ -29,7 +93,7 @@ $Cliente = mysqli_fetch_array($rsCliente);
 $queryRefaccion = "SELECT * FROM tab_ordenrefaccion WHERE id_orden = ".$reporte; 
 $rsRefaccion = mysqli_query($con, $queryRefaccion) or die ("Error de consulta"); 
 
-for ($i=0; $i < 10 ; $i++) { 
+for ($i=0; $i < 5 ; $i++) { 
     $itemRef[$i] = [ 'cod_refaccion' => '&nbsp;', 'desc_refaccion' => '&nbsp;', 'marca_refaccion' => '&nbsp;', 'costo_refaccion' => '&nbsp;' ];
 }
 $i=0;
@@ -65,8 +129,15 @@ $querySumSer = "SELECT SUM(costo_servicio) FROM tab_ordenservicio WHERE id_orden
 $rsSumSer = mysqli_query($con, $querySumSer) or die ("Error de consulta"); 
 $SumSer = mysqli_fetch_array($rsSumSer);
 
-$total=(($SumRef[0]+$SumSer[0])*.16);
-$totalIva=(($SumRef[0]+$SumSer[0])*1.16);
+
+if ($facturaOn=="on") {
+  $total=(($SumRef[0]+$SumSer[0])*.16);
+  $totalIva=(($SumRef[0]+$SumSer[0])*1.16);
+}else{
+  $total=0;
+  $totalIva=($SumRef[0]+$SumSer[0]);
+}
+
 $totalEnLetra=convertir($totalIva);
 
 // reference the Dompdf namespace
@@ -82,7 +153,7 @@ $dompdf->loadHtml('
 <html>
   <head>
     <title> Centro de Servicio MFA | Reporte</title>
-    <link rel="icon" href="MFA.ico" />
+    <link rel="icon" href="http://localhost/CentroServicio/assets/img/Logo/MFA.ico" />
   </head>
     <style>    
     @page {
@@ -110,10 +181,10 @@ $dompdf->loadHtml('
         font-size: 1.5rem;
         font-weight: 300;
         line-height: 1.2;
-        color: tomato;
+        color: crimson;
       }
     .display-4 {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: 150;
       }
       .text-left {
@@ -281,31 +352,26 @@ border:1px dashed;
 img {
   position: absolute; 
   z-index: 0; 
-  opacity: 0.15; 
+  opacity: 0.25; 
   filter: grayscale(1);
 }
     </style>
     <body>
-        <img src="http://localhost/CentroServicio/assets/controler/reportes/logo.png" />
+        <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
         <div class="container-fluid">
-            <h1 class="display-4 text-center"><strong>Centro de servicio</strong></h1>
-
-            <fieldset class="border-out p-2" style="height: 4.2rem;">
-                <div class="row">
-                    <div class="col-6">
-                        <a>
-                            <strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
-                            Guadalupe Victoria #31<br />
-                            Tel: 33450116 ext 134/124 <br />
-                            csa@mayoreoferreteroatlas.com
-                        </a>
-                    </div>
-                    <div class="col-6 offset-6 text-right">
-                        <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
-                        <a>26 de Septiembre del 2020</a>
-                    </div>
+          <fieldset class="border-out p-2" style="height: 3rem;">
+            <div class="row">
+                <div class="col-8">
+                    <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1><br>
+                    <a class="text-right"><strong>Mayoreo Ferretero Atlas SA de CV</strong></a><br>
+                    <a>Guadalupe Victoria #31, Tel: 33450116 ext 134/124 </a>
                 </div>
-            </fieldset>
+                <div class="col-4 offset-8 text-right">
+                    <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
+                    <a>'.$fechaLetra.'</a>
+                </div>
+            </div>
+        </fieldset>
             <fieldset class="border p-2" style="height: 4.2rem;">
                 <legend class="w-auto"><strong>Datos del Cliente:</strong></legend>
                 <div class="row">
@@ -489,31 +555,26 @@ img {
                 </div>
             </div>
             <hr>
-            <h1 class="display-4 text-center"><strong>Centro de servicio</strong></h1>
             <fieldset class="border-out p-2" style="height: 3rem;">
                 <div class="row">
-                    <div class="col-6">
-                        <a>
-                            <strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
-                            Tel: 33450116 ext 134/124 <br />
-                            csa@mayoreoferreteroatlas.com
-                        </a>
+                    <div class="col-8">
+                        <a class="display-4 text-right"><strong>Centro de servicio</strong></a><br>
+                        <a class="text-right"><strong>Mayoreo Ferretero Atlas SA de CV</strong></a>
                     </div>
-                    <div class="col-6 offset-6 text-right">
+                    <div class="col-4 offset-8 text-right">
                         <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
-                        <a>26 de Septiembre del 2020</a>
+                        <a>'.$fechaLetra.'</a>
                     </div>
                 </div>
             </fieldset>
             <div class="row" style="height: 5.5rem;">
                 <div class="col-8">
                     <fieldset class="border-info" style="height: 5.2rem;">
-                        <a class="display-1">
-                            Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                            recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                            Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                            honorarios.
-                        </a>
+                    <a>
+                    Guadalupe Victoria #31<br />
+                    Tel: 33450116 ext 134/124 <br />
+                    csa@mayoreoferreteroatlas.com
+                </a>
                     </fieldset>
                 </div>
                 <div class="col-4 offset-8 ">
@@ -525,6 +586,14 @@ img {
                     </fieldset>
                 </div>
             </div>
+            <fieldset class="border-info" style="height: 5.2rem;">
+                        <a class="display-1">
+                            Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
+                            recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                            Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
+                            honorarios.
+                        </a>
+                    </fieldset>
         </div>
     </body>
 </html>

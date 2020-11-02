@@ -17,10 +17,12 @@
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link href="assets/vendor/toastr/toastr.css" rel="stylesheet"/>
 <link href="assets/css/code.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
 <!-- Bootstrap core JavaScript-->
 <script src="assets/vendor/jquery/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -39,3 +41,6 @@
 <script src="assets/js/demo/code.js"></script>
 <script src="assets/vendor/toastr/toastr.min.js"></script>
 <script src="assets/js/demo/datatables-demo.js"></script>
+
+
+
