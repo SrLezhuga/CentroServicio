@@ -1,4 +1,4 @@
-<?php session_start();?> 
+<?php session_start(); include("assets/controler/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,60 +40,25 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3" style="padding-bottom: 1rem;">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                        <!-- Ordenes Pendientes -->
+                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4" style="padding-bottom: 1rem;">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3" style="padding-bottom: 1rem;">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3" style="padding-bottom: 1rem;">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Ordenes Pendientes
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+                                                    <?php 
+                                                    $user = $_SESSION['name_user'];
+                                                    $countPendientes = "SELECT COUNT(*) FROM tab_orden WHERE  status_orden = 'PxP' OR status_orden = 'PxA' OR status_orden = 'AUTORIZADA PxP' OR status_orden = 'EN TALLER'";
+                                                    $rsPendientes = mysqli_query($con, $countPendientes) or die("Error de consulta");
+                                                    $itemPendientes = mysqli_fetch_array($rsPendientes);
+                                                    $pendientes = $itemPendientes[0];
+                                                 ?>
+                                                    <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo $pendientes; ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,18 +70,60 @@
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3" style="padding-bottom: 1rem;">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                        <!-- Ordenes Completas -->
+                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4" style="padding-bottom: 1rem;">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Ordenes Completas
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                    $user = $_SESSION['name_user'];
+                                                    $countCompletas = "SELECT COUNT(*) FROM tab_orden WHERE status_orden = 'ENTREGADA' OR status_orden = 'CANCELADA' OR status_orden = 'REPARADA'";
+                                                    $rsCompletas = mysqli_query($con, $countCompletas) or die("Error de consulta");
+                                                    $itemCompletas = mysqli_fetch_array($rsCompletas);
+                                                    $completas=$itemCompletas[0];
+                                                 ?>
+                                                    <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo $completas; ?></div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Ordenes Total -->
+                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4" style="padding-bottom: 1rem;">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Total de Ordenes
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                    $countTotal = "SELECT COUNT(*) FROM tab_orden WHERE  status_orden != 'ENTREGADA' OR status_orden != 'CANCELADA' OR status_orden != 'REPARADA'";
+                                                    $rsTotal = mysqli_query($con, $countTotal) or die("Error de consulta");
+                                                    $itemTotal = mysqli_fetch_array($rsTotal);
+                                                    $total=$itemTotal[0];
+                                                 ?>
+                                                    <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo $total; ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -130,78 +137,105 @@
 
                     <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
+                        <!-- Card -->
+                        <div class="col">
+                            <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
+                                    <h1 class='h3 text-gray-800'>Ordenes Pendientes</h1>
+                                    <br>
+                                    <canvas id="Barras" width="200" height="100"></canvas>
+
+                                    <script>
+                                    var ctx = document.getElementById('Barras').getContext('2d');
+                                    var myChart = new Chart(ctx, {
+                                        type: 'horizontalBar',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3, 5, 2, 3],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+                                                    'rgba(54, 162, 235, 0.2)',
+                                                    'rgba(255, 206, 86, 0.2)',
+                                                    'rgba(75, 192, 192, 0.2)',
+                                                    'rgba(153, 102, 255, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });
+                                    </script>
+
+
                                 </div>
                             </div>
+                            <br>
                         </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
+                        <!-- Card -->
+                        <div class="col">
+                            <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                    <h1 class='h3 text-gray-800'>Ordenes Terminadas</h1>
+                                    <br>
+                                    <canvas id="Pie" width="200" height="100"></canvas>
+                                    <script>
+                                    var ctx = document.getElementById('Pie').getContext('2d');
+                                    var myChart = new Chart(ctx, {
+                                        type: 'pie',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: [12, 19, 3, 5, 2, 3],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+                                                    'rgba(54, 162, 235, 0.2)',
+                                                    'rgba(255, 206, 86, 0.2)',
+                                                    'rgba(75, 192, 192, 0.2)',
+                                                    'rgba(153, 102, 255, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 0
+                                            }]
+                                        },
+
+                                    });
+                                    </script>
+
+
                                 </div>
                             </div>
+                            <br>
                         </div>
+
                     </div>
 
                 </div>

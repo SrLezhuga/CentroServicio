@@ -160,7 +160,7 @@ $dompdf->loadHtml('
   </head>
     <style>    
     @page {
-            margin-top: 0.3em;
+            margin-top: 0.7em;
             margin-bottom: 0.3em;
         }
       *,
@@ -177,8 +177,6 @@ $dompdf->loadHtml('
       }
       .display-1 {
         font-size: 0.7rem;
-        font-weight: 300;
-        line-height: 1.2;
       }
       .display-2 {
         font-size: 1.5rem;
@@ -355,7 +353,7 @@ border:1px dashed;
 img {
   position: absolute; 
   z-index: 0; 
-  opacity: 0.25; 
+  opacity: 0.20; 
   filter: grayscale(1);
 }
     </style>
@@ -372,14 +370,15 @@ img {
                     <a>'.$fechaLetra.'</a>
                 </div>
             </div>
-          <div class="row" style="height: 3.5rem;">
-            <div class="col-12">
+            <div class="row" style="height: 5.5rem;">
+              <div class="col-12">
                 <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
+                <b>RFC MFA030403T73</b><br />
                 Guadalupe Victoria #31<br />
-                Tel: 33450116 ext 134/124
+                Tel: 33450116 ext 134/124 
                 </a>
-           </div>
-        </div>
+              </div>
+            </div>
             <fieldset class="border p-2" style="height: 4.2rem;">
                 <legend class="w-auto"><strong>Datos del Cliente:</strong></legend>
                 <div class="row">
@@ -433,7 +432,7 @@ img {
                     </div>
                 </div>
             </fieldset>
-            <div class="row"  style="height: 15rem;">
+            <div class="row"  style="height: 15.5rem;">
                 <div class="col-7">
                     <fieldset class="border p-2">
                         <legend class="w-auto"><strong>Refacciones Utilizadas:</strong></legend>
@@ -538,7 +537,7 @@ img {
             <fieldset class="border p-2" style="height: 3.5rem;">
               <legend class="w-auto"><strong>Observaciones del Servicio:</strong></legend>
               <a>'.$Orden['detalle_servicio'].'</a>
-          </fieldset>
+            </fieldset>
             <div class="row"  style="height: 4.8rem;">
                 <div class="col-5" >
                     <fieldset class="border p-2" style="height: 3.2rem;">
@@ -574,70 +573,34 @@ img {
                     </fieldset>
                 </div>
             </div>
-            <div class="col-12 text-center" style="height: 1.5rem; padding-top: 0; border-top: 0;">
+            <div class="col-12 text-center" style="height: 7.5rem;">
                 <h5>'.$totalEnLetra.'</h5>
             </div>   
-            <div class="row"  style="height: 5rem;">
-                <div class="col-12">
-                        <div class="row">
-                            <div class="col-4 text-center" style="height: 5.5rem;">
+                        <div class="row"  style="height: 6rem;">
+                            <div class="col-4 text-center">
                                 <p>Técnico<br>
                                 _______________________<br>
                                 '.$Orden['tec_taller'].'</p>
                             </div>
-                            <div class="col-4 offset-4 text-center" style="height: 5.5rem;">
+                            <div class="col-4 offset-4 text-center" >
                                 <p>Mostrador<br>
                                 _______________________<br>
                                 '.$mostrador.'</p>
                             </div>
-                            <div class="col-4 offset-8 text-center" style="height: 5.5rem;">
+                            <div class="col-4 offset-8 text-center" >
                                 <p>Cliente<br>
                                 _______________________<br>
                                 '.$recibe.'</p>
                             </div>
                         </div>
+                <div class="col-12">
+                  <a class="display-1">
+                    Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
+                    recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                    Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
+                    honorarios.
+                   </a>
                 </div>
-            </div>
-          </fieldset>
-          <hr>
-          <fieldset class="border-out p-2" style="height: 3rem;">
-            <div class="row">
-                <div class="col-8">
-                    <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1>
-                    
-                </div>
-                <div class="col-4 offset-8 text-right">
-                    <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
-                    <a>'.$fechaLetra.'</a>
-                </div>
-            </div>
-        </fieldset>
-        <div class="row" style="height: 4rem;">
-          <div class="col-5">
-              <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
-              Guadalupe Victoria #31<br />
-              Tel: 33450116 ext 134/124
-              </a>
-         </div>
-        <div class="col-7 offset-5 ">
-              <div class="row">
-                <div class="col-6">
-                  <a><b>Recibido por:</b></a><br>
-                  <a>'.$recibe.'</a><br>
-                </div>
-                <div class="col-6 offset-6">
-                  <a><b>Atendido por:</b></a><br>
-                  <a>'.$mostrador.'</a>
-                </div>
-              </div>
-        </div>
-      </div>
-                <a class="display-1">
-                  Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                  recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                  Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                  honorarios.
-                </a>
         </div>
     </body>
 </html>

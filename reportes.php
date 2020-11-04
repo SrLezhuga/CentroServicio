@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Alta Cliente</title>
+    <title> Centro de Servicio FMA | Reportes</title>
     <?php  include("assets/common/header.php");?>
 </head>
 
@@ -32,7 +32,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Cliente > Alta Clientes</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Reportes > Generar Reportes</h1>
                             <div id="reloj" style="text-align: left;"></div>
                         </div>
                     </div>
@@ -44,10 +44,10 @@
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                <h1 class='h3 text-gray-800'>Reporte de transferencias</h1>
+                                    <h1 class='h3 text-gray-800'>Reporte de ordenes</h1>
                                     <br>
 
-                                    <form class="form" action="/action_page.php">
+                                    <form class="form" id="cleanForm" action="assets/controler/reportes/reporteLista.php" method="POST" target="_blank">
 
                                         <!-- form herramienta -->
                                         <h5><b>Datos del reporte</b></h5>
@@ -62,7 +62,7 @@
                                                             <i class="fas fa-tag"></i>
                                                         </span>
                                                     </div>
-                                                    <select name="fromOrdMar" class="custom-select" required>
+                                                    <select name="fromRepList" class="custom-select" required>
                                                         <option value="" selected disabled>Seleccione un status</option>
                                                         <option value="Todos">Todos</option>
                                                         <option value="Capturada">Capturada</option>
@@ -87,7 +87,7 @@
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Código producto" name="forOrdFec" required>
+                                                        placeholder="Código producto" name="forFecIni" required>
                                                 </div>
                                             </div>
 
@@ -101,7 +101,7 @@
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Descripción herramienta" name="forOrdFec" required>
+                                                        placeholder="Descripción herramienta" name="forFecFin" required>
                                                 </div>
                                             </div>
 
@@ -113,8 +113,9 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col">
-                                                <button type="button" class="btn btn-outline-secondary btn-block"><i
-                                                        class="fas fa-times"></i> Cancelar</button>
+                                                <button type="button" onClick=clean()
+                                                    class="btn btn-outline-secondary btn-block"><i
+                                                        class="fas fa-eraser"></i> Borrar</button>
                                             </div>
                                             <div class="col">
                                                 <button type="submit" class="btn btn-outline-danger btn-block"><i
