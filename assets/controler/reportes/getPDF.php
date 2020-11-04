@@ -15,11 +15,9 @@ $queryMostrador = "SELECT name_user FROM tab_users WHERE code_user =".$Pdf['code
 $rsMostrador = mysqli_query($con, $queryMostrador) or die("Error de consulta");
 $Mostrador = mysqli_fetch_array($rsMostrador);
 
-$recibe="Nombre Apellido";
-$mostrador="Mostrador";
+$recibe=$Cliente['nom_cliente'];
+$mostrador=$Mostrador['name_user'];
 $fecha= $Pdf['fech_salida'];
-$pago="EFECTIVO";
-$factura="Si";
 
 $folio = $id;
 if (strlen($folio) == 1) {
@@ -45,7 +43,7 @@ echo "
                                 <i class='fas fa-user-alt'></i>
                             </span>
                         </div>
-                        <input type='text' class='form-control' placeholder='Nombre cliente' name='recibe' value='".$Cliente['nom_cliente']."' required>
+                        <input type='text' class='form-control' placeholder='Nombre cliente' name='recibe' value='".$recibe."' required>
                     </div>
             </div>
 
@@ -57,7 +55,7 @@ echo "
                                 <i class='fas fa-store'></i>
                             </span>
                         </div>
-                        <input type='text' class='form-control' name='mostrador' value='".$Mostrador['name_user']."' required readonly='yes' style='background-color: white;'>
+                        <input type='text' class='form-control' name='mostrador' value='".$mostrador."' required readonly='yes' style='background-color: white;'>
                     </div>
                 </div>
 

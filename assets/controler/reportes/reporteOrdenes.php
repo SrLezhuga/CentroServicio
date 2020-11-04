@@ -7,17 +7,20 @@ require_once "traslate.php";
 $reporte=$_POST['reporte'];
 $recibe=$_POST['recibe'];
 $mostrador=$_POST['mostrador'];
-$pagoOn=$_POST['pago'];
-$facturaOn=$_POST['factura'];
-$correoOn=$_POST['correo'];
-$fecha=$_POST['fecha'];
-
-if ($pagoOn=="on") {
-    $pago="EFECTIVO";
-}else{
-    $pago="TARJETA";
+$pago="TARJETA";
+if (isset($_POST['pago']) && $_POST['pago'] == 'on'){
+  $pago="EFECTIVO";
 }
-$pago;
+$correoOn="off";
+if (isset($_POST['correo']) && $_POST['correo'] == 'on'){
+  $correoOn="on";
+}
+$facturaOn="off";
+if (isset($_POST['factura']) && $_POST['factura'] == 'on'){
+  $facturaOn="on";
+}
+
+$fecha=$_POST['fecha'];
 
 if ($correoOn=="on") {
     //falta correo
@@ -93,7 +96,7 @@ $Cliente = mysqli_fetch_array($rsCliente);
 $queryRefaccion = "SELECT * FROM tab_ordenrefaccion WHERE id_orden = ".$reporte; 
 $rsRefaccion = mysqli_query($con, $queryRefaccion) or die ("Error de consulta"); 
 
-for ($i=0; $i < 5 ; $i++) { 
+for ($i=0; $i < 10 ; $i++) { 
     $itemRef[$i] = [ 'cod_refaccion' => '&nbsp;', 'desc_refaccion' => '&nbsp;', 'marca_refaccion' => '&nbsp;', 'costo_refaccion' => '&nbsp;' ];
 }
 $i=0;
@@ -109,7 +112,7 @@ while($Refaccion = mysqli_fetch_array($rsRefaccion)){
 $queryServicio = "SELECT * FROM tab_ordenservicio WHERE id_orden = ".$reporte; 
 $rsServicio = mysqli_query($con, $queryServicio) or die ("Error de consulta"); 
 
-for ($i=0; $i < 5 ; $i++) { 
+for ($i=0; $i < 10 ; $i++) { 
     $itemSer[$i] = [ 'cod_servicio' => '&nbsp;', 'desc_servicio' => '&nbsp;', 'costo_servicio' => '&nbsp;' ];
 }
 $i=0;
@@ -173,7 +176,7 @@ $dompdf->loadHtml('
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
       .display-1 {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-weight: 300;
         line-height: 1.2;
       }
@@ -359,19 +362,24 @@ img {
     <body>
         <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
         <div class="container-fluid">
-          <fieldset class="border-out p-2" style="height: 3rem;">
-            <div class="row">
+            <div class="row"  style="height: 3.5rem;">
                 <div class="col-8">
-                    <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1><br>
-                    <a class="text-right"><strong>Mayoreo Ferretero Atlas SA de CV</strong></a><br>
-                    <a>Guadalupe Victoria #31, Tel: 33450116 ext 134/124 </a>
+                    <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1>
+                    
                 </div>
                 <div class="col-4 offset-8 text-right">
                     <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
                     <a>'.$fechaLetra.'</a>
                 </div>
             </div>
-        </fieldset>
+          <div class="row" style="height: 3.5rem;">
+            <div class="col-12">
+                <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
+                Guadalupe Victoria #31<br />
+                Tel: 33450116 ext 134/124
+                </a>
+           </div>
+        </div>
             <fieldset class="border p-2" style="height: 4.2rem;">
                 <legend class="w-auto"><strong>Datos del Cliente:</strong></legend>
                 <div class="row">
@@ -425,7 +433,7 @@ img {
                     </div>
                 </div>
             </fieldset>
-            <div class="row"  style="height: 8.8rem;">
+            <div class="row"  style="height: 15rem;">
                 <div class="col-7">
                     <fieldset class="border p-2">
                         <legend class="w-auto"><strong>Refacciones Utilizadas:</strong></legend>
@@ -451,6 +459,26 @@ img {
                                 <tr>
                                     <td>'.$itemRef[4]['desc_refaccion'].'</td>
                                     <td>'.$itemRef[4]['costo_refaccion'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemRef[5]['desc_refaccion'].'</td>
+                                  <td>'.$itemRef[5]['costo_refaccion'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemRef[6]['desc_refaccion'].'</td>
+                                  <td>'.$itemRef[6]['costo_refaccion'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemRef[7]['desc_refaccion'].'</td>
+                                  <td>'.$itemRef[7]['costo_refaccion'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemRef[8]['desc_refaccion'].'</td>
+                                  <td>'.$itemRef[8]['costo_refaccion'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemRef[9]['desc_refaccion'].'</td>
+                                  <td>'.$itemRef[9]['costo_refaccion'].'</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -482,12 +510,32 @@ img {
                                     <td>'.$itemSer[4]['desc_servicio'].'</td>
                                     <td>'.$itemSer[4]['costo_servicio'].'</td>
                                 </tr>
+                                <tr>
+                                  <td>'.$itemSer[4]['desc_servicio'].'</td>
+                                  <td>'.$itemSer[4]['costo_servicio'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemSer[5]['desc_servicio'].'</td>
+                                  <td>'.$itemSer[5]['costo_servicio'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemSer[6]['desc_servicio'].'</td>
+                                  <td>'.$itemSer[6]['costo_servicio'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemSer[7]['desc_servicio'].'</td>
+                                  <td>'.$itemSer[7]['costo_servicio'].'</td>
+                                </tr>
+                                <tr>
+                                  <td>'.$itemSer[8]['desc_servicio'].'</td>
+                                  <td>'.$itemSer[8]['costo_servicio'].'</td>
+                                </tr>
                             </tbody>
                         </table>
                     </fieldset>
                 </div>
             </div>
-            <fieldset class="border p-2" style="height: 2.2rem;">
+            <fieldset class="border p-2" style="height: 3.5rem;">
               <legend class="w-auto"><strong>Observaciones del Servicio:</strong></legend>
               <a>'.$Orden['detalle_servicio'].'</a>
           </fieldset>
@@ -526,14 +574,11 @@ img {
                     </fieldset>
                 </div>
             </div>
-            <div class="col-12 text-center" style="height: 1rem; padding-top: 0; border-top: 0;">
+            <div class="col-12 text-center" style="height: 1.5rem; padding-top: 0; border-top: 0;">
                 <h5>'.$totalEnLetra.'</h5>
-            </div>    
- 
-
-            <div class="row" >
+            </div>   
+            <div class="row"  style="height: 5rem;">
                 <div class="col-12">
-                    <fieldset class="border-out p-2" style="height: 4rem;">
                         <div class="row">
                             <div class="col-4 text-center" style="height: 5.5rem;">
                                 <p>Técnico<br>
@@ -551,53 +596,51 @@ img {
                                 '.$recibe.'</p>
                             </div>
                         </div>
-                    </fieldset>
                 </div>
             </div>
-            <hr>
-            <fieldset class="border-out p-2" style="height: 3rem;">
-                <div class="row">
-                    <div class="col-8">
-                        <a class="display-4 text-right"><strong>Centro de servicio</strong></a><br>
-                        <a class="text-right"><strong>Mayoreo Ferretero Atlas SA de CV</strong></a>
-                    </div>
-                    <div class="col-4 offset-8 text-right">
-                        <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
-                        <a>'.$fechaLetra.'</a>
-                    </div>
-                </div>
-            </fieldset>
-            <div class="row" style="height: 5.5rem;">
+          </fieldset>
+          <hr>
+          <fieldset class="border-out p-2" style="height: 3rem;">
+            <div class="row">
                 <div class="col-8">
-                    <fieldset class="border-info" style="height: 5.2rem;">
-                    <a>
-                    Guadalupe Victoria #31<br />
-                    Tel: 33450116 ext 134/124 <br />
-                    csa@mayoreoferreteroatlas.com
-                </a>
-                    </fieldset>
+                    <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1>
+                    
                 </div>
-                <div class="col-4 offset-8 ">
-                    <fieldset class="border" style="height: 5.2rem;">
-                        <a><b>Recibido por:</b></a><br>
-                        <a>'.$recibe.'</a><br>
-                        <a><b>Atendido por:</b></a><br>
-                        <a>'.$mostrador.'</a>
-                    </fieldset>
+                <div class="col-4 offset-8 text-right">
+                    <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
+                    <a>'.$fechaLetra.'</a>
                 </div>
             </div>
-            <fieldset class="border-info" style="height: 5.2rem;">
-                        <a class="display-1">
-                            Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                            recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                            Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                            honorarios.
-                        </a>
-                    </fieldset>
+        </fieldset>
+        <div class="row" style="height: 4rem;">
+          <div class="col-5">
+              <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
+              Guadalupe Victoria #31<br />
+              Tel: 33450116 ext 134/124
+              </a>
+         </div>
+        <div class="col-7 offset-5 ">
+              <div class="row">
+                <div class="col-6">
+                  <a><b>Recibido por:</b></a><br>
+                  <a>'.$recibe.'</a><br>
+                </div>
+                <div class="col-6 offset-6">
+                  <a><b>Atendido por:</b></a><br>
+                  <a>'.$mostrador.'</a>
+                </div>
+              </div>
+        </div>
+      </div>
+                <a class="display-1">
+                  Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
+                  recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                  Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
+                  honorarios.
+                </a>
         </div>
     </body>
 </html>
-
 ');
 
 // (Optional) Setup the paper size and orientation

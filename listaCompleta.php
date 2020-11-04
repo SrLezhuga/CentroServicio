@@ -68,7 +68,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php 
-                                        $queryOrden = "SELECT id_orden, id_cliente, marca_herramienta, mod_herramienta, fech_entrada, status_orden, tipo_servicio  FROM tab_orden WHERE status_orden = 'CANCELADA' OR status_orden = 'REPARADA' OR status_orden = 'ENTREGADA' order by id_orden desc"; 
+                                        $queryOrden = "SELECT id_orden, id_cliente, marca_herramienta, mod_herramienta, fech_entrada, status_orden, tipo_servicio  FROM tab_orden WHERE status_orden = 'CANCELADA' OR status_orden = 'REPARADA' OR status_orden = 'ENTREGADA' order by id_orden asc"; 
                                         $rsOrden = mysqli_query($con, $queryOrden) or die ("Error de consulta"); 
                                           while ($Orden = mysqli_fetch_array($rsOrden)) {
                                             
