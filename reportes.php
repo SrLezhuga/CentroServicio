@@ -65,14 +65,13 @@
                                                     <select name="fromRepList" class="custom-select" required>
                                                         <option value="" selected disabled>Seleccione un status</option>
                                                         <option value="Todos">Todos</option>
-                                                        <option value="Capturada">Capturada</option>
-                                                        <option value="Pendiente revision">Pendiente revision</option>
-                                                        <option value="Pendiente partes">Pendiente partes</option>
-                                                        <option value="Pendiente reparación">Pendiente reparación
-                                                        </option>
                                                         <option value="Reparada">Reparada</option>
-                                                        <option value="Herramienta entregada">Herramienta entregada
-                                                        </option>
+                                                        <option value="Cancelada">Cancelada</option>
+                                                        <option value="En espera">Pendiente revision</option>
+                                                        <option value="PxP">Pendiente partes</option>
+                                                        <option value="PxA">Pendiente aprobar</option>
+                                                        <option value="Entregada">Herramienta entregada</option>
+                                                        <option value="APxP">Aprovada pendiente partes</option>
                                                     </select>
                                                 </div>
                                             </div>
