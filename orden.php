@@ -234,7 +234,7 @@
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <button type="button" onClick=cleanOrden()
+                                                        <button type="button" onClick="cleanOrden();"
                                                             class="btn btn-outline-secondary btn-block"><i
                                                                 class="fas fa-eraser"></i>
                                                             Borrar</button>
@@ -242,7 +242,7 @@
                                                     <div class="col">
                                                         <button type="submit"
                                                             class="btn btn-outline-danger btn-block"><i
-                                                                class="fas fa-paper-plane"></i>
+                                                                class="fas fa-paper-plane" ></i>
                                                             Enviar</button>
                                                     </div>
                                                 </div>
@@ -290,7 +290,11 @@
     <?php } ?>
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Orden generada")
+    toastr["success"]("Orden generada");
+    function folio() {
+        window.open("http://localhost/CentroServicio/assets/controler/reportes/generarTalonario.php", "_blank");
+    }
+        setTimeout(folio,2000);
     </script>
     <?php } ?>
     <!-- The Modal Cliente-->

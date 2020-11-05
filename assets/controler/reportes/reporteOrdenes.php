@@ -136,24 +136,24 @@ $SumSer = mysqli_fetch_array($rsSumSer);
 if ($facturaOn=="on") {
   $total=(($SumRef[0]+$SumSer[0])*.16);
   $totalIva=(($SumRef[0]+$SumSer[0])*1.16);
+  $iva="Si";
 }else{
   $total=0;
   $totalIva=($SumRef[0]+$SumSer[0]);
+  $iva="No";
 }
 
 $totalEnLetra=convertir($totalIva);
 
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
-use Dompdf\Options;
+$sql = "UPDATE tab_orden
+            SET   status_orden  = 'ENTREGADA',
+                  pago_orden    = '" . $pago . "',
+                  iva_orden    = '" . $iva . "'
+            WHERE id_orden      = " . $reporte . ";";
 
-// instantiate and use the dompdf class
-$options = new Options();
-$options->set('isRemoteEnabled', TRUE);
-$dompdf = new Dompdf($options);
-$dompdf->loadHtml('
-<!DOCTYPE html>
-<html>
+mysqli_query($con, $sql);
+
+$html =  '<html>
   <head>
     <title> Centro de Servicio MFA | Reporte</title>
     <link rel="icon" href="http://localhost/CentroServicio/assets/img/Logo/MFA.ico" />
@@ -355,6 +355,7 @@ img {
   z-index: 0; 
   opacity: 0.20; 
   filter: grayscale(1);
+  margin-top: 7em;
 }
     </style>
     <body>
@@ -604,7 +605,17 @@ img {
         </div>
     </body>
 </html>
-');
+';
+
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+// instantiate and use the dompdf class
+$options = new Options();
+$options->set('isRemoteEnabled', TRUE);
+$dompdf = new Dompdf($options);
+$dompdf->loadHtml( );
 
 // (Optional) Setup the paper size and orientation
 $dompdf->setPaper('Letter', 'portrait');

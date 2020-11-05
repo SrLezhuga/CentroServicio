@@ -100,6 +100,8 @@
                                                     <td> 
                                                         <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
                                                         <i class='far fa-eye'></i></button>
+                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnFolio' value=".$Orden['id_orden'].">
+                                                        <i class='far fa-file-pdf'></i></button>
                                                     </td>
                                                 </tr>
                                             "; 
@@ -173,12 +175,6 @@
         </div>
     </div>
 
-
-    <script>
-    // Display an info toast with no title
-    toastr["success"]("Are you the six fingered man?")
-    </script>
-
     <script type="text/javascript">
     // Modal tarjeta Orden
 
@@ -189,6 +185,14 @@
                 show: true
             });
         });
+    });
+
+    // Generar folios
+
+    $('.BtnFolio').on('click', function() {
+        var id_button = $(this).val();
+
+        window.open("http://localhost/CentroServicio/assets/controler/reportes/reimprimirFolio.php?folio=" + id_button, "_blank");
     });
     </script>
 

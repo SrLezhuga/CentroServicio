@@ -87,9 +87,14 @@
                                             $rsCliente = mysqli_query($con, $queryCliente) or die ("Error de consulta"); 
                                               while ($Cliente = mysqli_fetch_array($rsCliente)) {
                                                  
-                                              
+                                                if ($Orden['status_orden']=="ENTREGADA") {
+                                                    echo "<tr class='table-success'>";
+                                                }elseif ($Orden['status_orden']=="CANCELADA") {
+                                                    echo "<tr class='table-danger'>";
+                                                }else{
+                                                    echo "<tr>";
+                                                }
                                             echo "
-                                                <tr>
                                                     <td>".$folio."</td>
                                                     <td>".$Cliente['nom_cliente']."</td>
                                                     <td>".$Orden['marca_herramienta']."</td>
@@ -100,7 +105,14 @@
                                                     <td> 
                                                         <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
                                                         <i class='far fa-eye'></i></button>
-                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnPDF' data-toggle='modal' data-target='#modalPDF'value=".$Orden['id_orden'].">
+                                                ";
+                                                if ($Orden['status_orden']=="CANCELADA" || $Orden['status_orden']=="ENTREGADA") {
+                                                    $disabled = "disabled";
+                                                }else {
+                                                    $disabled = "active";
+                                                }
+                                            echo"
+                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnPDF' ".$disabled." data-toggle='modal' data-target='#modalPDF'value=".$Orden['id_orden'].">
                                                         <i class='far fa-file-pdf'></i></button>
                                                     </td>
                                                 </tr>

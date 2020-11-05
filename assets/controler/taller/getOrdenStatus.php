@@ -54,7 +54,7 @@ if ($items[1] == "Taller") {
          </div>
        </div>
        <div class='alert alert-info' style='text-align: center;'>
-            <strong>Nota:</strong> El estatus <b>Reparado</b> finalizara la orden y no permitira hacer cambios futuros.
+            <strong>Nota:</strong> El estatus <b>Reparado</b> y <b>Cancelado</b> finalizaran la orden y no permitiran hacer cambios futuros.
         </div>
        <div class='row'>
          <div class='col'>

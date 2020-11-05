@@ -116,6 +116,7 @@ $id = $pendiente['taller']; ?>
                                                                     <option value="PxA">PENDIENTE POR AUTORIZAR</option>
                                                                     <option value="APxP">AUTORIZADO / PxP
                                                                     </option>
+                                                                    <option value="CANCELADA">CANCELADA</option>
                                                                     <option value="REPARADA">REPARADA</option>
                                                                 </select>
                                                                 <input type="hidden" name="formId" required value=<?php echo $id; ?>>

@@ -11,7 +11,7 @@
  Target Server Version : 100413
  File Encoding         : 65001
 
- Date: 27/10/2020 14:00:51
+ Date: 05/11/2020 14:10:50
 */
 
 SET NAMES utf8mb4;
@@ -38,14 +38,14 @@ CREATE TABLE `tab_cliente`  (
 -- ----------------------------
 INSERT INTO `tab_cliente` VALUES (1, 'Brandon Lechuga', 'Pino #6', 'Tlaquepaque', 45530, '3349682154', '0123456789', 'Brihand.lech@gmail.com');
 INSERT INTO `tab_cliente` VALUES (2, 'Juan Scutia', 'Hidalgo 2055', '', 0, '3317202513', '0123456789', '');
-INSERT INTO `tab_cliente` VALUES (3, 'Rafael Garcia', 'La paz 485', '', 0, '3385967412', '9867459865', '');
+INSERT INTO `tab_cliente` VALUES (3, 'Rafael Garcia', 'La paz 485', 'Tlaquepaque', 45530, '3385967412', '9867459865', 'NuevoCorreo@Correo.com');
 INSERT INTO `tab_cliente` VALUES (4, 'Pedro González', 'Revolucion 45', '', 0, '3396849576', '78965415245', '');
 INSERT INTO `tab_cliente` VALUES (5, 'Maria Luna', '8 de Julio', '', 0, '3395867485', '976284615324', '');
 INSERT INTO `tab_cliente` VALUES (6, 'Luis Preciado', 'Guadalupe 35', '', 0, '3384965874', '9687452165', '');
 INSERT INTO `tab_cliente` VALUES (7, 'Omar Gallegos Vazquez', 'Fray antonio de segovia 1244', '', 0, '3314278911', 'GAVO9112161VA', '');
 INSERT INTO `tab_cliente` VALUES (8, '/*-+$·%&\"·ñÑ', '%$·%&', '435367%$&%$&', 45305, '\"·$\"·$%$&', '%&\"$\"·/*-+', 'NuevoCorreo@Correo.com');
 INSERT INTO `tab_cliente` VALUES (9, 'Sin Nombre', 'Sin Domicilio', 'Sin Municipio', 0, 'Sin Teléfono', 'Sin Rfc', '');
-INSERT INTO `tab_cliente` VALUES (10, 'Lorena Herrera', '--', '', 0, '---', '---', '');
+INSERT INTO `tab_cliente` VALUES (10, 'Lorena Herrera', 'Su casa', 'Tlaquepaque', 45530, '3396849576', '78965415245', 'Test3@ejemplo.com');
 INSERT INTO `tab_cliente` VALUES (11, 'Sara Maldonado', '---', '', 0, '---', '---', '');
 INSERT INTO `tab_cliente` VALUES (12, 'Usuario1', 'Direccion1', '', 0, 'Telèfono1', 'Rfc1', '');
 INSERT INTO `tab_cliente` VALUES (13, 'Usuario2', 'Direccion2', '', 0, 'Telefono2', 'Rfc2', '');
@@ -112,20 +112,25 @@ CREATE TABLE `tab_orden`  (
   `tipo_servicio` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `detalle_servicio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tec_taller` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pago_orden` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `iva_orden` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_orden`) USING BTREE,
   INDEX `code_user`(`code_user`) USING BTREE,
   INDEX `id_cliente`(`id_cliente`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tab_orden
 -- ----------------------------
-INSERT INTO `tab_orden` VALUES (1, 1, 2, '2020-10-01', '0000-00-00', 'REPARADA', 'CSA.webp', 'AMARRADORA DE VARILLA INALAMBRICA', 'MAKITA', 'DTR180Z', '0', 'Presupuesto', 'NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nESTA ES OTRA LINEA\r\nOTRA ADIOS LINEA', 'Administrador');
-INSERT INTO `tab_orden` VALUES (7, 7, 0, '2020-10-07', '0000-00-00', 'EN TALLER', 'CSA.webp', 'TALADRO PERCUTOR/ATORNILLADOR ', 'DEWALT', 'DCD778D2-B2', '0', 'Presupuesto', 'NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nTEST', 'Administrador');
-INSERT INTO `tab_orden` VALUES (8, 2, 0, '2020-10-07', '0000-00-00', 'PxP', 'CSA.webp', 'TALADRO INALAMBRICO 1/2\"', 'MAKITA', 'PH02X2', '0', 'Garantia', 'Sin Observaciones', 'Administrador');
-INSERT INTO `tab_orden` VALUES (9, 3, 0, '2020-10-07', '0000-00-00', 'PxP', 'CSA.webp', '---', 'GENERICA', '---', '0', 'Ninguno', 'Sin observaciones', 'Administrador');
-INSERT INTO `tab_orden` VALUES (10, 7, 0, '2020-10-10', '0000-00-00', 'EN ESPERA', 'CSA.webp', 'Gama plus', 'MAKITA', 'DCD778D2-B2', '0', 'Mantenimiento', 'NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO', 'Sin Asignar');
-INSERT INTO `tab_orden` VALUES (11, 1, 0, '2020-10-16', '0000-00-00', 'APROVADA PxP', 'CSA.webp', 'Test', 'GENERICA', 'Test', 'Tipo 1', 'Mantenimiento/Garantía', 'Test', 'Administrador');
+INSERT INTO `tab_orden` VALUES (1, 1, 2, '2020-10-01', '2020-10-28', 'ENTREGADA', 'CSA.webp', 'AMARRADORA DE VARILLA INALAMBRICA', 'MAKITA', 'DTR180Z', '0', 'Presupuesto', 'NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nESTA ES OTRA LINEA\r\nOTRA ADIOS LINEA', 'Administrador', 'EFECTIVO', 'Si');
+INSERT INTO `tab_orden` VALUES (7, 7, 2, '2020-10-07', '0000-00-00', 'EN TALLER', 'CSA.webp', 'TALADRO PERCUTOR/ATORNILLADOR ', 'DEWALT', 'DCD778D2-B2', '0', 'Presupuesto', 'NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nTEST', 'Administrador', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (8, 2, 2, '2020-10-07', '0000-00-00', 'PxA', 'CSA.webp', 'TALADRO INALAMBRICO 1/2\"', 'MAKITA', 'PH02X2', '0', 'Garantia', 'Sin Observaciones', 'Administrador', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (9, 3, 2, '2020-10-07', '0000-00-00', 'CANCELADA', 'CSA.webp', '---', 'GENERICA', '---', '0', 'Ninguno', 'Sin observaciones', 'Administrador', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (10, 7, 2, '2020-10-10', '0000-00-00', 'EN ESPERA', 'CSA.webp', 'Gama plus', 'MAKITA', 'DCD778D2-B2', '0', 'Mantenimiento', 'NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO', 'Sin Asignar', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (11, 1, 2, '2020-10-16', '2020-11-05', 'REPARADA', 'CSA.webp', 'Test', 'GENERICA', 'Test', 'Tipo 1', 'Mantenimiento/Garantía', 'Se hicieron cosas', 'Administrador', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (12, 1, 2, '2020-11-05', '0000-00-00', 'EN ESPERA', 'CSA.webp', 'Test Herramienta', 'GENERICA', 'Test', 'Test', 'Test', 'Mantenimiento', 'Sin Asignar', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (13, 3, 2, '2020-11-05', '0000-00-00', 'EN ESPERA', 'CSA.webp', 'Test Herramienta', 'DEWALT', 'DCD778D2-B2', 'Test Adicional', 'Mantenimiento', 'Diagnostico', 'Sin Asignar', 'Sin Asignar', 'Sin Asignar');
+INSERT INTO `tab_orden` VALUES (14, 10, 2, '2020-11-05', '0000-00-00', 'EN ESPERA', 'CSA.webp', 'Test Herramienta', 'STANLEY', 'Test Modelo', 'Test Adicional', 'Mantenimiento/Garantía', 'Test Diagnostico', 'Sin Asignar', 'Sin Asignar', 'Sin Asignar');
 
 -- ----------------------------
 -- Table structure for tab_ordenrefaccion
@@ -166,7 +171,7 @@ CREATE TABLE `tab_ordenservicio`  (
   `desc_servicio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `costo_servicio` int(11) NOT NULL,
   PRIMARY KEY (`id_servicio`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tab_ordenservicio
@@ -177,6 +182,8 @@ INSERT INTO `tab_ordenservicio` VALUES (3, 8, 1, 'REVISIÓN HERRRAMIENTA', 50);
 INSERT INTO `tab_ordenservicio` VALUES (4, 7, 2, 'MANO DE OBRA', 300);
 INSERT INTO `tab_ordenservicio` VALUES (8, 7, 1, 'REVISIÓN HERRRAMIENTA', 50);
 INSERT INTO `tab_ordenservicio` VALUES (9, 7, 4, 'EJEMPLO DE SERVICIO', 1);
+INSERT INTO `tab_ordenservicio` VALUES (10, 11, 1, 'REVISIÓN HERRRAMIENTA', 50);
+INSERT INTO `tab_ordenservicio` VALUES (11, 11, 2, 'MANO DE OBRA', 300);
 
 -- ----------------------------
 -- Table structure for tab_prestamo
@@ -258,8 +265,8 @@ CREATE TABLE `tab_users`  (
 -- Records of tab_users
 -- ----------------------------
 INSERT INTO `tab_users` VALUES (1, 'Administrador', 'CSA', '123', 1, '1-1-1-1-1', 0);
-INSERT INTO `tab_users` VALUES (2, 'Nombre Apellido', 'VENDEDOR', '123', 2, '1-1-1-1-1', 0);
-INSERT INTO `tab_users` VALUES (3, 'Apellido Nombre', 'INVENTARIO', '123', 3, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (2, 'Armando Rios', 'ARMRIO', '123', 2, '1-1-1-1-1', 0);
+INSERT INTO `tab_users` VALUES (3, 'Emmanuel Luna', 'EMMLUN', '123', 3, '1-1-1-1-1', 0);
 INSERT INTO `tab_users` VALUES (4, 'BRANDON LECHUGA', 'BRALEC', '123', 1, '1-1-1-1-1', 0);
 INSERT INTO `tab_users` VALUES (5, 'Pedro Loza', 'PEDLOZ', '123', 2, '1-1-1-1-1', 0);
 INSERT INTO `tab_users` VALUES (6, 'Rafael Garcia', 'RAFGAR', '123', 3, '1-1-1-1-1', 0);
