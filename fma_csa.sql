@@ -292,13 +292,55 @@ delimiter ;
 DROP PROCEDURE IF EXISTS `Servicios`;
 delimiter ;;
 CREATE PROCEDURE `Servicios`(IN id INT)
-BEGIN
+BEGIN
+
          SELECT S.cod_servicio, S.desc_servicio, S.costo_servicio FROM tab_ordenservicio AS S
-JOIN tab_orden AS O
-ON S.id_orden = O.id_orden
-WHERE O.id_orden = id;
+JOIN tab_orden AS O
+
+ON S.id_orden = O.id_orden
+
+WHERE O.id_orden = id;
+
 END
 ;;
 delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Procedure structure for ReporteTodos
+-- ----------------------------
+
+DROP PROCEDURE IF EXISTS `ReporteTodos`;
+
+delimiter ;;
+CREATE PROCEDURE `ReporteTodos`(IN fechIn VARCHAR(10), fechaOut VARCHAR(10))
+BEGIN
+SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
+JOIN tab_cliente AS C
+ON O.id_cliente = C.id_cliente
+JOIN tab_users AS U
+ON O.code_user = U.code_user
+WHERE O.fech_entrada BETWEEN fechIn AND fechaOut;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for ReporteStado
+-- ----------------------------
+
+DROP PROCEDURE IF EXISTS `ReporteStado`;
+
+delimiter ;;
+CREATE PROCEDURE `ReporteStado`(IN list VARCHAR(15), fechIn VARCHAR(10), fechaOut VARCHAR(10))
+BEGIN
+SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
+JOIN tab_cliente AS C
+ON O.id_cliente = C.id_cliente
+JOIN tab_users AS U
+ON O.code_user = U.code_user
+WHERE O.status_orden = list AND (O.fech_entrada BETWEEN fechIn AND fechaOut);
+END
+;;
+delimiter ;

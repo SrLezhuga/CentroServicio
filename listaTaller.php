@@ -173,12 +173,6 @@
         </div>
     </div>
 
-
-    <script>
-    // Display an info toast with no title
-    toastr["success"]("Are you the six fingered man?")
-    </script>
-
     <script type="text/javascript">
     // Modal tarjeta Orden
 

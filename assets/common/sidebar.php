@@ -123,7 +123,6 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="usuario">Alta Usuario</a>
-                <a class="collapse-item" href="#">Configuración</a>
             </div>
         </div>
     </li>
