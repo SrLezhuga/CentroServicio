@@ -32,7 +32,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Reportes > Generar Reportes</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Reportes > Generar Reportes > Ordenes</h1>
                             <div id="reloj" style="text-align: left;"></div>
                         </div>
                     </div>
@@ -40,30 +40,26 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Formulario orden -->
-                        <div class="col-xl-12 col-md-12 mb-12">
+                        <!-- Reporte Orden -->
+                        <div class="col-xl-6 col-md-6 mb-6">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Reporte de ordenes</h1>
+                                    <h1 class='h3 text-gray-800'>Reporte de Ordenes</h1>
                                     <br>
-
-                                    <form class="form" id="cleanForm" action="assets/controler/reportes/reporteLista.php" method="POST" target="_blank">
-
-                                        <!-- form herramienta -->
+                                    <form class="form" id="cleanForm"
+                                        action="assets/controler/reportes/reporteLista.php" method="POST"
+                                        target="_blank">
                                         <h5><b>Datos del reporte</b></h5>
                                         <div class="row">
-
-                                            <!--Campo Marca -->
-                                            <div class="col">
+                                            <div class="col-12">
                                                 <label>Estado orden:</label>
                                                 <div class="input-group ">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-tag"></i>
+                                                            <i class="fas fa-stethoscope"></i>
                                                         </span>
                                                     </div>
                                                     <select name="fromRepList" class="custom-select" required>
-                                                        <option value="" selected disabled>Seleccione un status</option>
                                                         <option value="Todos">Todos</option>
                                                         <option value="Reparada">Reparada</option>
                                                         <option value="Cancelada">Cancelada</option>
@@ -72,6 +68,74 @@
                                                         <option value="PxA">Pendiente aprobar</option>
                                                         <option value="Entregada">Herramienta entregada</option>
                                                         <option value="APxP">Aprovada pendiente partes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label>Fecha inicial:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="date" class="form-control"
+                                                        placeholder="Código producto" name="forFecIni" required>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label>Fecha final:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="date" class="form-control"
+                                                        placeholder="Descripción herramienta" name="forFecFin" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i
+                                                class="fas fa-file-pdf"></i> Generar Reporte</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <br>
+
+                        <!-- Reporte Mostrador -->
+                        <div class="col-xl-6 col-md-6 mb-6">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Reporte de Mostrador</h1>
+                                    <br>
+
+                                    <form class="form" id="cleanForm"
+                                        action="assets/controler/reportes/reporteMostrador.php" method="POST"
+                                        target="_blank">
+
+                                        <!-- form herramienta -->
+                                        <h5><b>Datos del reporte</b></h5>
+                                        <div class="row">
+
+                                            <!--Campo Marca -->
+                                            <div class="col-12">
+                                                <label>Tipo de pago:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="fromRepList" class="custom-select" required>
+                                                        <option value="Todas">Efectivo y Tarjeta</option>
+                                                        <option value="EFECTIVO">Solo Efectivo</option>
+                                                        <option value="TARJETA">Solo Tarjeta</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -110,17 +174,52 @@
 
                                         <br>
                                         <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <button type="button" onClick=clean()
-                                                    class="btn btn-outline-secondary btn-block"><i
-                                                        class="fas fa-eraser"></i> Borrar</button>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i
+                                                class="fas fa-file-pdf"></i> Generar Reporte</button>
+
+                                        <!--/. form-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <!-- Formulario orden -->
+                        <div class="col-xl-3 col-md-3 mb-3">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Reporte de Clientes</h1>
+                                    <br>
+
+                                    <form class="form" id="cleanForm"
+                                        action="assets/controler/reportes/reporteCliente.php" method="POST"
+                                        target="_blank">
+
+                                        <!-- form herramienta -->
+                                        <h5><b>Datos del reporte</b></h5>
+
+                                        <!--Campo Marca -->
+
+                                        <label>Orden de lista:</label>
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-stethoscope"></i>
+                                                </span>
                                             </div>
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                        class="fas fa-paper-plane"></i> Enviar</button>
-                                            </div>
+                                            <select name="fromOrdenList" class="custom-select" required>
+                                                <option value="ASC">Orden A - Z</option>
+                                                <option value="DESc">Orden Z - A</option>
+                                            </select>
                                         </div>
+
+
+
+
+                                        <br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i
+                                                class="fas fa-file-pdf"></i> Generar Reporte</button>
 
                                         <!--/. form-->
                                     </form>
@@ -129,8 +228,154 @@
                             <br>
                         </div>
 
-                    </div>
+                        <br>
 
+                        <!-- Formulario orden -->
+                        <div class="col-xl-3 col-md-3 mb-3">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Reporte de Usuarios</h1>
+                                    <br>
+
+                                    <form class="form" id="cleanForm"
+                                        action="assets/controler/reportes/reporteUsuario.php" method="POST"
+                                        target="_blank">
+
+                                        <!-- form herramienta -->
+                                        <h5><b>Datos del reporte</b></h5>
+                                        <div class="row">
+
+                                            <!--Campo Marca -->
+                                            <div class="col">
+                                                <label>Funciones en el sistema:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepUsuario" class="custom-select" required>
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="1">Administradores</option>
+                                                        <option value="2">Vendedores</option>
+                                                        <option value="3">Técnicos</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <!--/. form Cantidad -->
+                                        </div>
+
+
+                                        <br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i
+                                                class="fas fa-file-pdf"></i> Generar Reporte</button>
+
+                                        <!--/. form-->
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+
+                        <!-- Formulario orden -->
+                        <div class="col-xl-3 col-md-3 mb-3">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Reporte de Refacciones</h1>
+                                    <br>
+
+                                    <form class="form" id="cleanForm"
+                                        action="assets/controler/reportes/reporteRefacciones.php" method="POST"
+                                        target="_blank">
+
+                                        <!-- form herramienta -->
+                                        <h5><b>Datos del reporte</b></h5>
+                                        <div class="row">
+
+                                            <!--Campo Marca -->
+                                            <div class="col">
+                                                <label>Estado del inventario:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepInventario" class="custom-select" required>
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="Reparada">Con Stock</option>
+                                                        <option value="Cancelada">Sin Stock</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i
+                                                class="fas fa-file-pdf"></i> Generar Reporte</button>
+
+                                        <!--/. form-->
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <br>
+
+                        <!-- Formulario orden -->
+                        <div class="col-xl-3 col-md-3 mb-3">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Reporte de Servicios</h1>
+                                    <br>
+
+                                    <form class="form" id="cleanForm"
+                                        action="assets/controler/reportes/reporteServicios.php" method="POST"
+                                        target="_blank">
+
+                                        <!-- form herramienta -->
+                                        <h5><b>Datos del reporte</b></h5>
+                                        <div class="row">
+
+                                            <!--Campo Marca -->
+                                            <div class="col">
+                                                <label>Estado orden:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepServicio" class="custom-select" required>
+                                                        <option value="Todos">Todos</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i
+                                                class="fas fa-file-pdf"></i> Generar Reporte</button>
+
+                                        <!--/. form-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+
+
+
+                    </div>
+                    <br>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -158,13 +403,7 @@
     toastr["success"]("Se registro el Cliente")
     </script>
     <?php } ?>
-    <script>
-    //Limpiar formularios
-    function clean() {
-        document.getElementById("cleanForm").reset();
-        toastr["success"]("Formulario vacío")
-    }
-    </script>
+
 </body>
 
 </html>
