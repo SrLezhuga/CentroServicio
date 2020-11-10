@@ -38,6 +38,17 @@ $dompdf->setPaper('Letter', 'portrait');
 // Render the HTML as PDF
 $dompdf->render();
 
+// add the header
+$canvas = $dompdf->get_canvas();
+$footer = $canvas->open_object();
+
+    $canvas->page_text(560, 760, "{PAGE_NUM} de {PAGE_COUNT}",
+    "helvetica", 10, array(0,0,0));
+
+$canvas->close_object();
+$canvas->add_object($footer, "all");
+
+
 // Output the generated PDF to Browser
 
 $dompdf->stream('document.pdf',array('Attachment'=>0));

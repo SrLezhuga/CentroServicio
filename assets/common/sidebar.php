@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Informe Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInforme"
             aria-expanded="true" aria-controls="collapseInforme">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -31,7 +31,7 @@
     </li>
 
     <!-- Nav Item - Cliente Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCliente"
             aria-expanded="true" aria-controls="collapseCliente">
             <i class="fas fa-fw fa-address-book"></i>
@@ -50,7 +50,7 @@
     </li>
 
     <!-- Nav Item - Orden Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" >
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrden" aria-expanded="true"
             aria-controls="collapseOrden">
             <i class="fas fa-fw fa-edit"></i>
@@ -63,16 +63,16 @@
                     <span>Orden</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="orden">Nueva orden</a>
+                <a class="collapse-item" href="orden" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Nueva orden</a>
                 <a class="collapse-item" href="listaOrden">Lista ordenes</a>
-                <a class="collapse-item" href="listaPendiente">Ordenes Prendientes</a>
-                <a class="collapse-item" href="listaCompleta">Ordenes Completas</a>
+                <a class="collapse-item" href="listaPendiente" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Ordenes Prendientes</a>
+                <a class="collapse-item" href="listaCompleta" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Ordenes Completas</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Prestamo Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrestamo"
             aria-expanded="true" aria-controls="collapsePrestamo">
             <i class="fas fa-wrench"></i>
@@ -92,7 +92,7 @@
     </li>
 
     <!-- Nav Item - Reportes Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
             aria-expanded="true" aria-controls="collapseReportes">
             <i class="fas fa-fw fa-clipboard"></i>
@@ -110,7 +110,7 @@
     </li>
 
     <!-- Nav Item - Administrador Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministrador"
             aria-expanded="true" aria-controls="collapseAdministrador">
             <i class="fas fa-fw fa-user-cog"></i>
@@ -123,12 +123,13 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="usuario">Alta Usuario</a>
+                <a class="collapse-item" href="anuncios">Anuncios</a>
             </div>
         </div>
     </li>
 
-     <!-- Nav Item - Refacciones Collapse Menu -->
-     <li class="nav-item active">
+     <!-- Nav Item - Refacciones Collapse Menu || -->
+     <li class="nav-item active" <?php if ($_SESSION['priv_user']==2 ) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRefacciones"
             aria-expanded="true" aria-controls="collapseRefacciones">
             <i class="fas fa-dolly"></i>
@@ -147,7 +148,7 @@
     </li>
 
     <!-- Nav Item - Taller Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']==2) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTaller" aria-expanded="true"
             aria-controls="collapseTaller">
             <i class="fas fa-toolbox"></i>

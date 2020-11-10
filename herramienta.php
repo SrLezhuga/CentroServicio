@@ -1,3 +1,4 @@
+<?php session_start(); include("assets/controler/conexion.php");?>
 <!DOCTYPE html>
 <html lang="en">
 

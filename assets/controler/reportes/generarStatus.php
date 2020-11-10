@@ -329,6 +329,7 @@
       filter: grayscale(1);
       width: 100%;
     }
+    
     .table {
       width: 100%;
     }
@@ -343,6 +344,20 @@
     .table-sm th,
     .table-sm td {
       padding: 0.3rem;
+    }
+
+    .table .thead-dark th {
+        color: #fff;
+        background-color: #5a5c69;
+        border-color: #6c6e7e;
+      }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .table-dark.table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255, 255, 255, 0.05);
     }
         </style>
         <body>
@@ -376,8 +391,8 @@
                 <br>
                 <h1 class="display-2 text-center"><strong>REPORTE DE SERVICIOS</strong></h1>
                 <div class="row" style="height: 6rem;">
-                            <table class="table table-borderless table-sm"  width="100%" cellspacing="0">
-                                <thead>
+                            <table class="table table-borderless table-striped table-sm"  width="100%" cellspacing="0">
+                            <thead class="thead-dark">
                                     <tr>
                                         <th>Folio</th>
                                         <th>Cliente</th>
