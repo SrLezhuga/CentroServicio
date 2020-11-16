@@ -1,10 +1,16 @@
 <?php session_start();
-include("assets/controler/conexion.php"); ?>
+include("assets/controler/conexion.php");
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Alta Personal</title>
+    <title> Centro de Servicio MFA | Personal</title>
     <?php include("assets/common/header.php"); ?>
 </head>
 
@@ -88,10 +94,10 @@ include("assets/controler/conexion.php"); ?>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
-                                                                <i class="fas fa-user-alt"></i>
+                                                                <i class="fas fa-key"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="password"  class="form-control" placeholder="Contraseña" name="formUseCon" aria-describedby="passwordHelpInline" required>
+                                                        <input type="password" class="form-control" placeholder="Contraseña" name="formUseCon" aria-describedby="passwordHelpInline" required>
                                                     </div>
                                                 </div>
 
@@ -101,7 +107,7 @@ include("assets/controler/conexion.php"); ?>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
-                                                                <i class="fas fa-tag"></i>
+                                                                <i class="fas fa-id-card-alt"></i>
                                                             </span>
                                                         </div>
                                                         <select name="fromUsePriv" class="custom-select" required>
@@ -156,17 +162,44 @@ include("assets/controler/conexion.php"); ?>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $queryCliente = "SELECT * FROM tab_users";
-                                                $rsCliente = mysqli_query($con, $queryCliente) or die("Error de consulta");
-                                                while ($Cliente = mysqli_fetch_array($rsCliente)) {
+                                                $queryUsuario = "SELECT * FROM tab_users";
+                                                $rsUsuario = mysqli_query($con, $queryUsuario) or die("Error de consulta");
+                                                while ($Usuario = mysqli_fetch_array($rsUsuario)) {
+
+                                                    if ($Usuario['code_user']==$_SESSION['code_user']) {
+                                                        $disable="disabled";
+                                                    }else {
+                                                        $disable="";
+                                                    }
+
+                                                    if ($Usuario['priv_user']==1) {
+                                                        $privilegios="Administrador";
+                                                    }elseif ($Usuario['priv_user']==2) {
+                                                        $privilegios="Vendedor/Mostrador";
+                                                    }else {
+                                                        $privilegios="Taller/Técnico";
+                                                    }
+
+                                                    if ($Usuario['nick_user']==null) {
+                                                        $class = "class='table-danger'";
+                                                    }else {
+                                                        $class = "";
+                                                    }
+
                                                     echo "
-                    <tr>
-                            <td>" . $Cliente['name_user'] . "</td>
-                            <td>" . $Cliente['nick_user'] . "</td>
-                            <td>" . $Cliente['pass_user'] . "</td>
-                            <td>" . $Cliente['priv_user'] . "</td>
-                            <td><button type='button' class='btn btn-outline-light text-dark btn-sm BtnCliente' data-toggle='modal' data-target='#modalCliente'value=" . $Cliente["code_user"] . ">
-                            <i class='fas fa-pencil-alt'></i></button></td>
+                    <tr ". $class .">
+                            <td>" . $Usuario['name_user'] . "</td>
+                            <td>" . $Usuario['nick_user'] . "</td>
+                            <td>" . $Usuario['pass_user'] . "</td>
+                            <td>" . $privilegios . "</td>
+                            <td>
+                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnMod' data-toggle='modal' data-target='#modalMod'value=" . $Usuario["code_user"] . " ".$disable.">
+                            <i class='fas fa-pencil-alt'></i></button>
+                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRest' data-toggle='modal' data-target='#modalRest'value=" . $Usuario["code_user"] . " ".$disable.">
+                            <i class='fas fa-sync-alt'></i></button>
+                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnDel' data-toggle='modal' data-target='#modalDel'value=" . $Usuario["code_user"] . " ".$disable.">
+                            <i class='fas fa-trash-alt'></i></button>
+                            </td>
                         </tr>
                     ";
                                                 } ?>
@@ -203,10 +236,107 @@ include("assets/controler/conexion.php"); ?>
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- The Modal -->
+    <div class="modal fade" id="modalDel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Desactivar Usuario</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getContent">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalMod">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Modificar Usuario</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getContent">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalRest">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Restablecer Contraseña</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getContent">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
             toastr["success"]("Se registro el Usuario")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
+        <script>
+            toastr["success"]("Se actualizo el Usuario")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
+        <script>
+            toastr["success"]("Se restablecio contraseña del Usuario")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 3) { ?>
+        <script>
+            toastr["info"]("Para reactivar, asigna Uauario y Contrasseña");
+            toastr["success"]("Se desactivo el Usuario");
         </script>
     <?php } ?>
     <script>
@@ -216,6 +346,37 @@ include("assets/controler/conexion.php"); ?>
             toastr["success"]("Formulario vacío")
         }
     </script>
+
+    <script type="text/javascript">
+        // Modal tarjeta mod
+        $('.BtnMod').on('click', function() {
+            var id_button = $(this).val();
+            $('.getContent').load('./assets/controler/usuario/getUsuario.php?id=' + id_button, function() {
+                $('#modalCliente').modal({
+                    show: true
+                });
+            });
+        });
+        // Modal tarjeta rest
+        $('.BtnRest').on('click', function() {
+            var id_button = $(this).val();
+            $('.getContent').load('./assets/controler/usuario/getRestablecer.php?id=' + id_button, function() {
+                $('#modalCliente').modal({
+                    show: true
+                });
+            });
+        });
+        // Modal tarjeta del
+        $('.BtnDel').on('click', function() {
+            var id_button = $(this).val();
+            $('.getContent').load('./assets/controler/usuario/getEliminar.php?id=' + id_button, function() {
+                $('#modalCliente').modal({
+                    show: true
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

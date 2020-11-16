@@ -1,245 +1,75 @@
 <?php
-    include("../conexion.php");
+    include("../conexion.php");  
 
-    $Orden =  $_SESSION['RepUsuario'];
-    
-    
-    $queryDatosList = "SELECT * FROM tab_users WHERE priv_user = " . $Orden; 
+    $Opc = $_SESSION['RepInventario'];
+   
+
+    if ($Opc == "Con") {
+      
+    $queryDatosList = "SELECT * FROM tab_refaccion WHERE cant_refaccion > 0"; 
     $rsDatosList = mysqli_query($con, $queryDatosList) or die ("Error de consulta"); 
+    }elseif ($Opc == "Sin") {
+      
+    $queryDatosList = "SELECT * FROM tab_refaccion WHERE cant_refaccion < 1"; 
+    $rsDatosList = mysqli_query($con, $queryDatosList) or die ("Error de consulta"); 
+    }
+
+    $querySumList = "SELECT sum(cant_refaccion), sum(costo_refaccion) FROM tab_refaccion"; 
+    $rsSumList = mysqli_query($con, $querySumList) or die ("Error de consulta"); 
+    $SumList = mysqli_fetch_array($rsSumList);
+
+    $dia=date("d");
+    $mes=date("m"); 
+    $año=date("Y"); 
     
+    switch ($mes) {
+        case '01':
+            $m="Enero";
+            break;
+        case '02':
+            $m="Febrero";
+            break;
+        case '03':
+            $m="Marzo";
+            break;
+        case '04':
+            $m="Abril";
+            break;
+        case '05':
+            $m="Mayo";
+            break;
+        case '06':
+            $m="Junio";
+            break;
+         case '07':
+            $m="Julio";
+            break;
+        case '08':
+             $m="Agosto";
+            break;        
+        case '09':
+            $m="Septiembre";
+            break;
+        case '10':
+            $m="Octubre";
+            break;
+        case '11':
+            $m="Noviembre";
+            break;
+        case '12':
+            $m="Diciembre";
+            break;
+    }
+    
+    $fecha =$dia . " de " . $m . " del " . $año;
+
     echo'
     <html>
       <head>
         <title> Centro de Servicio MFA | Reporte</title>
         <link rel="icon" href="http://localhost/CentroServicio/assets/img/Logo/MFA.ico" />
+        <link rel="stylesheet" href="http://localhost/CentroServicio/assets/controler/reportes/styles.css">
       </head>
-        <style>    
-        @page { margin: 4rem 4rem 4rem 4rem; }
-        .header { position: fixed; left: 0px; top: 0px; right: 0px; height: 0px; }
-         *,
-          *::before,
-          *::after {
-            box-sizing: border-box;
-          }
-          
-          html {
-            font-size: 0.7rem;
-            font-family: sans-serif;
-            line-height: 1.15;
-            -webkit-text-size-adjust: 100%;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-          }
-          .display-1 {
-            font-size: 0.7rem;
-            font-weight: 300;
-            line-height: 1.2;
-          }
-          .display-2 {
-            font-size: 1.2rem;
-          }
-        .display-4 {
-            font-size: 1.5rem;
-            font-weight: 150;
-          }
-          .text-left {
-            text-align: left !important;
-          }
-          
-          .text-right {
-            text-align: right !important;
-          }
-          
-          .text-center {
-            text-align: center !important;
-          }
-          .border {
-            border: 1px solid #9E9E9E !important;
-          }
-          .border-info {
-            border: 1px dashed  !important;
-          }
-          .border-out {
-            border: 0px none  !important;
-          }
-          .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin-right: -0.75rem;
-      margin-left: -0.75rem;
-    }
-    .no-gutters {
-      margin-right: 0;
-      margin-left: 0;
-    }
-    
-    .no-gutters > .col,
-    .no-gutters > [class*="col-"] {
-      padding-right: 0;
-      padding-left: 0;
-    }
-    
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
-    .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
-    .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
-    .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
-    .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
-    .col-xl-auto {
-      position: relative;
-      width: 100%;
-      padding-right: 0.75rem;
-      padding-left: 0.75rem;
-    }
-    
-    .col {
-      flex-basis: 0;
-      flex-grow: 1;
-      min-width: 0;
-      max-width: 100%;
-    }
-    .col-1 {
-      flex: 0 0 8.33333%;
-      max-width: 8.33333%;
-    }
-    
-    .col-2 {
-      flex: 0 0 16.66667%;
-      max-width: 16.66667%;
-    }
-    
-    .col-3 {
-      flex: 0 0 25%;
-      max-width: 25%;
-    }
-    
-    .col-4 {
-      flex: 0 0 33.33333%;
-      max-width: 33.33333%;
-    }
-    
-    .col-5 {
-      flex: 0 0 41.66667%;
-      max-width: 41.66667%;
-    }
-    
-    .col-6 {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
-    
-    .col-7 {
-      flex: 0 0 58.33333%;
-      max-width: 58.33333%;
-    }
-    
-    .col-8 {
-      flex: 0 0 66.66667%;
-      max-width: 66.66667%;
-    }
-    
-    .col-9 {
-      flex: 0 0 75%;
-      max-width: 75%;
-    }
-    
-    .col-10 {
-      flex: 0 0 83.33333%;
-      max-width: 83.33333%;
-    }
-    
-    .col-11 {
-      flex: 0 0 91.66667%;
-      max-width: 91.66667%;
-    }
-    
-    .col-12 {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-    .offset-1 {
-      margin-left: 8.33333%;
-    }
-    
-    .offset-2 {
-      margin-left: 16.66667%;
-    }
-    
-    .offset-3 {
-      margin-left: 25%;
-    }
-    
-    .offset-4 {
-      margin-left: 33.33333%;
-    }
-    
-    .offset-5 {
-      margin-left: 41.66667%;
-    }
-    
-    .offset-6 {
-      margin-left: 50%;
-    }
-    
-    .offset-7 {
-      margin-left: 58.33333%;
-    }
-    
-    .offset-8 {
-      margin-left: 66.66667%;
-    }
-    
-    .offset-9 {
-      margin-left: 75%;
-    }
-    
-    .offset-10 {
-      margin-left: 83.33333%;
-    }
-    
-    .offset-11 {
-      margin-left: 91.66667%;
-    }
-    hr {
-        color: #f8b500;
-    height: px;
-    border:1px dashed;
-    }
-    img {
-        position: absolute; 
-        z-index: 0; 
-        opacity: 0.20; 
-        filter: grayscale(1);
-        margin-top: 8em;
-    }
-    .table {
-      width: 100%;
-    }
-    
-    .table th,
-    .table td {
-      padding: 0.75rem;
-      vertical-align: top;
-      border-top: 1px solid #9E9E9E;
-    }
-    
-    .table-sm th,
-    .table-sm td {
-      padding: 0.3rem;
-    }
-
-    .table .thead-dark th {
-        color: #fff;
-        background-color: #5a5c69;
-        border-color: #6c6e7e;
-      }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    .table-dark.table-striped tbody tr:nth-of-type(odd) {
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-        </style>
         <body>
             <div class="row header"  style="height: 5.5rem;">
             <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
@@ -249,37 +79,49 @@
             <h1 class="display-4 text-center"><strong>MAYOREO FERRETERO ATLAS S.A. DE C.V.</strong><br>
             Centro de servicio</h1>
                 <br>
-                <h1 class="display-2 text-center"><strong>REPORTE DE USUARIOS</strong></h1>
+                <h1 class="display-2 text-center"><strong>REPORTE DE REFACCIONES</strong></h1>
+                <div class="row" style="height: 4.5rem;">
+                  <div class="col-3">
+                    <p class="display-2"><b>Total de refacciones:<br>
+                       Coste total refacciones:</b></p>
+                  </div>
+                  <div class="col-3 offset-3 ">
+                    <p class="display-2">'.$SumList[0].' partes/piezas.<br>
+                       $ '.$SumList[1].'.00</p>
+                  </div>
+                  <div class="col-6 offset-6 text-right">
+                    <p class="display-2"><b>Fecha:</b><br>
+                       '.$fecha.'</p>
+                  </div>
+                </div>
                 <div class="row" style="height: 6rem;">
                             <table class="table table-borderless table-sm table-striped"  width="100%" cellspacing="0">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Usuario</th>
-                                        <th>Privilegio</th>
+                                        <th>Codigo</th>
+                                        <th>Descripción</th>
+                                        <th>Marca</th>
+                                        <th>Cantidad</th>
+                                        <th>Costo</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
 
                                 $i=0;
                                 while($DatosList = mysqli_fetch_array($rsDatosList)){
-                                    $item[$i]['name_user']=$DatosList['name_user'];
-                                    $item[$i]['nick_user']=$DatosList['nick_user'];
-                                    $item[$i]['priv_user']=$DatosList['priv_user'];
+                                    $item[$i]['cod_refaccion']=$DatosList['cod_refaccion'];
+                                    $item[$i]['desc_refaccion']=$DatosList['desc_refaccion'];
+                                    $item[$i]['marca_refaccion']=$DatosList['marca_refaccion'];
+                                    $item[$i]['cant_refaccion']=$DatosList['cant_refaccion'];
+                                    $item[$i]['costo_refaccion']=$DatosList['costo_refaccion'];
 
-                                    if ($DatosList['priv_user']=='1') {
-                                      $item[$i]['priv_user']='Administrador';
-                                    }elseif ($DatosList['priv_user']=='2') {
-                                      $item[$i]['priv_user']='Vendedor/Mostrador';
-                                    }else {
-                                      $item[$i]['priv_user']='Taller/Técnico';
-                                    }
-                                   
                                   echo '
                                     <tr>
-                                        <td>'.$item[$i]['name_user'].'</td>
-                                        <td>'.$item[$i]['nick_user'].'</td>
-                                        <td>'.$item[$i]['priv_user'].'</td>
+                                        <td>'.$item[$i]['cod_refaccion'].'</td>
+                                        <td>'.$item[$i]['desc_refaccion'].'</td>
+                                        <td>'.$item[$i]['marca_refaccion'].'</td>
+                                        <td>'.$item[$i]['cant_refaccion'].'</td>
+                                        <td>$ '.$item[$i]['costo_refaccion'].'.00</td>
                                     </tr> ';
                                     $i++;
                                     } 

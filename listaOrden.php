@@ -1,9 +1,15 @@
-<?php session_start(); include("assets/controler/conexion.php");?>
+<?php session_start(); include("assets/controler/conexion.php");
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2 ||  $_SESSION['priv_user']==3 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Orden</title>
+    <title> Centro de Servicio MFA | Orden</title>
     <?php  include("assets/common/header.php");?>
 </head>
 
@@ -96,13 +102,32 @@
                                                     <td>".$Orden['mod_herramienta']."</td>
                                                     <td>".$Orden['fech_entrada']."</td>
                                                     <td>".$Orden['status_orden']."</td>
-                                                    <td>".$Orden['tipo_servicio']."</td>
-                                                    <td> 
-                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
-                                                        <i class='far fa-eye'></i></button>
-                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnFolio' value=".$Orden['id_orden'].">
-                                                        <i class='far fa-file-pdf'></i></button>
-                                                    </td>
+                                                    <td>".$Orden['tipo_servicio']."</td>";
+                                                    if ($_SESSION['priv_user']==1) {
+                                                        echo"
+                                                        <td>
+                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden2' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
+                                                            <i class='far fa-eye'></i></button>
+                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnFolio' value=".$Orden['id_orden'].">
+                                                            <i class='far fa-file-pdf'></i></button>
+                                                        </td>";
+                                                    }elseif ($_SESSION['priv_user']==2) {
+                                                        echo"
+                                                        <td>
+                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden2' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
+                                                            <i class='far fa-eye'></i></button>
+                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnFolio' value=".$Orden['id_orden'].">
+                                                            <i class='far fa-file-pdf'></i></button>
+                                                        </td>";
+                                                    }elseif ($_SESSION['priv_user']==3) {
+                                                        echo"
+                                                        <td>
+                                                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden2' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
+                                                            <i class='far fa-eye'></i></button>
+                                                        </td>";
+                                                    }
+                                                    
+                                            echo"
                                                 </tr>
                                             "; 
 
@@ -178,9 +203,9 @@
     <script type="text/javascript">
     // Modal tarjeta Orden
 
-    $('.BtnOrden').on('click', function() {
+    $('.BtnOrden2').on('click', function() {
         var id_button = $(this).val();
-        $('.getOrden').load('./assets/controler/orden/getOrden.php?id=' + id_button, function() {
+        $('.getOrden').load('./assets/controler/orden/getOrden2.php?id=' + id_button, function() {
             $('#modalOrden').modal({
                 show: true
             });

@@ -18,7 +18,7 @@
                 });
         });
     </script>
-    <title> Centro de Servicio FMA | Login</title>
+    <title> Centro de Servicio MFA | Login</title>
 </head>
 
 <body <?php echo $bgn; ?>>
@@ -93,12 +93,12 @@
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Vuelve Pronto! 😃")
+            toastr["success"]("Vuelve Pronto! ")
         </script>
     <?php }
     if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["error"]("Error al iniciar sesión intenta de nuevo 😅")
+            toastr["error"]("Error al iniciar sesión intenta de nuevo ")
         </script>
     <?php } ?>
 </body>

@@ -21,13 +21,13 @@ $user      = $_POST['formUser'];
 $password  = $_POST['formPass'];
 $user_id   = 0;
 
-//$encry=$_POST["formPass"];
-$sql        =  "SELECT * FROM tab_users WHERE nick_user= '$user' AND pass_user = '$password'";
+$encry=sha1($password);
+$sql        =  "SELECT * FROM tab_users WHERE nick_user= '$user' AND pass_user = '$encry'";
 $query      =  $con->query($sql);
 $rs         =  $query->fetch_array();
 $user_id    =  $rs['code_user'];
-$items      =  explode("-", $rs['conf_user']);
-$avatar     =  "assets/img/Avatar/".$items[0].".png";
+$items      =  $rs['conf_user'];
+$avatar     =  "assets/img/Avatar/".$items.".png";
 
 if ($user_id == 0) {
     header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index?alert=1");

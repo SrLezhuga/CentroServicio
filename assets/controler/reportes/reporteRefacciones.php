@@ -13,16 +13,16 @@ use Dompdf\Options;
 
 // instantiate and use the dompdf class
 $options = new Options();
-$options->set('isRemoteEnabled', TRUE);
+$options->set('isRemoteEnabled', TRUE); 
 $dompdf = new Dompdf($options);
 
 if ($lista =='Todos') {
     ob_start();
-    include_once 'generarRefacionesAll.php';
+    include_once 'generarRefaccionesAll.php';
     $html=ob_get_clean();
   }else{
     ob_start();
-    include_once 'generarRefaciones.php';
+    include_once 'generarRefacciones.php';
     $html=ob_get_clean();
   }
 

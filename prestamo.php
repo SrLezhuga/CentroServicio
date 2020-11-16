@@ -1,10 +1,17 @@
-<?php session_start(); include("assets/controler/conexion.php");?>
+<?php session_start();
+include("assets/controler/conexion.php"); 
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Prestamos</title>
-    <?php  include("assets/common/header.php");?>
+    <title> Centro de Servicio MFA | Prestamos</title>
+    <?php include("assets/common/header.php"); ?>
 </head>
 
 <body id="page-top">
@@ -13,7 +20,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php  include("assets/common/sidebar.php");?>
+        <?php include("assets/common/sidebar.php"); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -23,7 +30,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php  include("assets/common/topbar.php");?>
+                <?php include("assets/common/topbar.php"); ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -48,57 +55,74 @@
                                     <h1 class='h3 text-gray-800'>Nuevo prestamo</h1>
                                     <br>
 
-                                    <form class="form" action="/action_page.php">
+                                    <form class="form" id="cleanForm" action="assets/controler/prestamo/altaPrestamo.php" method="POST">
 
                                         <!-- form herramienta -->
-                                        <h5><b>Datos del prestamo</b></h5>
-                                        <div class="row">
+                                        <fieldset class='border p-2'>
+                                            <legend class='w-auto'>Datos del prestamo:</legend>
+                                            <div class="row">
 
-                                            <!--Campo Responsable -->
-                                            <div class="col">
-                                                <label>Responsable:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-user-alt"></i>
-                                                        </span>
+                                                <!--Campo Cliente -->
+                                                <div class="col">
+                                                    <label>Cliente:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-user-alt"></i>
+                                                            </span>
+                                                        </div>
+                                                        <select name="forPreCli" class="custom-select" required>
+                                                            <option value="" selected disabled>Seleccione Cliente</option>
+                                                            <?php $listCli = "SELECT * FROM tab_cliente ORDER BY nom_cliente ASC";
+                                                            $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
+                                                            while ($itemCli = mysqli_fetch_array($rsCli)) {
+                                                                echo "<option value='" . $itemCli[0] . "|" . $itemCli[1] . "'>" . $itemCli[1] . "</option>
+                                                                      <option disabled> &nbsp&nbsp&nbsp Dirección: " . $itemCli[2] . "</option>
+                                                                      <option disabled> &nbsp&nbsp&nbsp Teléfono: " . $itemCli[5] . "</option>";
+                                                            } ?>
+                                                        </select>
                                                     </div>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Nombre responsable" name="forOrdFec" required>
+                                                </div>
+
+                                                <!--Campo Herramienta / Maquina -->
+                                                <div class="col">
+                                                    <label>Herramienta / Maquina:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-tools"></i>
+                                                            </span>
+                                                        </div>
+                                                        <select name="forPreHer" class="custom-select" required>
+                                                            <option value="" selected disabled>Seleccione Herramienta / Maquina</option>
+                                                            <?php $listHer = "SELECT * FROM tab_herramienta WHERE status_herramienta = 'DISPONIBLE' ORDER BY desc_herramienta ASC";
+                                                            $rsHer = mysqli_query($con, $listHer) or die("Error de consulta");
+                                                            while ($itemHer = mysqli_fetch_array($rsHer)) {
+                                                                echo "<option value='" . $itemHer[0] . "'>" . $itemHer[2] . "</option>
+                                                                      <option disabled> &nbsp&nbsp&nbsp Modelo: " . $itemHer[1] . "</option>
+                                                                      <option disabled> &nbsp&nbsp&nbsp Marca: " . $itemHer[3] . "</option>";
+                                                            } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <br>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <button type="button" onClick=clean() class="btn btn-outline-secondary btn-block"><i class="fas fa-eraser"></i> Borrar</button>
+                                                </div>
+                                                <br>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-paper-plane"></i> Enviar</button>
                                                 </div>
                                             </div>
 
-                                            <!--Campo Observaciones -->
-                                            <div class="col">
-                                                <label>Observaciones:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Descripción herramienta" name="forOrdFec" required>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-                                        <br>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <button type="button" class="btn btn-outline-secondary btn-block"><i
-                                                        class="fas fa-times"></i> Cancelar</button>
-                                            </div>
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                        class="fas fa-paper-plane"></i> Enviar</button>
-                                            </div>
-                                        </div>
-
-                                        <!--/. form-->
+                                            <!--/. form-->
+                                        </fieldset>
                                     </form>
                                 </div>
                             </div>
@@ -119,37 +143,63 @@
                                     <br>
                                     <!-- DataTales -->
                                     <div class="table">
-                                        <table class="table table-hover" id="dataTablePrestamo" width="100%"
-                                            cellspacing="0">
+                                        <table class="table table-hover table-sm" id="dataTablePrestamo" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Folio</th>
                                                     <th>Responsable</th>
+                                                    <th>Herramienta</th>
                                                     <th>Fecha</th>
-                                                    <th>Observaciones</th>
                                                     <th>Status</th>
                                                     <th>Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>00001</td>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>2020-09-25</td>
-                                                    <td>Requiere prestamo</td>
-                                                    <td>Pendiente</td>
-                                                    <td><button type="button" class="btn btn-outline-info btn-sm"><i
-                                                                class="far fa-eye"></i> Ver</button></td>
+                                            <?php
+                                                $queryprestamo = "SELECT * FROM tab_prestamo";
+                                                $rsprestamo = mysqli_query($con, $queryprestamo) or die("Error de consulta");
+                                                while ($prestamo = mysqli_fetch_array($rsprestamo)) {
+                                                   
+                                                    $folio=$prestamo['id_prestamo'];
+                                                    if(strlen($folio)==1){
+                                                        $folio="0000".$folio;
+                                                    }else if(strlen($folio)==2){
+                                                        $folio="000".$folio;
+                                                    }else if(strlen($folio)==3){
+                                                        $folio="00".$folio;
+                                                    }else if(strlen($folio)==4){
+                                                        $folio="0".$folio;
+                                                    }
+
+                                                    if ($prestamo['status_prestamo']=="CANCELADA") {
+                                                        $color="<tr class='table-danger' >";
+                                                        $disable = "disabled";
+                                                    }elseif ($prestamo['status_prestamo']=="FINALIZADA") {
+                                                        $color="<tr class='table-success' >";
+                                                        $disable = "disabled";
+                                                    }else {
+                                                        $color="<tr>";
+                                                        $disable = "";
+                                                    }
+
+                                                    echo "
+                                                " . $color . "
+                                                    <td>" . $folio . "</td>
+                                                    <td>" . $prestamo['cliente_prestamo'] . "</td>
+                                                    <td>" . $prestamo['desc_prestamo'] . "</td>
+                                                    <td>" . $prestamo['marca_prestamo'] . "</td>
+                                                    <td>" . $prestamo['status_prestamo'] . "</td>
+                                                    <td>
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnPrestamo' data-toggle='modal' data-target='#modalPrestamo 'value=" . $prestamo['id_prestamo'] . "|" . $prestamo['id_cliente'] . ">
+                                                    <i class='far fa-eye'></i></button>
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnFinalizar' data-toggle='modal' data-target='#modalFinalizar 'value=" . $prestamo['id_prestamo'] . " " . $disable . ">
+                                                    <i class='fas fa-undo-alt'></i></button>
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnCancelar' data-toggle='modal' data-target='#modalCancelar 'value=" . $prestamo['id_prestamo'] . " " . $disable . ">
+                                                    <i class='fas fa-ban'></i></button>
+                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>00002</td>
-                                                    <td>Garrett Winters</td>
-                                                    <td>2020-09-25</td>
-                                                    <td>Requiere prestamo</td>
-                                                    <td>Pendiente</td>
-                                                    <td><button type="button" class="btn btn-outline-info btn-sm"><i
-                                                                class="far fa-eye"></i> Ver</button></td>
-                                                </tr>
+                                            ";
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -169,7 +219,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php  include_once("assets/common/foter.php");?>
+            <?php include_once("assets/common/foter.php"); ?>
             <!-- End of Footer -->
 
         </div>
@@ -183,6 +233,152 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- The Modal -->
+    <div class="modal fade" id="modalPrestamo">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Prestamo</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getPrestamo">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalFinalizar">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Finalizar</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h3 class="text-center">Se finalizará el prestamo ¿Deseas continuar?</h3>
+                    <div class="getFinalizar">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modalCancelar">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Cancelar</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h3 class="text-center">Se cancelará el prestamo ¿Deseas continuar?</h3>
+                    <div class="getCancelar">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    // Modal tarjeta Cancelar
+    $('.BtnCancelar').on('click', function() {
+        var id_button = $(this).val();
+        $('.getCancelar').load('./assets/controler/prestamo/getCancelar.php?id=' + id_button, function() {
+            $('#modalCancelar').modal({
+                show: true
+            });
+        });
+    });
+    </script>
+
+    <script type="text/javascript">
+    // Modal tarjeta Finalizar
+    $('.BtnFinalizar').on('click', function() {
+        var id_button = $(this).val();
+        $('.getFinalizar').load('./assets/controler/prestamo/getFinalizar.php?id=' + id_button, function() {
+            $('#modalFinalizar').modal({
+                show: true
+            });
+        });
+    });
+    </script>
+
+    <script type="text/javascript">
+    // Modal tarjeta Prestamo
+    $('.BtnPrestamo').on('click', function() {
+        var id_button = $(this).val();
+        $('.getPrestamo').load('./assets/controler/prestamo/getPrestamo.php?id=' + id_button, function() {
+            $('#modalPrestamo').modal({
+                show: true
+            });
+        });
+    });
+    </script>
+
+    <!-- Alerts! -->
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
+        <script>
+            toastr["success"]("Se registro el prestamo");
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
+        <script>
+            toastr["success"]("Se finalizo el prestamo");
+            toastr["info"]("La herramienta vuelve a estar disponible");
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
+        <script>
+            toastr["error"]("Se cancelo el prestamo");
+            toastr["info"]("La herramienta vuelve a estar disponible");
+        </script>
+    <?php } ?>
+
+
+    <script>
+        //Limpiar formularios
+        function clean() {
+            document.getElementById("cleanForm").reset();
+            toastr["success"]("Formulario vacío")
+        }
+    </script>
 </body>
 
 </html>

@@ -1,9 +1,17 @@
-<?php session_start(); include("assets/controler/conexion.php");?>
+<?php session_start(); include("assets/controler/conexion.php");
+
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==3 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Orden</title>
+    <title> Centro de Servicio MFA | Orden</title>
     <?php  include("assets/common/header.php");?>
 </head>
 

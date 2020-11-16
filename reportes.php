@@ -1,9 +1,15 @@
-<?php session_start();  include("assets/controler/conexion.php"); ?>
+<?php session_start();  include("assets/controler/conexion.php");
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Reportes</title>
+    <title> Centro de Servicio MFA | Reportes</title>
     <?php  include("assets/common/header.php");?>
 </head>
 
@@ -128,7 +134,7 @@
                                                         </span>
                                                     </div>
                                                     <select name="fromRepList" class="custom-select" required>
-                                                        <option value="Todas">Efectivo y Tarjeta</option>
+                                                        <option value="EFECTIVO Y TARJETA">Efectivo y Tarjeta</option>
                                                         <option value="EFECTIVO">Solo Efectivo</option>
                                                         <option value="TARJETA">Solo Tarjeta</option>
                                                     </select>
@@ -189,9 +195,10 @@
                                                         </span>
                                                     </div>
                                                     <select name="fromRepList" class="custom-select" required>
-                                                        <option value="Todas">Todos</option>
-                                                        <option value="1">Solo Entegrados</option>
-                                                        <option value="2">Solo Pendientes</option>
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="EN PRESTAMO">En prestamo</option>
+                                                        <option value="CANCELADA">Canceladas</option>
+                                                        <option value="FINALIZADA">Finalizadas</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -324,8 +331,8 @@
                                                     </div>
                                                     <select name="RepInventario" class="custom-select" required>
                                                         <option value="Todos">Todos</option>
-                                                        <option value="Reparada">Con Stock</option>
-                                                        <option value="Cancelada">Sin Stock</option>
+                                                        <option value="Con">Con Stock</option>
+                                                        <option value="Sin">Sin Stock</option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -1,4 +1,3 @@
-
 <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -25,7 +24,7 @@
                     <span>Informe</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="lobby">Informe</a>
+                <a class="collapse-item" href="informe">Informe</a>
             </div>
         </div>
     </li>
@@ -86,7 +85,6 @@
                 <!-- Item -->
                 <a class="collapse-item" href="herramienta">Alta Herramienta</a>
                 <a class="collapse-item" href="prestamo">Nuevo Prestamo</a>
-                <a class="collapse-item" href="listaPrestamo">Lista Prestamo</a>
             </div>
         </div>
     </li>
@@ -122,8 +120,7 @@
                     <span>Administrador</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="usuario">Alta Usuario</a>
-                <a class="collapse-item" href="anuncios">Anuncios</a>
+                <a class="collapse-item" href="usuario">Usuarios</a>
             </div>
         </div>
     </li>

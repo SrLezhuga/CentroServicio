@@ -270,19 +270,20 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
       </tbody>
       </table>
       </fieldset>
-      <br>
-      <div class='row'>
-      <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-      <form class='form' action='assets/controler/taller/goTaller.php' method='POST'>
-      <input type='hidden' name='formIdOrden' value=" .
-        $id .
-        " required>
-          <button type='submit' class='btn btn-outline-danger btn-block'><i class='fas fa-toolbox'></i></i>
-              Enviar al Taller</button>
-      </div>
-      </div>
-      
-      ";
+      <br>";
+        if ($_SESSION['priv_user']==2) {
+            # code...
+        }else{
+            echo"
+            <div class='row' >
+                <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                    <form class='form' action='assets/controler/taller/goTaller.php' method='POST'>
+                    <input type='hidden' name='formIdOrden' value=" . $id . " required>
+                    <button type='submit' class='btn btn-outline-danger btn-block'><i class='fas fa-toolbox'></i></i> Enviar al Taller</button>
+                 </div>
+            </div>
+            ";
+        }
 }
 mysqli_close($con);
 ?>

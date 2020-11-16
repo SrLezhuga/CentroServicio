@@ -1,10 +1,6 @@
 <?php 
 session_start();
 
-$lista = $_POST['RepUsuario'];
-
-$_SESSION['RepUsuario'] = $lista;
-
 require_once '../../vendor/dompdf/autoload.inc.php';
 
 // reference the Dompdf namespace
@@ -16,15 +12,9 @@ $options = new Options();
 $options->set('isRemoteEnabled', TRUE);
 $dompdf = new Dompdf($options);
 
-if ($lista =='Todos') {
     ob_start();
-    include_once 'generarUsuarioAll.php';
+    include_once 'generarServicios.php';
     $html=ob_get_clean();
-  }else{
-    ob_start();
-    include_once 'generarUsuario.php';
-    $html=ob_get_clean();
-  }
 
 $dompdf->loadHtml($html);
 

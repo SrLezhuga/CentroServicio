@@ -1,9 +1,15 @@
-<?php session_start(); include("assets/controler/conexion.php");?>
+<?php session_start(); include("assets/controler/conexion.php");
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==3 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Refacciones</title>
+    <title> Centro de Servicio MFA | Refacciones</title>
     <?php  include_once("assets/common/header.php");?>
 </head>
 
@@ -334,11 +340,15 @@
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registro la refaccion")
+    toastr["success"]("Se registro la refacción")
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
-    toastr["success"]("Se modifico la refaccion")
+    toastr["success"]("Se modifico la refacción")
+    </script>
+    <?php } if(isset($_GET['alert']) && $_GET['alert']==2){ ?>
+    <script>
+    toastr["success"]("Se elimino la refacción")
     </script>
     <?php } ?>
     <script>

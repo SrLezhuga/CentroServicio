@@ -1,5 +1,12 @@
 <?php session_start();
 include("assets/controler/conexion.php");
+
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==3 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+
 $ordenPendiente = "SELECT taller FROM tab_users WHERE code_user=" . $_SESSION['code_user'];
 $rsordenPendiente = mysqli_query($con, $ordenPendiente) or die("Error de consulta");
 $pendiente = mysqli_fetch_array($rsordenPendiente);
@@ -9,7 +16,7 @@ $id = $pendiente['taller']; ?>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Taller</title>
+    <title> Centro de Servicio MFA | Taller</title>
     <?php include("assets/common/header.php"); ?>
 </head>
 
@@ -137,7 +144,7 @@ $id = $pendiente['taller']; ?>
                                                 <form class="form" action="assets/controler/refaccion/restRefaccion.php" method="POST">
                                                     <div class="row">
                                                         <div class="col-xl-3 col-md-3 col-sm-12 col-lg-3">
-                                                            <label>Nueva Refacción:</label>
+                                                            <label>Nva. Refacción:</label>
                                                             <button type="button" class="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#modalRefaccion"><i class="fas fa-plus"></i><i class="fas fa-cog"></i></button>
                                                         </div>
                                                         <div class="col-xl-9 col-md-9 col-sm-12 col-lg-9">
@@ -178,7 +185,7 @@ $id = $pendiente['taller']; ?>
                                                 <form class="form" action="assets/controler/servicio/restServicio.php" method="POST">
                                                     <div class="row">
                                                         <div class="col-xl-3 col-md-3 col-sm-12 col-lg-3">
-                                                            <label>Nuevo Servicio:</label>
+                                                            <label>Nvo. Servicio:</label>
                                                             <button type="button" class="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#modalServicio"><i class="fas fa-plus"></i><i class="fas fa-concierge-bell"></i></button>
                                                         </div>
                                                         <div class="col-xl-9 col-md-9 col-sm-12 col-lg-9">
@@ -313,7 +320,7 @@ $id = $pendiente['taller']; ?>
                                                                         $queryDetalle = "SELECT detalle_servicio FROM tab_orden WHERE id_Orden=" . $id . ";";
                                                                         $rsDetalle = mysqli_query($con, $queryDetalle) or die("Error de consulta");
                                                                         $Detalle = mysqli_fetch_array($rsDetalle); ?>
-                                                                        <textarea rows="3" class="form-control" placeholder="Diagnostico y observaciones de la herramienta" name="forObs" required><?php echo $Detalle[0]; ?></textarea>
+                                                                        <textarea rows="2" class="form-control" placeholder="Diagnostico y observaciones de la herramienta" name="forObs" required><?php echo $Detalle[0]; ?></textarea>
                                                                         <input type="hidden" required name="formMun" value=<?php echo $id; ?>>
                                                                     </div>
                                                                 </div>
@@ -327,7 +334,7 @@ $id = $pendiente['taller']; ?>
                                                         </form>
                                                     </div>
                                                     <div class="col-2">
-                                                        <img class='img-fluid mx-auto d-block' src='../CentroServicio/assets/img/Logo/logo.webp' style='height: 135px;    width: 135px; z-index: 0; opacity: 0.15;' onContextMenu='return false;' draggable='false'>
+                                                        <img class='img-fluid mx-auto d-block' src='../CentroServicio/assets/img/Logo/logo.webp' style='height: 100px; width: 100px; z-index: 0; opacity: 0.15;' onContextMenu='return false;' draggable='false'>
                                                     </div>
                                                 </div>
                                             </fieldset>

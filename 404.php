@@ -1,12 +1,17 @@
-<?php session_start();
-include("assets/controler/conexion.php"); ?>
+<?php include("assets/controler/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | 404</title>
+    <title> Centro de Servicio MFA | 404</title>
     <?php include("assets/common/header.php"); ?>
 </head>
+
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <h4>Centro De Servicio</h4>
+</nav>
+<!-- End of Topbar -->
 
 <body id="page-top">
 
@@ -22,5 +27,18 @@ include("assets/controler/conexion.php"); ?>
     </div>
 
 </body>
+
+<footer class="sticky-footer bg-grey" style="position: fixed; left: 0; bottom: 0; width: 100%; text-align: center;">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>
+                <h6><b>MAYOREO FERRETERO ATLAS SA DE CV</b></h6>
+                GUADALAJARA JALISCO MEXICO CP 44450 <br>
+                R.F.C: MFA030403T73 GUADALUPE VICTORIA #55<br>
+                Copyright &copy; Centro de Servicio MFA | Intranet <?php echo date('Y'); ?>
+            </span>
+        </div>
+    </div>
+</footer>
 
 </html>

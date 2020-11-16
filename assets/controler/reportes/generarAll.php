@@ -107,11 +107,10 @@
         <link rel="icon" href="http://localhost/CentroServicio/assets/img/Logo/MFA.ico" />
       </head>
         <style>    
-        @page {
-                margin-top: 0.3em;
-                margin-bottom: 0.3em;
-            }
-          *,
+           
+        @page { margin: 4rem 4rem 4rem 4rem; }
+        .header { position: fixed; left: 0px; top: 0px; right: 0px; height: 0px; }
+         *,
           *::before,
           *::after {
             box-sizing: border-box;
@@ -299,13 +298,12 @@
     border:1px dashed;
     }
     img {
-      position: absolute; 
-      z-index: 0; 
-      opacity: 0.20; 
-      filter: grayscale(1);
-      width: 100%;
+        position: absolute; 
+        z-index: 0; 
+        opacity: 0.20; 
+        filter: grayscale(1);
+        margin-top: 8em;
     }
-    
     .table {
       width: 100%;
     }
@@ -337,35 +335,23 @@
     }
         </style>
         <body>
-            <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
-            <div class="container-fluid">
-                <div class="row"  style="height: 5.5rem;">
-                    <h1 class="display-4 text-center"><strong>MAYOREO FERRETERO ATLAS S.A. DE C.V.</strong><br>
-                        Centro de servicio</h1>
-                </div>  
-                <div class="row" style="height: 6rem;">
-                    <fieldset class="border p-2" style="height: 3.5rem;">
-                        <legend class="w-auto"><strong>Reporte de ordenes:</strong></legend>
-                        <div class="row">
-                                <div class="col-1">
-                                    <a>
-                                        <b>Del: </b><br />
-                                        <b>Al: </b><br />
-                                        <b>Status: </b>
-                                    </a>
-                                </div>
-                                <div class="col-11 offset-1">
-                                    <a>
-                                        '.$fechaInicio.'<br />
-                                        '.$fechaFin.'<br />
-                                        '.$lista.'
-                                    </a>
-                                </div>
-                            </div>
-                        </fieldset>
-                </div>
-                <br>
-                <h1 class="display-2 text-center"><strong>REPORTE DE SERVICIOS</strong></h1>
+        <div class="row header"  style="height: 2.5rem;">
+        <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
+        </div>  
+        <div class="container-fluid">
+        <h1 class="display-4 text-center"><strong>MAYOREO FERRETERO ATLAS S.A. DE C.V.</strong><br>
+        Centro de servicio</h1>
+            <br>
+            <h1 class="display-2 text-center"><strong>REPORTE ORDENES</strong></h1>
+            <div class="row" style="height: 4.5rem;">
+              <div class="col-3">
+                <p class="display-2"><b>Status de la orden:</b><br>'.$lista.'</p>
+              </div>
+              <div class="col-9 offset-3 text-right">
+                <p class="display-2"><b>Fecha:</b><br>
+                   '.$fechaInicio.' al '.$fechaFin.'</p>
+              </div>
+            </div>
                 <div class="row" style="height: 6rem;">
                             <table class="table table-borderless table-striped table-sm"  width="100%" cellspacing="0">
                             <thead class="thead-dark">

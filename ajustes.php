@@ -1,18 +1,25 @@
-<?php session_start(); include("assets/controler/conexion.php");
+<?php session_start();
+include("assets/controler/conexion.php");
 
-$queryUser = "SELECT * FROM tab_users WHERE code_user =".$_SESSION['code_user']; 
-$rsUser = mysqli_query($con, $queryUser) or die ("Error de consulta"); 
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2 ||  $_SESSION['priv_user']==3 ) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+
+$queryUser = "SELECT * FROM tab_users WHERE code_user =" . $_SESSION['code_user'];
+$rsUser = mysqli_query($con, $queryUser) or die("Error de consulta");
 $user = mysqli_fetch_array($rsUser);
 $contralOld =  $user['pass_user'];
 $items      =  explode("-", $user['conf_user']);
-                    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Ajustes</title>
-    <?php  include("assets/common/header.php");?>
+    <title> Centro de Servicio MFA | Ajustes</title>
+    <?php include("assets/common/header.php"); ?>
 </head>
 
 <body id="page-top">
@@ -21,7 +28,7 @@ $items      =  explode("-", $user['conf_user']);
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php  include("assets/common/sidebar.php");?>
+        <?php include("assets/common/sidebar.php"); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -31,7 +38,7 @@ $items      =  explode("-", $user['conf_user']);
             <div id="content">
 
                 <!-- Topbar -->
-                <?php  include("assets/common/topbar.php");?>
+                <?php include("assets/common/topbar.php"); ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -56,8 +63,7 @@ $items      =  explode("-", $user['conf_user']);
                                     <br>
                                     <div class="row">
                                         <div class="col-xl-4 col-md-4 col-lg-4 col-sm-12">
-                                            <form class="form" id="cleanForm"
-                                                action="assets/controler/usuario/altaUsuario.php" method="POST">
+                                            <form class="form" id="cleanForm" action="assets/controler/usuario/modContra.php" method="POST">
 
                                                 <!-- form usuario -->
                                                 <fieldset class='border p-2'>
@@ -73,9 +79,7 @@ $items      =  explode("-", $user['conf_user']);
                                                                         <i class="fas fa-key"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="password" class="form-control"
-                                                                    placeholder="Contraseña actual" name="formUseOld"
-                                                                    aria-describedby="passwordHelpInline" required>
+                                                                <input type="password" class="form-control" placeholder="Contraseña actual" name="formUseOld" aria-describedby="passwordHelpInline" required>
                                                             </div>
                                                         </div>
 
@@ -88,9 +92,7 @@ $items      =  explode("-", $user['conf_user']);
                                                                         <i class="fas fa-key"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="password" class="form-control"
-                                                                    placeholder="Nueva Contraseña" name="formUseNew1"
-                                                                    aria-describedby="passwordHelpInline" required>
+                                                                <input type="password" class="form-control" placeholder="Nueva Contraseña" name="formUseNew1" aria-describedby="passwordHelpInline" required>
                                                             </div>
                                                         </div>
 
@@ -103,9 +105,7 @@ $items      =  explode("-", $user['conf_user']);
                                                                         <i class="fas fa-key"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="password" class="form-control"
-                                                                    placeholder="Repetir Contraseña" name="formUseNew2"
-                                                                    aria-describedby="passwordHelpInline" required>
+                                                                <input type="password" class="form-control" placeholder="Repetir Contraseña" name="formUseNew2" aria-describedby="passwordHelpInline" required>
                                                             </div>
                                                         </div>
 
@@ -116,15 +116,11 @@ $items      =  explode("-", $user['conf_user']);
                                                     <hr>
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <button type="button" onClick=clean()
-                                                                class="btn btn-outline-secondary btn-block"><i
-                                                                    class="fas fa-eraser"></i> Borrar</button>
+                                                            <button type="button" onClick=clean() class="btn btn-outline-secondary btn-block"><i class="fas fa-eraser"></i> Borrar</button>
                                                         </div>
                                                         <br>
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <button type="submit"
-                                                                class="btn btn-outline-danger btn-block"><i
-                                                                    class="fas fa-save"></i> Actualizar</button>
+                                                            <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-save"></i> Actualizar</button>
                                                         </div>
                                                     </div>
 
@@ -133,75 +129,8 @@ $items      =  explode("-", $user['conf_user']);
                                             </form>
                                         </div>
 
-
-                                        <div class="col-xl-4 col-md-4 col-lg-4 col-sm-12">
-                                            <form class="form" id="cleanForm"
-                                                action="assets/controler/usuario/altaUsuario.php" method="POST">
-
-                                                <!-- form usuario -->
-                                                <fieldset class='border p-2'>
-                                                    <legend class='w-auto'>Cambio color:</legend>
-                                                    <div class="row">
-
-                                                        <!--Campo Contraseña -->
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <label>Color:</label>
-                                                            <div class="input-group ">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
-                                                                        <i class="fas fa-palette"></i>
-                                                                    </span>
-                                                                </div>
-                                                                <select name="fromOrdSer" class="custom-select"
-                                                                    required>
-                                                                    <option value="" selected disabled>Selecciones
-                                                                        color
-                                                                    </option>
-                                                                    <option value="1">Rojo</option>
-                                                                    <option value="2">Azul</option>
-                                                                    <option value="3">Verde</option>
-                                                                    <option value="4">Negro</option>
-                                                                    <option value="5">Gris</option>
-                                                                    <option value="6">Rosa</option>
-                                                                    <option value="7">Naranja</option>
-                                                                    <option value="8">Morado</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-
-                                                    <br>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <button type="button" onClick=clean()
-                                                                class="btn btn-outline-secondary btn-block"><i
-                                                                    class="fas fa-eraser"></i> Borrar</button>
-                                                        </div>
-                                                        <br>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <button type="submit"
-                                                                class="btn btn-outline-danger btn-block"><i
-                                                                    class="fas fa-save"></i> Actualizar</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <!--/. form-->
-                                                </fieldset>
-                                                <br>
-                                                <div class="alert alert-info" style="text-align: center;">
-                                                    <strong>Nota:</strong> Los cambios seran reflejados en el siguiente
-                                                    inicio de
-                                                    sesion.
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <div class="col-xl-4 col-md-4 col-lg-4 col-sm-12">
-                                            <form class="form" id="cleanForm"
-                                                action="assets/controler/usuario/altaUsuario.php" method="POST">
+                                        <div class="col-xl-8 col-md-8 col-lg-8 col-sm-12">
+                                            <form class="form" id="cleanForm" action="assets/controler/usuario/modAvatar.php" method="POST">
 
                                                 <!-- form usuario -->
                                                 <fieldset class='border p-2'>
@@ -211,22 +140,23 @@ $items      =  explode("-", $user['conf_user']);
                                                         <!--Campo servicio -->
                                                         <div class="col-xl-12 col-md-12 col-sm-12 col-lg-12" style="
                                                 text-align: center;">
-                                                            <?php 
-                                                    for ($i=1; $i < 41 ; $i++) { 
-                                                      if ($i==$items[0]) {
-                                                          $check="checked";
-                                                      }else{
-                                                          $check="";
-                                                      }
-                                                    
-                                                      echo "
+                                                            <?php
+                                                            for ($i = 1; $i < 41; $i++) {
+                                                                if ($i == $items[0]) {
+                                                                    $check = "checked";
+                                                                } else {
+                                                                    $check = "";
+                                                                }
+
+                                                                echo "
                                                           <label>
-                                                            <input type='radio' name='Avatar' value='m2' ".$check.">
-                                                            <img src='../CentroServicio/assets/img/Avatar/".$i.".png' style='height: 50px; width: 50px;' 
+                                                            <input type='radio' name='Avatar' value= ". $i ." " . $check . ">
+                                                            <img src='../CentroServicio/assets/img/Avatar/" . $i . ".png' style='height: 50px; width: 50px;' 
                                                             onContextMenu='return false;' draggable='false'>
                                                           </label>
-                                                      ";}
-                                                    ?>
+                                                      ";
+                                                            }
+                                                            ?>
 
                                                         </div>
                                                     </div>
@@ -234,9 +164,7 @@ $items      =  explode("-", $user['conf_user']);
                                                     <hr>
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <button type="submit"
-                                                                class="btn btn-outline-danger btn-block"><i
-                                                                    class="fas fa-save"></i> Actualizar</button>
+                                                            <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-save"></i> Actualizar</button>
                                                         </div>
                                                     </div>
 
@@ -246,6 +174,13 @@ $items      =  explode("-", $user['conf_user']);
 
                                         </div>
 
+                                    </div>
+
+                                    <br>
+                                    <div class="alert alert-info" style="text-align: center;">
+                                        <strong>Nota:</strong> Los cambios seran reflejados en el siguiente
+                                        inicio de
+                                        sesion.
                                     </div>
 
                                 </div>
@@ -265,7 +200,7 @@ $items      =  explode("-", $user['conf_user']);
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php  include_once("assets/common/foter.php");?>
+            <?php include_once("assets/common/foter.php"); ?>
             <!-- End of Footer -->
 
         </div>
@@ -280,17 +215,42 @@ $items      =  explode("-", $user['conf_user']);
     </a>
 
     <!-- Alerts! -->
-    <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
-    <script>
-    toastr["success"]("Se registro el Cliente")
-    </script>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
+        <script>
+            toastr["error"]("La contraseña actual no coinside")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
+        <script>
+            toastr["error"]("La contraseña nueva es diferente en los campos")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
+        <script>
+            toastr["info"]("La sesion finalizará en 5 seg.");
+            toastr["success"]("La contraseña se actualizo!");
+            function actualizar() {
+                window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
+            }
+            setTimeout(actualizar,5000);
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 3) { ?>
+        <script>
+            toastr["info"]("La sesion finalizará en 5 seg.");
+            toastr["success"]("Se actualizo el avatar!");
+            function actualizar() {
+                window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
+            }
+            setTimeout(actualizar,5000);
+        </script>
     <?php } ?>
     <script>
-    //Limpiar formularios
-    function clean() {
-        document.getElementById("cleanForm").reset();
-        toastr["success"]("Formulario vacío")
-    }
+        //Limpiar formularios
+        function clean() {
+            document.getElementById("cleanForm").reset();
+            toastr["success"]("Formulario vacío")
+        }
     </script>
 </body>
 

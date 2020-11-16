@@ -1,10 +1,17 @@
-<?php session_start(); include("assets/controler/conexion.php");?>
+<?php session_start();
+include("assets/controler/conexion.php");
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Prestamos</title>
-    <?php  include_once("assets/common/header.php");?>
+    <title> Centro de Servicio MFA | Prestamos</title>
+    <?php include_once("assets/common/header.php"); ?>
 </head>
 
 <body id="page-top">
@@ -13,7 +20,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php  include("assets/common/sidebar.php");?>
+        <?php include("assets/common/sidebar.php"); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -23,7 +30,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php  include("assets/common/topbar.php");?>
+                <?php include("assets/common/topbar.php"); ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -48,107 +55,76 @@
                                     <h1 class='h3 text-gray-800'>Nueva herramienta</h1>
                                     <br>
 
-                                    <form class="form" action="/action_page.php">
+                                    <form class="form" id="cleanForm" action="assets/controler/herramienta/altaHerramienta.php" method="POST">
 
                                         <!-- form herramienta -->
-                                        <h5><b>Datos de la herramienta</b></h5>
-                                        <div class="row">
+                                        <fieldset class='border p-2'>
+                                            <legend class='w-auto'>Datos de la herramienta:</legend>
+                                            <div class="row">
 
-                                            <!--Campo Código -->
-                                            <div class="col">
-                                                <label>Código:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-barcode"></i>
-                                                        </span>
+                                                <!--Campo Código -->
+                                                <div class="col">
+                                                    <label>Código:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-barcode"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Código producto" name="forHerCod" required>
                                                     </div>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Código producto" name="forOrdFec" required>
+                                                </div>
+
+                                                <!--Campo Descripción -->
+                                                <div class="col">
+                                                    <label>Descripción:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-tasks"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Descripción herramienta" name="forHerDes" required>
+                                                    </div>
+                                                </div>
+
+                                                <!--Campo Marca -->
+                                                <div class="col">
+                                                    <label>Marca:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </div>
+                                                        <select name="forHerMar" class="custom-select" required>
+                                                            <option value="" selected disabled>Seleccione marca</option>
+                                                            <option value="GENERICA">GENERICA</option>
+                                                            <?php $listCli = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
+                                                            $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
+                                                            while ($itemCli = mysqli_fetch_array($rsCli)) {
+                                                                echo "<option value='" . $itemCli[0] . "'>" . $itemCli[0] . "</option>";
+                                                            } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <br>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <button type="button" onClick=clean() class="btn btn-outline-secondary btn-block"><i class="fas fa-eraser"></i> Borrar</button>
+                                                </div>
+                                                <br>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-paper-plane"></i> Enviar</button>
                                                 </div>
                                             </div>
 
-                                            <!--Campo Descripción -->
-                                            <div class="col">
-                                                <label>Descripción:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-tasks"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Descripción herramienta" name="forOrdFec" required>
-                                                </div>
-                                            </div>
-
-                                            <!--Campo Marca -->
-                                            <div class="col">
-                                                <label>Marca:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-tag"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Marca herramienta" name="forOrdHer" required>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-                                        <div class="row">
-
-                                            <!--Campo Observaciones -->
-                                            <div class="col">
-                                                <label>Observaciones:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Observaciones herramienta" name="forOrdHer"
-                                                        required>
-                                                </div>
-                                            </div>
-
-                                            <!--Campo Cantidad -->
-                                            <div class="col">
-                                                <label>Cantidad:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-hashtag"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="number" class="form-control"
-                                                        placeholder="Cantidad en stock" max="50" min="1"
-                                                        name="forOrdCar" required>
-                                                </div>
-                                            </div>
-
-                                            <!--/. form Cantidad -->
-                                        </div>
-
-
-                                        <br>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <button type="button" class="btn btn-outline-secondary btn-block"><i
-                                                        class="fas fa-times"></i> Cancelar</button>
-                                            </div>
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                        class="fas fa-paper-plane"></i> Enviar</button>
-                                            </div>
-                                        </div>
-
-                                        <!--/. form-->
+                                            <!--/. form-->
+                                        </fieldset>
                                     </form>
                                 </div>
                             </div>
@@ -169,37 +145,36 @@
                                     <br>
                                     <!-- DataTales -->
                                     <div class="table">
-                                        <table class="table table-hover table-sm" id="dataTableHerramienta" width="100%"
-                                            cellspacing="0">
+                                        <table class="table table-hover table-sm" id="dataTableHerramienta" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Código</th>
                                                     <th>Descripción</th>
                                                     <th>Marca</th>
-                                                    <th>Observaciones</th>
-                                                    <th>Existencia</th>
+                                                    <th>Status</th>
                                                     <th>Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>00001</td>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>Dewalt</td>
-                                                    <td>dcd776ac2-b3</td>
-                                                    <td>2</td>
-                                                    <td><button type="button" class="btn btn-outline-info btn-sm"><i
-                                                                class="far fa-eye"></i> Ver</button></td>
+                                                <?php
+                                                $queryHerramienta = "SELECT * FROM tab_herramienta";
+                                                $rsHerramienta = mysqli_query($con, $queryHerramienta) or die("Error de consulta");
+                                                while ($Herramienta = mysqli_fetch_array($rsHerramienta)) {
+                                                    echo "
+                                            <tr>
+                                                    <td>" . $Herramienta['cod_herramienta'] . "</td>
+                                                    <td>" . $Herramienta['desc_herramienta'] . "</td>
+                                                    <td>" . $Herramienta['marca_herramienta'] . "</td>
+                                                    <td>" . $Herramienta['status_herramienta'] . "</td>
+                                                    <td>
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" . $Herramienta['Id_herramienta'] . ">
+                                                    <i class='fas fa-pencil-alt'></i></button>
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" . $Herramienta['Id_herramienta'] . ">
+                                                    <i class='fas fa-trash-alt'></i></i></button>
+                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>00002</td>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Milwaukee</td>
-                                                    <td>2697-22ct</td>
-                                                    <td>3</td>
-                                                    <td><button type="button" class="btn btn-outline-info btn-sm"><i
-                                                                class="far fa-eye"></i> Ver</button></td>
-                                                </tr>
+                                            ";
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -224,7 +199,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php  include_once("assets/common/foter.php");?>
+            <?php include_once("assets/common/foter.php"); ?>
             <!-- End of Footer -->
 
         </div>
@@ -238,6 +213,64 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+     <!-- The Modal -->
+     <div class="modal fade" id="modalHerramienta">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Herramienta</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getHerramienta">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    // Modal tarjeta Herramienta
+    $('.BtnHerramienta').on('click', function() {
+        var id_button = $(this).val();
+        $('.getHerramienta').load('./assets/controler/herramienta/getHerramienta.php?id=' + id_button, function() {
+            $('#modalHerramienta').modal({
+                show: true
+            });
+        });
+    });
+    </script>
+
+    <!-- Alerts! -->
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
+        <script>
+            toastr["success"]("Se registro la herramienta")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
+        <script>
+            toastr["success"]("Se actualizo la herramienta")
+        </script>
+    <?php } ?>
+
+    <script>
+        //Limpiar formularios
+        function clean() {
+            document.getElementById("cleanForm").reset();
+            toastr["success"]("Formulario vacío")
+        }
+    </script>
 </body>
 
 </html>

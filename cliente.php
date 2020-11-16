@@ -1,9 +1,15 @@
-<?php session_start();?>
+<?php session_start();
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
+    # code...
+}else {
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio FMA | Alta Cliente</title>
+    <title> Centro de Servicio MFA | Alta Cliente</title>
     <?php  include("assets/common/header.php");?>
 </head>
 

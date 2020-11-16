@@ -14,7 +14,7 @@ echo "
           <i class='fas fa-exclamation-triangle' style='font-size: 10rem; color: gold; padding: 10% 20% 10% 20%;'></i>
         </div>
         <div class='col-8'>
-      <input type='hidden' class='form-control' placeholder='Id cliente' name='formRefId' value='".$item['id_refaccion']."' required />
+      <input type='hidden' name='formRefId' value='".$item['id_refaccion']."' />
       <div class='col-12'>
         <label>Código:</label>
         <span class='input-group-text' style='background-color: white;'>
