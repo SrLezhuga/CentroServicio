@@ -150,7 +150,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h1 class='h3 text-gray-800'>Órdenes por més</h1>
+                                            <h1 class='h3 text-gray-800'>Órdenes por mes</h1>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group ">
