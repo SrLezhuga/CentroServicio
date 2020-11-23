@@ -3,12 +3,12 @@ $(document).ready(function() {
   $('#dataTableOrden').DataTable( {
       "language": {
   "sProcessing":     "Procesando...",
-  "sLengthMenu":     "Mostrar _MENU_ ordenes",
+  "sLengthMenu":     "Mostrar _MENU_ órdenes",
   "sZeroRecords":    "No se encontraron resultados",
   "sEmptyTable":     "Ningún dato disponible en esta tabla",
-  "sInfo":           "Mostrando  _START_ a _END_ ordenes de un total de _TOTAL_ ordenes",
-  "sInfoEmpty":      "Sin ordenes que mostrar",
-  "sInfoFiltered":   "(filtrado de un total de _MAX_ ordenes)",
+  "sInfo":           "Mostrando  _START_ a _END_ órdenes de un total de _TOTAL_ órdenes",
+  "sInfoEmpty":      "Sin órdenes que mostrar",
+  "sInfoFiltered":   "(filtrado de un total de _MAX_ órdenes)",
   "sInfoPostFix":    "",
   "sSearch":         "Buscar:",
   "sUrl":            "",
@@ -70,12 +70,12 @@ $(document).ready(function() {
   $('#dataTablePrestamo').DataTable( {
       "language": {
   "sProcessing":     "Procesando...",
-  "sLengthMenu":     "Mostrar _MENU_ prestamos",
+  "sLengthMenu":     "Mostrar _MENU_ préstamos",
   "sZeroRecords":    "No se encontraron resultados",
   "sEmptyTable":     "Ningún dato disponible en esta tabla",
-  "sInfo":           "Mostrando  _START_ a _END_ prestamos de un total de _TOTAL_ prestamos",
-  "sInfoEmpty":      "Sin prestamos que mostrar",
-  "sInfoFiltered":   "(filtrado de un total de _MAX_ prestamos)",
+  "sInfo":           "Mostrando  _START_ a _END_ préstamos de un total de _TOTAL_ préstamos",
+  "sInfoEmpty":      "Sin préstamos que mostrar",
+  "sInfoFiltered":   "(filtrado de un total de _MAX_ préstamos)",
   "sInfoPostFix":    "",
   "sSearch":         "Buscar:",
   "sUrl":            "",

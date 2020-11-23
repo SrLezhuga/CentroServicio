@@ -31,7 +31,7 @@ echo "
         </span>
       </div>
       <div class='col-12'>
-        <label>Estado prestamo:</label>
+        <label>Estado préstamo:</label>
         <span class='input-group-text' style='background-color: white;'>
         <i class='fas fa-stethoscope'></i>
           <a>&nbsp;&nbsp;".$item['status_prestamo']."</a>

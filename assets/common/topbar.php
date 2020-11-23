@@ -1,7 +1,7 @@
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-    <h4>Centro De Servicio</h4>
+    <h4>Centro de servicio</h4>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -39,12 +39,12 @@
         <div class="modal-content border-left-danger shadow ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cerrar sesion</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Selecciona <b>"Salir"</b> si deseas terminar la sesion.</div>
+                <div class="modal-body">Selecciona <b>"Salir"</b> si deseas terminar la sesión.</div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary " type="button" data-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
                     <a class="btn btn-outline-danger  " href="../CentroServicio/assets/controler/lockout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>

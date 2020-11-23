@@ -41,7 +41,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <script src="assets/js/demo/code.js"></script>
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Taller > Ordenes Pendientes</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Taller > Órdenes Pendientes</h1>
                             <div id="reloj" style="text-align: left;">
                             </div>
                         </div>

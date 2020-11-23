@@ -108,7 +108,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                                                 <!--Campo Codigo Postal -->
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <label>Codigo Postal:</label>
+                                                    <label>Código Postal:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -116,7 +116,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Codigo Postal" name="formCliCP" required>
+                                                            placeholder="Código Postal" name="formCliCP" required>
                                                     </div>
                                                 </div>
 
@@ -154,7 +154,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                                                 <!--Campo RFC -->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <label>RFC:</label>
+                                                    <label>Rfc:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -162,7 +162,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="RFC cliente" name="formCliRfc" required>
+                                                            placeholder="Rfc cliente" name="formCliRfc" required>
                                                     </div>
                                                 </div>
 
@@ -218,7 +218,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registro el Cliente")
+    toastr["success"]("Se registró el cliente")
     </script>
     <?php } ?>
     <script>

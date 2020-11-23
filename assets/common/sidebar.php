@@ -63,9 +63,9 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="orden" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Nueva orden</a>
-                <a class="collapse-item" href="listaOrden">Lista ordenes</a>
-                <a class="collapse-item" href="listaPendiente" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Ordenes Prendientes</a>
-                <a class="collapse-item" href="listaCompleta" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Ordenes Completas</a>
+                <a class="collapse-item" href="listaOrden">Lista órdenes</a>
+                <a class="collapse-item" href="listaPendiente" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Órdenes Prendientes</a>
+                <a class="collapse-item" href="listaCompleta" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Órdenes Completas</a>
             </div>
         </div>
     </li>
@@ -80,11 +80,11 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    <span>Prestamos</span>
+                    <span>Préstamos</span>
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="herramienta">Alta Herramienta</a>
-                <a class="collapse-item" href="prestamo">Nuevo Prestamo</a>
+                <a class="collapse-item" href="prestamo">Nuevo Préstamo</a>
             </div>
         </div>
     </li>
@@ -159,7 +159,7 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="taller">Mesa de Trabajo</a>
-                <a class="collapse-item" href="listaTaller">Ordenes Pendientes</a>
+                <a class="collapse-item" href="listaTaller">Órdenes Pendientes</a>
             </div>
         </div>
     </li>

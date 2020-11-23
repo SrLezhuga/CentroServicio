@@ -39,7 +39,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Bienvenido al Sistema</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Informe > Resumen</h1>
                             <div id="reloj" style="text-align: left;"></div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Ordenes Pendientes
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Órdenes Pendientes
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -83,7 +83,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Ordenes Completas
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Órdenes Completas
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -114,7 +114,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Total de Ordenes
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Total de Órdenes
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -150,7 +150,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h1 class='h3 text-gray-800'>Total de Ordenes</h1>
+                                            <h1 class='h3 text-gray-800'>Órdenes por més</h1>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group ">
@@ -240,7 +240,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h1 class='h3 text-gray-800'>Ordenes Terminadas</h1>
+                                            <h1 class='h3 text-gray-800'>Terminadas</h1>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group ">

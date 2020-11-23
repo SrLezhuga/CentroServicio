@@ -10,7 +10,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio MFA | Prestamos</title>
+    <title> Centro de Servicio MFA | Préstamos</title>
     <?php include("assets/common/header.php"); ?>
 </head>
 
@@ -39,7 +39,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Prestamo > Nuevo Prestamo</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Préstamo > Nuevo Préstamo</h1>
                             <div id="reloj" style="text-align: left;">
                             </div>
                         </div>
@@ -52,14 +52,14 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Nuevo prestamo</h1>
+                                    <h1 class='h3 text-gray-800'>Nuevo préstamo</h1>
                                     <br>
 
                                     <form class="form" id="cleanForm" action="assets/controler/prestamo/altaPrestamo.php" method="POST">
 
                                         <!-- form herramienta -->
                                         <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Datos del prestamo:</legend>
+                                            <legend class='w-auto'>Datos del préstamo:</legend>
                                             <div class="row">
 
                                                 <!--Campo Cliente -->
@@ -76,9 +76,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             <?php $listCli = "SELECT * FROM tab_cliente ORDER BY nom_cliente ASC";
                                                             $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
                                                             while ($itemCli = mysqli_fetch_array($rsCli)) {
-                                                                echo "<option value='" . $itemCli[0] . "|" . $itemCli[1] . "'>" . $itemCli[1] . "</option>
-                                                                      <option disabled> &nbsp&nbsp&nbsp Dirección: " . $itemCli[2] . "</option>
-                                                                      <option disabled> &nbsp&nbsp&nbsp Teléfono: " . $itemCli[5] . "</option>";
+                                                                echo "<option value='" . $itemCli[0] . "|" . $itemCli[1] . "'>" . $itemCli[1] . " | " . $itemCli[2] . " | " . $itemCli[5] . "</option>";
                                                             } ?>
                                                         </select>
                                                     </div>
@@ -86,7 +84,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                                                 <!--Campo Herramienta / Maquina -->
                                                 <div class="col">
-                                                    <label>Herramienta / Maquina:</label>
+                                                    <label>Herramienta / Máquina:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -94,13 +92,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <select name="forPreHer" class="custom-select" required>
-                                                            <option value="" selected disabled>Seleccione Herramienta / Maquina</option>
+                                                            <option value="" selected disabled>Seleccione Herramienta / Máquina</option>
                                                             <?php $listHer = "SELECT * FROM tab_herramienta WHERE status_herramienta = 'DISPONIBLE' ORDER BY desc_herramienta ASC";
                                                             $rsHer = mysqli_query($con, $listHer) or die("Error de consulta");
                                                             while ($itemHer = mysqli_fetch_array($rsHer)) {
-                                                                echo "<option value='" . $itemHer[0] . "'>" . $itemHer[2] . "</option>
-                                                                      <option disabled> &nbsp&nbsp&nbsp Modelo: " . $itemHer[1] . "</option>
-                                                                      <option disabled> &nbsp&nbsp&nbsp Marca: " . $itemHer[3] . "</option>";
+                                                                echo "<option value='" . $itemHer[0] . "'>" . $itemHer[2] . " | " . $itemHer[1] . " | " . $itemHer[3] . "</option>";
                                                             } ?>
                                                         </select>
                                                     </div>
@@ -139,7 +135,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Prestamos MFA</h1>
+                                    <h1 class='h3 text-gray-800'>Préstamos MFA</h1>
                                     <br>
                                     <!-- DataTales -->
                                     <div class="table">
@@ -240,7 +236,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3 class="modal-title">Tarjeta Prestamo</h3>
+                    <h3 class="modal-title">Tarjeta Préstamo</h3>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -273,7 +269,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <h3 class="text-center">Se finalizará el prestamo ¿Deseas continuar?</h3>
+                    <h3 class="text-center">Se finalizará el préstamo ¿Deseas continuar?</h3>
                     <div class="getFinalizar">
                     </div>
                 </div>
@@ -301,7 +297,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <h3 class="text-center">Se cancelará el prestamo ¿Deseas continuar?</h3>
+                    <h3 class="text-center">Se cancelará el préstamo ¿Deseas continuar?</h3>
                     <div class="getCancelar">
                     </div>
                 </div>
@@ -355,18 +351,18 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registro el prestamo");
+            toastr["success"]("Se registró el préstamo");
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se finalizo el prestamo");
+            toastr["success"]("Se finalizó el préstamo");
             toastr["info"]("La herramienta vuelve a estar disponible");
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["error"]("Se cancelo el prestamo");
+            toastr["error"]("Se canceló el préstamo");
             toastr["info"]("La herramienta vuelve a estar disponible");
         </script>
     <?php } ?>

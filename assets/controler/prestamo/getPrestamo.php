@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../conexion.php");
-ECHO $id = $_GET['id'];
+$id = $_GET['id'];
 
 $item=explode("|",$id);
 
@@ -54,7 +54,7 @@ echo '
    </div>
    
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <label>Codigo Postal:</label>
+      <label>Código Postal:</label>
       <span class="input-group-text" style="background-color:white">
          <i class="fas fa-hashtag"></i>
       <a>&nbsp;&nbsp;' . $itemCli["cp_cliente"] . '</a>

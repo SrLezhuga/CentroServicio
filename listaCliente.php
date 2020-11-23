@@ -153,7 +153,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se actualió el Cliente")
+    toastr["success"]("Se actualizó el cliente")
     </script>
     <?php } ?>
 

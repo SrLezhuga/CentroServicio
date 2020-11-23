@@ -10,7 +10,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 <html lang="en">
 
 <head>
-    <title> Centro de Servicio MFA | Prestamos</title>
+    <title> Centro de Servicio MFA | Préstamos</title>
     <?php include_once("assets/common/header.php"); ?>
 </head>
 
@@ -39,7 +39,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Prestamo > Alta herramienta</h1>
+                            <h1 class='h3 mb-0 text-gray-800'>Préstamo > Alta herramienta</h1>
                             <div id="reloj" style="text-align: left;">
                             </div>
                         </div>

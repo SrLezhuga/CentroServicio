@@ -38,7 +38,7 @@ include("assets/controler/conexion.php"); ?>
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <div>
-                            <h1 class='h3 mb-0 text-gray-800'>Bienvenido al Sistema <?php echo $_SESSION['name_user']; ?>
+                            <h1 class='h3 mb-0 text-gray-800'>Bienvenido al sistema <?php echo $_SESSION['name_user']; ?>
                             </h1>
                             <div id="reloj" style="text-align: left;"></div>
 

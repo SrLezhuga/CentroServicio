@@ -58,14 +58,14 @@ echo "
 
     <!--Campo Codigo Postal -->
     <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
-        <label>Codigo Postal:</label>
+        <label>Código Postal:</label>
         <div class='input-group'>
             <div class='input-group-prepend'>
                 <span class='input-group-text'>
                     <i class='fas fa-hashtag'></i>
                 </span>
             </div>
-            <input type='text' class='form-control' placeholder='Codigo Postal' name='formCliCP' value='".$item['cp_cliente']."' required />
+            <input type='text' class='form-control' placeholder='Código Postal' name='formCliCP' value='".$item['cp_cliente']."' required />
         </div>
     </div>
 

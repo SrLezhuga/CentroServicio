@@ -129,7 +129,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                                     </div>
                                                                     <input type="date" class="form-control"
                                                                         placeholder="Fecha de remision"
-                                                                        value="<?php echo date('Y-m-d'); ?>"
+                                                                        value="<?php echo date('Y-m-d', strtotime("-1 day")); ?>"
                                                                         name="forOrdFec" readonly required>
                                                                 </div>
                                                             </div>
@@ -220,7 +220,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                     <div class="row">
                                                         <!--Campo diagnostico -->
                                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <label>Diagnostico de la Herramienta:</label>
+                                                            <label>Diagnóstico de la Herramienta:</label>
                                                             <div class="input-group ">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
@@ -228,7 +228,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                                     </span>
                                                                 </div>
                                                                 <textarea rows="2" cols="25" class="form-control"
-                                                                    placeholder="Diagnostico y observaciones de la herramienta entregada"
+                                                                    placeholder="Diagnóstico y observaciones de la herramienta entregada"
                                                                     name="forOrdDet" required></textarea>
                                                             </div>
                                                         </div>

@@ -7,7 +7,7 @@ $Status     = $_POST['formStatus'];
 $Id         = $_POST['formId'];
 
 if ($Status == "REPARADA") {
-    $Fecha = date('Y-m-d');
+    $Fecha = date('Y-m-d', strtotime("-1 day"));
 
     // Consulta segura para evitar inyecciones SQL.
 

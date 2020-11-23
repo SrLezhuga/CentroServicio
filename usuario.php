@@ -320,23 +320,23 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registro el Usuario")
+            toastr["success"]("Se registró el usuario")
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se actualizo el Usuario")
+            toastr["success"]("Se actualizó el usuario")
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["success"]("Se restablecio contraseña del Usuario")
+            toastr["success"]("Se restableció contraseña del usuario")
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 3) { ?>
         <script>
-            toastr["info"]("Para reactivar, asigna Uauario y Contrasseña");
-            toastr["success"]("Se desactivo el Usuario");
+            toastr["info"]("Para reactivar, asigna usuario y contraseña");
+            toastr["success"]("Se desactivó el usuario");
         </script>
     <?php } ?>
     <script>

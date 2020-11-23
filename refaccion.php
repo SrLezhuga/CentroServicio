@@ -51,7 +51,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Nueva Refaccion</h1>
+                                    <h1 class='h3 text-gray-800'>Nueva Refacción</h1>
                                     <br>
 
                                     <form class="form" id="cleanForm"
@@ -59,7 +59,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                                         <!-- form refaccion -->
                                         <fieldset class='border p-2'>
-                                            <legend class='w-auto'>Datos de la refaccion</legend>
+                                            <legend class='w-auto'>Datos de la refacción</legend>
                                             <div class="row">
 
                                                 <!--Campo Código -->
@@ -72,7 +72,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Código refaccion" name="forRefCod" required>
+                                                            placeholder="Código refacción" name="forRefCod" required>
                                                     </div>
                                                 </div>
 
@@ -86,7 +86,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Descripción refaccion" name="forRefDes"
+                                                            placeholder="Descripción refacción" name="forRefDes"
                                                             required>
                                                     </div>
                                                 </div>
@@ -106,7 +106,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Marca refaccion" name="forRefMar" required>
+                                                            placeholder="Marca refacción" name="forRefMar" required>
                                                     </div>
                                                 </div>
 
@@ -137,7 +137,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Costo refaccion" name="forRefCos" required>
+                                                            placeholder="Costo refacción" name="forRefCos" required>
                                                     </div>
                                                 </div>
 
@@ -340,15 +340,15 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registro la refacción")
+    toastr["success"]("Se registró la refacción")
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
-    toastr["success"]("Se modifico la refacción")
+    toastr["success"]("Se modificó la refacción")
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==2){ ?>
     <script>
-    toastr["success"]("Se elimino la refacción")
+    toastr["success"]("Se eliminó la refacción")
     </script>
     <?php } ?>
     <script>

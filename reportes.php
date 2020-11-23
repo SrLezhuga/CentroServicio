@@ -50,7 +50,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                         <div class="col-xl-4 col-md-4 mb-4">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Ordenes</h1>
+                                    <h1 class='h3 text-gray-800'>Órdenes</h1>
                                     <br>
                                     <form class="form" id="cleanForm"
                                         action="assets/controler/reportes/reporteLista.php" method="POST"
@@ -69,7 +69,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         <option value="Todos">Todos</option>
                                                         <option value="Reparada">Reparada</option>
                                                         <option value="Cancelada">Cancelada</option>
-                                                        <option value="En espera">Pendiente revision</option>
+                                                        <option value="En espera">Pendiente revisión</option>
                                                         <option value="PxP">Pendiente partes</option>
                                                         <option value="PxA">Pendiente aprobar</option>
                                                         <option value="Entregada">Herramienta entregada</option>
@@ -179,7 +179,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                          <div class="col-xl-4 col-md-4 mb-4">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Prestamos</h1>
+                                    <h1 class='h3 text-gray-800'>Préstamos</h1>
                                     <br>
                                     <form class="form" id="cleanForm"
                                         action="assets/controler/reportes/reportePrestamos.php" method="POST"
@@ -187,7 +187,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                         <h5><b>Datos del reporte</b></h5>
                                         <div class="row">
                                             <div class="col-12">
-                                                <label>Estado del prestamo:</label>
+                                                <label>Estado del préstamo:</label>
                                                 <div class="input-group ">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -196,7 +196,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                     </div>
                                                     <select name="fromRepList" class="custom-select" required>
                                                         <option value="Todos">Todos</option>
-                                                        <option value="EN PRESTAMO">En prestamo</option>
+                                                        <option value="EN PRESTAMO">En préstamo</option>
                                                         <option value="CANCELADA">Canceladas</option>
                                                         <option value="FINALIZADA">Finalizadas</option>
                                                     </select>
@@ -409,13 +409,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Alerts! -->
-    <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
-    <script>
-    toastr["success"]("Se registro el Cliente")
-    </script>
-    <?php } ?>
 
 </body>
 

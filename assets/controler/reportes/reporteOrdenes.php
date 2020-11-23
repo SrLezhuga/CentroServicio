@@ -381,10 +381,10 @@ img {
             </div>
             <div class="row" style="height: 5.5rem;">
               <div class="col-12">
-                <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
+                <a><strong>Mayoreo Ferretero Atlas S.A. de C.V.</strong><br />
                 <b>RFC MFA030403T73</b><br />
-                Guadalupe Victoria #31<br />
-                Tel: 33450116 ext 134/124 
+                Guadalupe Victoria #55<br />
+                Tel: 33450116 ext. 134/124 
                 </a>
               </div>
             </div>
@@ -550,7 +550,7 @@ img {
             <div class="row"  style="height: 4.8rem;">
                 <div class="col-5" >
                     <fieldset class="border p-2" style="height: 3.2rem;">
-                        <legend class="w-auto"><strong>Conseptos de pago:</strong></legend>
+                        <legend class="w-auto"><strong>Conceptos de pago:</strong></legend>
                        <a><b>Tipo de pago:</b> '.$pago.'</a><br>
                        <a><b>Forma de pago:</b> UNA EXHIBICIÓN</a><br>
                        <a><b>Condiciones de pago:</b> CONTADO</a><br>
@@ -561,7 +561,7 @@ img {
                         <legend class="w-auto"><strong>Deducciones:</strong></legend>
                         <div class="row">
                             <div class="col-6 text-right">
-                                <a><b>Refaccion: $ </b><br />
+                                <a><b>Refacción: $ </b><br />
                                 <b>Servicio: $ </b><br />
                                 <b>Impuestos: $ </b></a><br />
                             </div>
@@ -604,10 +604,8 @@ img {
                         </div>
                 <div class="col-12">
                   <a class="display-1">
-                    Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                    recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                    Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                    honorarios.
+                    Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                    <b>Mayoreo Ferretero Atlas</b> no se hace responsable del producto. Cualquier revisión que no sea garantia, causará honorarios.
                    </a>
                 </div>
         </div>
@@ -657,11 +655,11 @@ S.A. de C.V.
 <tr>
 <td>
 Estimado/a '.$destinatario .':
-<br>Se envio una copia de la  orden con el folio '.$folio.'
+<br>Se envió una copia de la  orden con el folio '.$folio.'
 <br>&nbsp;
 <br>Si tiene dudas, póngase en contacto con el Centro de Servicio.
 <br> &nbsp;
-<br> Mayoreo Ferretero Atlas le agradece su preferencia.
+<br> <b>Mayoreo Ferretero Atlas</b> le agradece su preferencia.
 <br> &nbsp;
 </td>
 </tr>
@@ -695,7 +693,7 @@ Mayoreo Ferretero Atlas
 </a>
 <br> &nbsp;
 <br> No responda a este correo electrónico. 
-<br>Para comunicarse con nosotros utilize nuestras redes sociales o comuniquese con las sucursales de Mayoreo Ferretero Atlas.
+<br>Para comunicarse con nosotros utilice nuestras redes sociales o comuníquese con las sucursales de <b>Mayoreo Ferretero Atlas</b>.
 </td>
 </tr>
 </table>
@@ -796,12 +794,8 @@ $mail->addEmbeddedImage(dirname(__FILE__).'/img/yt.png','yt');
 $mail->addEmbeddedImage(dirname(__FILE__).'/img/wp.png','wp');
 $mail->AddStringAttachment($output,$filename,$encoding,$type);
 //Enviamos el correo
-if(!$mail->Send()) {
-  echo "Error: " . $mail->ErrorInfo;
-} else {
-  echo "Enviado!";
-}
-  
+$mail->Send();
+ 
 }
 
 ?>

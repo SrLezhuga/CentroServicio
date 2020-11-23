@@ -247,11 +247,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registro el servicio")
+    toastr["success"]("Se registró el servicio")
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
-    toastr["success"]("Se modifico el servicio")
+    toastr["success"]("Se modificó el servicio")
     </script>
     <?php } ?>
     <script>
