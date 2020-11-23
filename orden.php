@@ -372,8 +372,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                 <i class="fas fa-hashtag"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Codigo Postal"
-                                            name="formCliCP" required>
+                                        <input type="text" class="form-control" pattern='[0-9]{5}' placeholder="Codigo Postal"
+                                            name="formCliCP" title="C.P: XXXXX" required>
                                     </div>
                                 </div>
 

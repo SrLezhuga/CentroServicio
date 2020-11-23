@@ -159,10 +159,14 @@ $id = $pendiente['taller']; ?>
                                                                     <option value="" selected disabled>Seleccione
                                                                         refacción
                                                                     </option>
-                                                                    <?php $listRef = "SELECT * FROM tab_refaccion WHERE cant_refaccion > 0 ORDER BY marca_refaccion ASC";
+                                                                    <?php $listRef = "SELECT * FROM tab_refaccion ORDER BY cant_refaccion ASC";
                                                                     $rsRef = mysqli_query($con, $listRef) or die("Error de consulta");
                                                                     while ($itemRef = mysqli_fetch_array($rsRef)) {
-                                                                        echo "<option value='" . $itemRef['id_refaccion'] . "'>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . " | " . $itemRef['marca_refaccion'] . " | $ " . $itemRef['costo_refaccion'] . ".00</option>";
+                                                                        if ($itemRef['cant_refaccion']==0) {
+                                                                            echo "<option disabled>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . "</option>";
+                                                                        }else {
+                                                                            echo "<option value='" . $itemRef['id_refaccion'] . "'>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . " | " . $itemRef['marca_refaccion'] . " | $ " . $itemRef['costo_refaccion'] . ".00</option>";
+                                                                        }
                                                                     } ?>
                                                                 </select>
                                                                 <input type="hidden" name="formOrdId" required value=<?php echo $id; ?>>

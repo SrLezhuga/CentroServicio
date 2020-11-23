@@ -65,7 +65,7 @@ echo "
                     <i class='fas fa-hashtag'></i>
                 </span>
             </div>
-            <input type='text' class='form-control' placeholder='Código Postal' name='formCliCP' value='".$item['cp_cliente']."' required />
+            <input type='text' class='form-control' placeholder='Código Postal' name='formCliCP' value='".$item['cp_cliente']."'  required />
         </div>
     </div>
 

@@ -52,7 +52,7 @@
                             <div class="col-xl-7 col-lg-7 col-md-6 col-sm-7 col-xs-7">
                                 <div class="p-4">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Centro de Servicio</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Centro de servicio</h1>
                                     </div>
                                     <form class="user" action="./assets/controler/login.php" method="POST">
                                         <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
@@ -75,7 +75,7 @@
                                         </div>
                                         <br>
 
-                                        <button type="submit" class="btn btn-outline-danger btn-block btn-lg"><i class="fas fa-sign-in-alt"></i> Inicio Sesion</button>
+                                        <button type="submit" class="btn btn-outline-danger btn-block btn-lg"><i class="fas fa-sign-in-alt"></i> Inicio Sesión</button>
                                     </form>
                                 </div>
                             </div>

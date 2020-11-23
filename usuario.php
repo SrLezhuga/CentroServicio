@@ -155,7 +155,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                 <tr>
                                                     <th>Nombre</th>
                                                     <th>Usuario</th>
-                                                    <th>Contraseña</th>
                                                     <th>Privilegios</th>
                                                     <th>Acciones</th>
                                                 </tr>
@@ -190,7 +189,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                     <tr ". $class .">
                             <td>" . $Usuario['name_user'] . "</td>
                             <td>" . $Usuario['nick_user'] . "</td>
-                            <td>" . $Usuario['pass_user'] . "</td>
                             <td>" . $privilegios . "</td>
                             <td>
                             <button type='button' class='btn btn-outline-light text-dark btn-sm BtnMod' data-toggle='modal' data-target='#modalMod'value=" . $Usuario["code_user"] . " ".$disable.">

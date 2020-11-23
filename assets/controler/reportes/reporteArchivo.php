@@ -351,10 +351,10 @@ img {
             </div>
             <div class="row" style="height: 5.5rem;">
               <div class="col-12">
-                <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
+                <a><strong>Mayoreo Ferretero Atlas S.A. de C.V.</strong><br />
                 <b>RFC MFA030403T73</b><br />
-                Guadalupe Victoria #31<br />
-                Tel: 33450116 ext 134/124 
+                Guadalupe Victoria #55<br />
+                Tel: 33450116 ext. 134/124 
                 </a>
               </div>
             </div>
@@ -520,7 +520,7 @@ img {
             <div class="row"  style="height: 4.8rem;">
                 <div class="col-5" >
                     <fieldset class="border p-2" style="height: 3.2rem;">
-                        <legend class="w-auto"><strong>Conseptos de pago:</strong></legend>
+                        <legend class="w-auto"><strong>Conceptos de pago:</strong></legend>
                        <a><b>Tipo de pago:</b> '.$Orden['pago_orden'].'</a><br>
                        <a><b>Forma de pago:</b> UNA EXHIBICIÓN</a><br>
                        <a><b>Condiciones de pago:</b> CONTADO</a><br>
@@ -574,10 +574,8 @@ img {
                         </div>
                 <div class="col-12">
                   <a class="display-1">
-                    Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                    recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                    Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                    honorarios.
+                  Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                  <b>Mayoreo Ferretero Atlas</b> no se hace responsable del producto. Cualquier revisión que no sea garantia, causará honorarios.
                    </a>
                 </div>
         </div>

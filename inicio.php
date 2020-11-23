@@ -49,7 +49,7 @@ include("assets/controler/conexion.php"); ?>
                     <div class="row" <?php if ($_SESSION['priv_user']!=3) { echo 'style="display: none;"'; }?>>
 
                         <!-- Ordenes Pendientes -->
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4" style="padding-bottom: 1rem;"> 
+                        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3" style="padding-bottom: 1rem;"> 
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -78,8 +78,38 @@ include("assets/controler/conexion.php"); ?>
                             </div>
                         </div>
 
+                        <!-- Ordenes en espera -->
+                        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3" style="padding-bottom: 1rem;"> 
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-sm font-weight-bold text-uppercase mb-1">Ordenes en Espera
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php 
+                                                    $user = $_SESSION['name_user'];
+                                                    $countPendientes = "SELECT COUNT(*) FROM tab_orden WHERE  status_orden = 'EN ESPERA'";
+                                                    $rsPendientes = mysqli_query($con, $countPendientes) or die("Error de consulta");
+                                                    $itemPendientes = mysqli_fetch_array($rsPendientes);
+                                                    $pendientes = $itemPendientes[0];
+                                                 ?>
+                                                    <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <?php echo $pendientes; ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Ordenes Completas -->
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4" style="padding-bottom: 1rem;">
+                        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3" style="padding-bottom: 1rem;">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -110,7 +140,7 @@ include("assets/controler/conexion.php"); ?>
 
 
                         <!-- Ordenes Total -->
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4" style="padding-bottom: 1rem;">
+                        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3" style="padding-bottom: 1rem;">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">

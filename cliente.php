@@ -116,7 +116,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Código Postal" name="formCliCP" required>
+                                                            placeholder="Código Postal" name="formCliCP" pattern='[0-9]{5}' required>
                                                     </div>
                                                 </div>
 
