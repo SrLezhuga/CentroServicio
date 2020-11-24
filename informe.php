@@ -239,7 +239,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                     var DatosBarras = {
                                                         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                                                         datasets: [{
-                                                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                                            backgroundColor: 'rgba(231, 74, 59, 0.5)',
                                                             borderColor: 'rgba(255, 99, 132, 1)',
                                                             data: [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12]
                                                         }]
@@ -320,16 +320,16 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         labels: ['Canceladas', 'Completas', 'Pendientes'],
                                                         datasets: [{
                                                             backgroundColor: [
-                                                        'rgba(255, 99, 132, 0.2)',
-                                                        'rgba(54, 162, 235, 0.2)',
-                                                        'rgba(255, 206, 86, 0.2)'
+                                                        'rgba(231, 74, 59, 0.4)',
+                                                        'rgba(54, 162, 235, 0.4)',
+                                                        'rgba(255, 206, 86, 0.4)'
                                                     ],
                                                     borderColor: [
                                                         'rgba(255, 99, 132, 1)',
                                                         'rgba(54, 162, 235, 1)',
                                                         'rgba(255, 206, 86, 1)'
                                                     ],
-                                                            borderWidth: 0,
+                                                            borderWidth: 1,
                                                             data: [can, ter, pen]
                                                         }]
                                                     }

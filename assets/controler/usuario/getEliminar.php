@@ -16,7 +16,7 @@ echo "
         </div>
         <div class='col-8'>
             <br>
-            <h3 class='text-center'>Se desactivara el usuario:</h3>
+            <h3 class='text-center'>Se desactivará el usuario:</h3>
             <h3 class='text-center'><b>". $item ['name_user'] ."</b></h3>
             <h3 class='text-center'>¿Deseas continuar?</h3>
         </div>

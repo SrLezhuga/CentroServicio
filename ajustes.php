@@ -188,14 +188,14 @@ $items      =  explode("-", $user['conf_user']);
                             </div>
 
                         </div>
-
+                    <br>
 
 
                     </div>
 
                 </div>
                 <!-- /.container-fluid -->
-
+                <br>
             </div>
             <!-- End of Main Content -->
 

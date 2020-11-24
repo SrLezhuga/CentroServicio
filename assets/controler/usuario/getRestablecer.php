@@ -16,8 +16,8 @@ echo "
         </div>
         <div class='col-8'>
             <br>
-            <h3 class='text-center'>Se restablecera, la contraseña por defecto:</h3>
-            <h3 class='text-center'><b>Mfa@2020</b></h3>
+            <h3 class='text-center'>Se restablecerá la contraseña de:</h3>
+            <h3 class='text-center'><b>". $item ['name_user'] ."</b></h3>
             <h3 class='text-center'>¿Deseas continuar?</h3>
         </div>
     </div>
