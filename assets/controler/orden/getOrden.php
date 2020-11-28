@@ -17,6 +17,16 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
         $folio = "0" . $folio;
     }
 
+    $queryTaller = "SELECT taller FROM tab_users WHERE code_user =" . $_SESSION['code_user'];
+    ($rsTaller = mysqli_query($con, $queryTaller)) or die("Error de consulta");
+    $Taller = mysqli_fetch_array($rsTaller);
+
+    if ($Taller['taller']==0) {
+        $disable="";
+    }else {
+        $disable="disabled";
+    }
+
     $queryCliente = "SELECT * FROM tab_cliente WHERE id_cliente = $Orden[id_cliente]";
     ($rsCliente = mysqli_query($con, $queryCliente)) or die("Error de consulta");
     while ($Cliente = mysqli_fetch_array($rsCliente)) {
@@ -279,7 +289,7 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
                 <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                     <form class='form' action='assets/controler/taller/goTaller.php' method='POST'>
                     <input type='hidden' name='formIdOrden' value=" . $id . " required>
-                    <button type='submit' class='btn btn-outline-danger btn-block'><i class='fas fa-toolbox'></i></i> Enviar al Taller</button>
+                    <button type='submit' class='btn btn-outline-danger btn-block' " . $disable . "><i class='fas fa-toolbox'></i></i> Enviar al Taller</button>
                  </div>
             </div>
             ";

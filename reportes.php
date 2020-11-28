@@ -86,7 +86,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Código producto" name="forFecIni" required>
+                                                        placeholder="Código producto" name="forFecIni"
+                                                        value="<?php echo date('Y-m-01', strtotime("-1 month")); ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -98,7 +99,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Descripción herramienta" name="forFecFin" required>
+                                                        placeholder="Descripción herramienta" name="forFecFin"
+                                                        value="<?php echo date('Y-m-d', strtotime("now")); ?>" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,7 +151,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Código producto" name="forFecIni" required>
+                                                        placeholder="Código producto" name="forFecIni" 
+                                                        value="<?php echo date('Y-m-01', strtotime("-1 month")); ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -161,7 +164,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Descripción herramienta" name="forFecFin" required>
+                                                        placeholder="Descripción herramienta" name="forFecFin" 
+                                                        value="<?php echo date('Y-m-d', strtotime("now")); ?>" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,7 +215,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Código producto" name="forFecIni" required>
+                                                        placeholder="Código producto" name="forFecIni" 
+                                                        value="<?php echo date('Y-m-01', strtotime("-1 month")); ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -223,7 +228,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         </span>
                                                     </div>
                                                     <input type="date" class="form-control"
-                                                        placeholder="Descripción herramienta" name="forFecFin" required>
+                                                        placeholder="Descripción herramienta" name="forFecFin" 
+                                                        value="<?php echo date('Y-m-d', strtotime("now")); ?>" required>
                                                 </div>
                                             </div>
                                         </div>

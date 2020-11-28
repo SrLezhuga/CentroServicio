@@ -160,6 +160,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                 $queryHerramienta = "SELECT * FROM tab_herramienta";
                                                 $rsHerramienta = mysqli_query($con, $queryHerramienta) or die("Error de consulta");
                                                 while ($Herramienta = mysqli_fetch_array($rsHerramienta)) {
+                                                    if ($Herramienta['status_herramienta'] == "DISPONIBLE") {
+                                                        $disable="";
+                                                    }else {
+                                                        $disable="disabled";
+                                                    }
                                                     echo "
                                             <tr>
                                                     <td>" . $Herramienta['cod_herramienta'] . "</td>
@@ -167,9 +172,9 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                     <td>" . $Herramienta['marca_herramienta'] . "</td>
                                                     <td>" . $Herramienta['status_herramienta'] . "</td>
                                                     <td>
-                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" . $Herramienta['Id_herramienta'] . ">
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" . $Herramienta['Id_herramienta'] . " " . $disable . ">
                                                     <i class='fas fa-pencil-alt'></i></button>
-                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" . $Herramienta['Id_herramienta'] . ">
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnDel' data-toggle='modal' data-target='#modalDel'value=" . $Herramienta['Id_herramienta'] . " " . $disable . ">
                                                     <i class='fas fa-trash-alt'></i></i></button>
                                                     </td>
                                                 </tr>
@@ -240,6 +245,33 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div class="modal fade" id="modalDel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Herramienta</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getDel">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
     // Modal tarjeta Herramienta
     $('.BtnHerramienta').on('click', function() {
@@ -252,15 +284,32 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     });
     </script>
 
+<script type="text/javascript">
+    // Modal tarjeta Eliminar Herramienta
+    $('.BtnDel').on('click', function() {
+        var id_button = $(this).val();
+        $('.getDel').load('./assets/controler/herramienta/getDel.php?id=' + id_button, function() {
+            $('#modalDel').modal({
+                show: true
+            });
+        });
+    });
+    </script>
+
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registro la herramienta")
+            toastr["success"]("Se registró la herramienta")
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se actualizo la herramienta")
+            toastr["success"]("Se actualizó la herramienta")
+        </script>
+    <?php } ?>
+    <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
+        <script>
+            toastr["success"]("Se eliminó la herramienta")
         </script>
     <?php } ?>
 

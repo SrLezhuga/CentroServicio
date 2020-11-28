@@ -129,7 +129,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                                     </div>
                                                                     <input type="date" class="form-control"
                                                                         placeholder="Fecha de remision"
-                                                                        value="<?php echo date('Y-m-d', strtotime("-1 day")); ?>"
+                                                                        value="<?php echo date('Y-m-d', strtotime("now")); ?>"
                                                                         name="forOrdFec" readonly required>
                                                                 </div>
                                                             </div>

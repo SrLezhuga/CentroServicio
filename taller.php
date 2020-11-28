@@ -65,7 +65,8 @@ $id = $pendiente['taller']; ?>
                                         <div class="alert alert-warning text-center">
                                             <h5><strong><i class="fas fa-exclamation-triangle"></i> Aviso: </strong>No
                                                 tienes orden asignada, selecciona una de la
-                                                <a href="listaOrden.php" class="alert-link">lista de Órdenes</a>
+                                                <a href="listaOrden" class="alert-link">lista de Órdenes</a> o 
+                                                <a href="listaTaller" class="alert-link">Órdenes Pendientes</a>
                                             </h5>
                                         </div>
                                     </fieldset>

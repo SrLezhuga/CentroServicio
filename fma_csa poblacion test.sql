@@ -1,7 +1,9 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.14-MariaDB)
-# Date: 2020-11-23 20:31:02
+# Date: 2020-11-28 07:09:09
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
+CREATE DATABASE fma_csa;
+USE fma_csa;
 
 #
 # Structure for table "tab_cliente"
@@ -18,7 +20,7 @@ CREATE TABLE `tab_cliente` (
   `rfc_cliente` varchar(15) NOT NULL,
   `mail_cliente` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cliente`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Data for table "tab_cliente"
@@ -59,7 +61,7 @@ CREATE TABLE `tab_marca` (
 # Data for table "tab_marca"
 #
 
-INSERT INTO `tab_marca` VALUES ('DEWALT'),('BLACK AND DECKER'),('BOSCH '),('MAKITA'),('MILWAUKEE'),('STANLEY'),('URREA'),('TRUPPER');
+INSERT INTO `tab_marca` VALUES ('DEWALT'),('BLACK AND DECKER'),('BOSCH '),('MAKITA'),('MILWAUKEE'),('STANLEY'),('URREA'),('TRUPER'),('NACOBRE'),('IUSA'),('PHILLIPS'),('AUSTROMEX'),('3M'),('KNOVA'),('EINHELL'),('FESTOOL'),('HILTI');
 
 #
 # Structure for table "tab_orden"
@@ -92,7 +94,7 @@ CREATE TABLE `tab_orden` (
 # Data for table "tab_orden"
 #
 
-INSERT INTO `tab_orden` VALUES (1,1,2,'2020-10-01','2020-10-28','ENTREGADA','CSA.webp','AMARRADORA DE VARILLA INALAMBRICA','MAKITA','DTR180Z','0','Presupuesto','NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nESTA ES OTRA LINEA\r\nOTRA ADIOS LINEA','Administrador','EFECTIVO','Si'),(7,7,2,'2020-10-07','2020-11-14','ENTREGADA','CSA.webp','TALADRO PERCUTOR/ATORNILLADOR ','DEWALT','DCD778D2-B2','0','Presupuesto','NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nTEST','Administrador','TARJETA','Si'),(8,2,2,'2020-10-07','0000-00-00','CANCELADA','CSA.webp','TALADRO INALAMBRICO 1/2\"','MAKITA','PH02X2','0','Garantia','Sin Observaciones','Emmanuel Luna','Sin Asignar','Sin Asignar'),(9,3,2,'2020-10-07','0000-00-00','CANCELADA','CSA.webp','---','GENERICA','---','0','Ninguno','Sin observaciones','Administrador','Sin Asignar','Sin Asignar'),(10,7,2,'2020-10-10','2020-11-22','ENTREGADA','CSA.webp','Gama plus','MAKITA','DCD778D2-B2','0','Mantenimiento','NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO','Emmanuel Luna','EFECTIVO','Si'),(11,1,2,'2020-10-16','2020-11-05','ENTREGADA','CSA.webp','Test','GENERICA','Test','Tipo 1','Mantenimiento/Garantía','Se hicieron cosas','Administrador','EFECTIVO','Si'),(12,1,2,'2020-11-05','2020-11-16','ENTREGADA','CSA.webp','Test Herramienta','GENERICA','Test','Test','Test','Mantenimiento','Emmanuel Luna','EFECTIVO','Si'),(13,3,2,'2020-11-05','2020-11-15','ENTREGADA','CSA.webp','Test Herramienta','DEWALT','DCD778D2-B2','Test Adicional','Mantenimiento','Diagnostico','Administrador','EFECTIVO','Si'),(14,10,2,'2020-11-05','0000-00-00','EN TALLER','CSA.webp','Test Herramienta','STANLEY','Test Modelo','Test Adicional','Mantenimiento/Garantía','Test Diagnostico','Administrador','Sin Asignar','Sin Asignar'),(15,1,1,'2020-11-11','0000-00-00','EN ESPERA','CSA.webp','asdasd','MILWAUKEE','asdasd','asdas','Presupuesto','asdasd','Emmanuel Luna','Sin Asignar','Sin Asignar'),(16,3,1,'2020-11-15','0000-00-00','EN ESPERA','CSA.webp','asdasd','GENERICA','asdasd','asdas','Presupuesto','Xd','Sin Asignar','Sin Asignar','Sin Asignar'),(17,1,5,'2020-11-16','0000-00-00','EN TALLER','CSA.webp','asdasd','GENERICA','asdasd','asdas','Garantia','Test de serivicio','Emmanuel Luna','Sin Asignar','Sin Asignar'),(18,1,1,'2020-11-23','2020-11-23','ENTREGADA','CSA.webp','asdf','GENERICA','asd','asd','Mantenimiento','asdasdasd','Emmanuel Luna','EFECTIVO','Si'),(19,3,1,'2020-11-22','2020-11-22','ENTREGADA','CSA.webp','asdsadasd','BOSCH ','asdasdad','asdadadsd','Presupuesto','adasdasd','Administrador','EFECTIVO','Si'),(20,1,1,'2020-11-23','2020-11-23','ENTREGADA','CSA.webp','Rotomartillo','MAKITA','MD-354s','Tipo 1','Garantia','La herramienta funciona','Administrador','EFECTIVO','Si'),(21,20,1,'2020-11-23','2020-11-23','REPARADA','CSA.webp','Rotomartillo','MAKITA','MD-354s','Tipo 1','Garantia','No enciende','Administrador','Sin Asignar','Sin Asignar');
+INSERT INTO `tab_orden` VALUES (1,1,2,'2020-10-01','2020-10-28','ENTREGADA','CSA.webp','AMARRADORA DE VARILLA INALAMBRICA','MAKITA','DTR180Z','0','Presupuesto','NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nESTA ES OTRA LINEA\r\nOTRA ADIOS LINEA','Administrador','EFECTIVO','Si'),(7,7,2,'2020-10-07','2020-11-14','ENTREGADA','CSA.webp','TALADRO PERCUTOR/ATORNILLADOR ','DEWALT','DCD778D2-B2','0','Presupuesto','NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO\r\nTEST','Administrador','TARJETA','Si'),(8,2,2,'2020-10-07','0000-00-00','CANCELADA','CSA.webp','TALADRO INALAMBRICO 1/2\"','MAKITA','PH02X2','0','Garantia','Sin Observaciones','Emmanuel Luna','Sin Asignar','Sin Asignar'),(9,3,2,'2020-10-07','0000-00-00','CANCELADA','CSA.webp','---','GENERICA','---','0','Ninguno','Sin observaciones','Administrador','Sin Asignar','Sin Asignar'),(10,7,2,'2020-10-10','2020-11-22','ENTREGADA','CSA.webp','Gama plus','MAKITA','DCD778D2-B2','0','Mantenimiento','NO PRENDE, SE VE EN BUEN ESTADO\r\nFALLO EN UN CABLE INTERNO','Emmanuel Luna','EFECTIVO','Si'),(11,1,2,'2020-10-16','2020-11-05','ENTREGADA','CSA.webp','Test','GENERICA','Test','Tipo 1','Mantenimiento/Garantía','Se hicieron cosas','Administrador','EFECTIVO','Si'),(12,1,2,'2020-11-05','2020-11-16','ENTREGADA','CSA.webp','Test Herramienta','GENERICA','Test','Test','Test','Mantenimiento','Emmanuel Luna','EFECTIVO','Si'),(13,3,2,'2020-11-05','2020-11-15','ENTREGADA','CSA.webp','Test Herramienta','DEWALT','DCD778D2-B2','Test Adicional','Mantenimiento','Diagnostico','Administrador','EFECTIVO','Si'),(14,10,2,'2020-11-05','0000-00-00','EN TALLER','CSA.webp','Test Herramienta','STANLEY','Test Modelo','Test Adicional','Mantenimiento/Garantía','Test Diagnostico','Emmanuel Luna','Sin Asignar','Sin Asignar'),(15,1,1,'2020-11-11','0000-00-00','PxP','CSA.webp','asdasd','MILWAUKEE','asdasd','asdas','Presupuesto','asdasd','Emmanuel Luna','Sin Asignar','Sin Asignar'),(16,3,1,'2020-11-15','0000-00-00','EN ESPERA','CSA.webp','asdasd','GENERICA','asdasd','asdas','Presupuesto','Xd','Sin Asignar','Sin Asignar','Sin Asignar'),(17,1,5,'2020-11-16','0000-00-00','EN ESPERA','CSA.webp','asdasd','GENERICA','asdasd','asdas','Garantia','Test de serivicio','Emmanuel Luna','Sin Asignar','Sin Asignar'),(18,1,1,'2020-11-23','2020-11-23','ENTREGADA','CSA.webp','asdf','GENERICA','asd','asd','Mantenimiento','asdasdasd','Emmanuel Luna','EFECTIVO','Si'),(19,3,1,'2020-11-22','2020-11-22','ENTREGADA','CSA.webp','asdsadasd','BOSCH ','asdasdad','asdadadsd','Presupuesto','adasdasd','Administrador','EFECTIVO','Si'),(20,1,1,'2020-11-23','2020-11-23','ENTREGADA','CSA.webp','Rotomartillo','MAKITA','MD-354s','Tipo 1','Garantia','La herramienta funciona','Administrador','EFECTIVO','Si'),(21,20,1,'2020-11-23','2020-11-23','REPARADA','CSA.webp','Rotomartillo','MAKITA','MD-354s','Tipo 1','Garantia','No enciende','Administrador','Sin Asignar','Sin Asignar');
 
 #
 # Structure for table "tab_ordenrefaccion"
@@ -180,7 +182,7 @@ CREATE TABLE `tab_refaccion` (
 # Data for table "tab_refaccion"
 #
 
-INSERT INTO `tab_refaccion` VALUES (1,'181019-9','JUEGO DE CARBONES CB-1 P/903','MAKITA',0,100),(2,'001-131-150 ','VALVULA DE DESCOMPRESION','MAKITA',1,340),(3,'001-173-020 ','FILTRO DE AIRE INTERIOR P/DPC7000','MAKITA',0,24),(4,'001118062','TUERCA P/DCS6000I,DCS6800I','MAKITA',15,31),(5,'0011806160','TORNILLO M6X30 P/RBC411','MAKITA',5,29),(6,'0011705200','TORNILLO M5X20 P/RBC320','MAKITA',9,24),(7,'90552433-01','FILTRO PARA ASPIRADORA','BLACK & DECKER',0,85),(8,'370009-00','VENTILADOR PARA ASPIRADORA','DEWALT',0,186);
+INSERT INTO `tab_refaccion` VALUES (1,'181019-9','JUEGO DE CARBONES CB-1 P/903','MAKITA',0,100),(2,'001-131-150 ','VALVULA DE DESCOMPRESION','MAKITA',1,340),(3,'001-173-020 ','FILTRO DE AIRE INTERIOR P/DPC7000','MAKITA',1,25),(4,'001118062','TUERCA P/DCS6000I,DCS6800I','MAKITA',15,31),(5,'0011806160','TORNILLO M6X30 P/RBC411','MAKITA',5,29),(6,'0011705200','TORNILLO M5X20 P/RBC320','MAKITA',9,24),(7,'90552433-01','FILTRO PARA ASPIRADORA','BLACK & DECKER',0,85),(8,'370009-00','VENTILADOR PARA ASPIRADORA','DEWALT',0,186);
 
 #
 # Structure for table "tab_servicio"
@@ -221,14 +223,14 @@ CREATE TABLE `tab_users` (
 # Data for table "tab_users"
 #
 
-INSERT INTO `tab_users` VALUES (1,'Administrador','CSA','8cb2237d0679ca88db6464eac60da96345513964',1,'10',0),(2,'Armando Cruz','ARMCRU','3b3d55eebac28f87bf6d04adf85f9c9782fb7a2e',2,'1',0),(3,'Emmanuel Luna','EMMLUN','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'7',17),(4,'Brandon Lechuga','BRALEC','40bd001563085fc35165329ea1ff5c5ecbdbbeef',1,'1',0),(5,'Pedro Loza','PEDLOZ','40bd001563085fc35165329ea1ff5c5ecbdbbeef',2,'1',0),(6,'Rafael Garcia','RAFGAR','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'1',0),(7,'Ivanitza Ponce','IVAPON','3b3d55eebac28f87bf6d04adf85f9c9782fb7a2e',1,'2',0);
+INSERT INTO `tab_users` VALUES (1,'Administrador','CSA','8cb2237d0679ca88db6464eac60da96345513964',1,'10',0),(2,'Armando Cruz','ARMCRU','3b3d55eebac28f87bf6d04adf85f9c9782fb7a2e',2,'1',0),(3,'Emmanuel Luna','EMMLUN','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'7',14),(4,'Brandon Lechuga','BRALEC','40bd001563085fc35165329ea1ff5c5ecbdbbeef',1,'1',0),(5,'Pedro Loza','PEDLOZ','40bd001563085fc35165329ea1ff5c5ecbdbbeef',2,'1',0),(6,'Rafael Garcia','RAFGAR','40bd001563085fc35165329ea1ff5c5ecbdbbeef',3,'1',0),(7,'Ivanitza Ponce','IVAPON','3b3d55eebac28f87bf6d04adf85f9c9782fb7a2e',1,'2',0);
 
 #
 # Procedure "Refacciones"
 #
 
-DROP PROCEDURE IF EXISTS `Refacciones`;
-CREATE PROCEDURE `Refacciones`(IN id INT)
+DROP PROCEDURE IF EXISTS Refacciones;
+CREATE PROCEDURE Refacciones(IN id INT)
 BEGIN
          SELECT R.cod_refaccion, R.desc_refaccion, R.marca_refaccion, R.costo_refaccion FROM tab_ordenrefaccion AS R
 JOIN tab_orden AS O
@@ -240,8 +242,8 @@ WHERE O.id_orden = id;
 # Procedure "ReporteStado"
 #
 
-DROP PROCEDURE IF EXISTS `ReporteStado`;
-CREATE PROCEDURE `ReporteStado`(IN list VARCHAR(15), fechIn VARCHAR(10), fechaOut VARCHAR(10))
+DROP PROCEDURE IF EXISTS ReporteStado;
+CREATE PROCEDURE ReporteStado(IN list VARCHAR(15), fechIn VARCHAR(10), fechaOut VARCHAR(10))
 BEGIN
 SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
 JOIN tab_cliente AS C
@@ -255,8 +257,8 @@ END;
 # Procedure "ReporteTodos"
 #
 
-DROP PROCEDURE IF EXISTS `ReporteTodos`;
-CREATE PROCEDURE `ReporteTodos`(IN fechIn VARCHAR(10), fechaOut VARCHAR(10))
+DROP PROCEDURE IF EXISTS ReporteTodos;
+CREATE PROCEDURE ReporteTodos(IN fechIn VARCHAR(10), fechaOut VARCHAR(10))
 BEGIN
 SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
 JOIN tab_cliente AS C
@@ -270,8 +272,8 @@ END;
 # Procedure "Servicios"
 #
 
-DROP PROCEDURE IF EXISTS `Servicios`;
-CREATE PROCEDURE `Servicios`(IN id INT)
+DROP PROCEDURE IF EXISTS Servicios;
+CREATE PROCEDURE Servicios(IN id INT)
 BEGIN
 
          SELECT S.cod_servicio, S.desc_servicio, S.costo_servicio FROM tab_ordenservicio AS S
