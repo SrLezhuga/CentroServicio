@@ -153,7 +153,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se actualizó el cliente")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se actualizó el cliente",
+                    "success"
+                );
     </script>
     <?php } ?>
 

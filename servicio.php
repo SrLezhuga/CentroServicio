@@ -247,18 +247,30 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registró el servicio")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registró el servicio",
+                    "success"
+                );
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
-    toastr["success"]("Se modificó el servicio")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se modificó el servicio",
+                    "success"
+                );
     </script>
     <?php } ?>
     <script>
     //Limpiar formularios
     function clean() {
         document.getElementById("cleanForm").reset();
-        toastr["success"]("Formulario vacío")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
     }
     </script>
 </body>

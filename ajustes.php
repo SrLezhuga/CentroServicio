@@ -1,9 +1,9 @@
 <?php session_start();
 include("assets/controler/conexion.php");
 
-if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2 ||  $_SESSION['priv_user']==3 ) {
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['priv_user'] == 2 ||  $_SESSION['priv_user'] == 3) {
     # code...
-}else {
+} else {
     header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
 }
 
@@ -150,7 +150,7 @@ $items      =  explode("-", $user['conf_user']);
 
                                                                 echo "
                                                           <label>
-                                                            <input type='radio' name='Avatar' value= ". $i ." " . $check . ">
+                                                            <input type='radio' name='Avatar' value= " . $i . " " . $check . ">
                                                             <img src='../CentroServicio/assets/img/Avatar/" . $i . ".png' style='height: 50px; width: 50px;' 
                                                             onContextMenu='return false;' draggable='false'>
                                                           </label>
@@ -188,7 +188,7 @@ $items      =  explode("-", $user['conf_user']);
                             </div>
 
                         </div>
-                    <br>
+                        <br>
 
 
                     </div>
@@ -217,39 +217,69 @@ $items      =  explode("-", $user['conf_user']);
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["error"]("La contraseña actual no coinside")
+            Swal.fire(
+                "Mensaje de confirmación",
+                "La contraseña actual no coinside",
+                "error"
+            );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["error"]("La contraseña nueva es diferente en los campos")
+            Swal.fire(
+                "Mensaje de confirmación",
+                "La contraseña nueva es diferente en los campos",
+                "error"
+            );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["info"]("La sesion finalizará en 5 seg.");
-            toastr["success"]("La contraseña se actualizo!");
-            function actualizar() {
-                window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
-            }
-            setTimeout(actualizar,5000);
+            Swal.fire({
+                icon: 'success',
+                title: 'Mensaje de confirmación',
+                text: 'Se actualizo la contraseña!',
+                footer: '<b>La sesion finalizará.</b>',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    function actualizar() {
+                        window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
+                    }
+                    setTimeout(actualizar, 1000);
+                }
+            });
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 3) { ?>
         <script>
-            toastr["info"]("La sesion finalizará en 5 seg.");
-            toastr["success"]("Se actualizo el avatar!");
-            function actualizar() {
-                window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
-            }
-            setTimeout(actualizar,5000);
+            Swal.fire({
+                icon: 'success',
+                title: 'Mensaje de confirmación',
+                text: 'Se actualizo el avatar!',
+                footer: '<b>La sesion finalizará.</b>',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    function actualizar() {
+                        window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
+                    }
+                    setTimeout(actualizar, 1000);
+                }
+            });
         </script>
     <?php } ?>
     <script>
         //Limpiar formularios
         function clean() {
             document.getElementById("cleanForm").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                "Mensaje de confirmación",
+                "Formulario vacío",
+                "success"
+            );
         }
     </script>
 </body>

@@ -362,30 +362,50 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registró el usuario")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registró el usuario",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se actualizó el usuario")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se actualizó el usuario",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["success"]("Se restableció contraseña del usuario")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se restableció contraseña del usuario",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 3) { ?>
         <script>
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se desactivó el usuario",
+                    "success"
+                );
             toastr["info"]("Para reactivar, asigna usuario y contraseña");
-            toastr["success"]("Se desactivó el usuario");
         </script>
     <?php } ?>
     <script>
         //Limpiar formularios
         function clean() {
             document.getElementById("cleanForm").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
         }
     </script>
 

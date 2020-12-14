@@ -259,23 +259,38 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
     <script>
         function cleanOrden() {
             document.getElementById("cleanFormOrden").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
         }
 
         function cleanCliente() {
             document.getElementById("cleanFormCliente").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
         }
     </script>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se registro el Cliente")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registro el Cliente",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Orden generada");
-
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Orden generada",
+                    "success"
+                );
             function folio() {
                 window.open("http://localhost/CentroServicio/assets/controler/reportes/generarTalonario.php", "_blank");
             }

@@ -351,18 +351,30 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registró el préstamo");
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registró el préstamo",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se finalizó el préstamo");
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se finalizó el préstamo",
+                    "success"
+                );
             toastr["info"]("La herramienta vuelve a estar disponible");
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["error"]("Se canceló el préstamo");
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se canceló el préstamo",
+                    "success"
+                );
             toastr["info"]("La herramienta vuelve a estar disponible");
         </script>
     <?php } ?>
@@ -372,7 +384,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
         //Limpiar formularios
         function clean() {
             document.getElementById("cleanForm").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
         }
     </script>
 </body>

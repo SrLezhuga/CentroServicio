@@ -299,17 +299,29 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registró la herramienta")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registró la herramienta",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Se actualizó la herramienta")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se actualizó la herramienta",
+                    "success"
+                );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["success"]("Se eliminó la herramienta")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se eliminó la herramienta",
+                    "success"
+                );
         </script>
     <?php } ?>
 
@@ -317,7 +329,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
         //Limpiar formularios
         function clean() {
             document.getElementById("cleanForm").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
         }
     </script>
 </body>

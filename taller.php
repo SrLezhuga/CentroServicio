@@ -474,22 +474,38 @@ $id = $pendiente['taller']; ?>
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Observaciones actualizadas")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Observaciones actualizadas",
+                    "success"
+                );
         </script>
     <?php }
     if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
-            toastr["success"]("Estado de la orden actualizado!")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Estado de la orden actualizado!",
+                    "success"
+                );
         </script>
     <?php }
     if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
         <script>
-            toastr["success"]("Se registro Servicio")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registro Servicio",
+                    "success"
+                );
         </script>
     <?php }
     if (isset($_GET['alert']) && $_GET['alert'] == 3) { ?>
         <script>
-            toastr["success"]("Se registro Refacción")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registro Refacción",
+                    "success"
+                );
         </script>
     <?php } ?>
 
@@ -534,18 +550,6 @@ $id = $pendiente['taller']; ?>
                     });
                 });
         });
-    </script>
-    <!-- Alerts!-->
-    <script>
-        function cleanServicio() {
-            document.getElementById("cleanFormServicio").reset();
-            toastr["success"]("Formulario vacío")
-        }
-
-        function cleanRefaccion() {
-            document.getElementById("cleanFormRefaccion").reset();
-            toastr["success"]("Formulario vacío")
-        }
     </script>
 
     <script>

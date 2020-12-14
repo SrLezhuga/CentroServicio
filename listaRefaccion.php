@@ -215,22 +215,38 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     <!-- Alerts! -->
     <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
     <script>
-    toastr["success"]("Se registró la refacción")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registró la refacción",
+                    "success"
+                );
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==1){ ?>
     <script>
-    toastr["success"]("Se modificó la refacción")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se modificó la refacción",
+                    "success"
+                );
     </script>
     <?php } if(isset($_GET['alert']) && $_GET['alert']==2){ ?>
     <script>
-    toastr["success"]("Se eliminó la refacción")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "SSe eliminó la refacción",
+                    "success"
+                );
     </script>
     <?php } ?>
     <script>
     //Limpiar formularios
     function clean() {
         document.getElementById("cleanForm").reset();
-        toastr["success"]("Formulario vacío")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
     }
     </script>
 </body>
