@@ -28,6 +28,7 @@
                                         <th>Nombre</th>
                                         <th>Usuario</th>
                                         <th>Privilegio</th>
+                                        <th>Sucursal</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -37,6 +38,7 @@
                                     $item[$i]['name_user']=$DatosList['name_user'];
                                     $item[$i]['nick_user']=$DatosList['nick_user'];
                                     $item[$i]['priv_user']=$DatosList['priv_user'];
+                                    $item[$i]['sucursal_user']=$DatosList['sucursal_user'];
 
                                     if ($DatosList['priv_user']=='1') {
                                       $item[$i]['priv_user']='Administrador';
@@ -51,6 +53,7 @@
                                         <td>'.$item[$i]['name_user'].'</td>
                                         <td>'.$item[$i]['nick_user'].'</td>
                                         <td>'.$item[$i]['priv_user'].'</td>
+                                        <td>'.$item[$i]['sucursal_user'].'</td>
                                     </tr> ';
                                     $i++;
                                     } 

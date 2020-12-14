@@ -612,6 +612,6 @@ $canvas->add_object($footer, "all");
 
 // Output the generated PDF to Browser
 
-$dompdf->stream('document.pdf',array('Attachment'=>0));
+$dompdf->stream('Reporte folio'.$folio,array('Attachment'=>0));
 
 ?>

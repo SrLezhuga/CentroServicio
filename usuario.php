@@ -1,8 +1,8 @@
 <?php session_start();
 include("assets/controler/conexion.php");
-if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     # code...
-}else {
+} else {
     header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
 }
 ?>
@@ -63,7 +63,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
 
 
                                                 <!--Campo Nombre -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label>Nombres:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -71,12 +71,25 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                                 <i class="fas fa-user-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="Nombre" name="formUseNom" required>
+                                                        <input type="text" id="nombre" class="form-control" placeholder="Nombre" name="formUseNom" required>
+                                                    </div>
+                                                </div>
+
+                                                <!--Campo Apellido -->
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                    <label>Apellidos:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-user-alt"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" id="apellido" class="form-control" placeholder="Apellido" name="formUseApe" required>
                                                     </div>
                                                 </div>
 
                                                 <!--Campo usuario -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label>Usuario:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -84,7 +97,20 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                                 <i class="fas fa-user-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="Usuario" name="formUseUsu" required>
+                                                        <input type="text" id="usuario" class="form-control" onclick="FxUser()" placeholder="Usuario" name="formUseUsu" required>
+                                                    </div>
+                                                </div>
+
+                                                <!--Campo Sucursal -->
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                    <label>Sucursal:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-store-alt"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Sucursal" name="formUseSuc" required>
                                                     </div>
                                                 </div>
 
@@ -155,6 +181,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                 <tr>
                                                     <th>Nombre</th>
                                                     <th>Usuario</th>
+                                                    <th>Sucursal</th>
                                                     <th>Privilegios</th>
                                                     <th>Acciones</th>
                                                 </tr>
@@ -165,37 +192,38 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                 $rsUsuario = mysqli_query($con, $queryUsuario) or die("Error de consulta");
                                                 while ($Usuario = mysqli_fetch_array($rsUsuario)) {
 
-                                                    if ($Usuario['code_user']==$_SESSION['code_user']) {
-                                                        $disable="disabled";
-                                                    }else {
-                                                        $disable="";
+                                                    if ($Usuario['code_user'] == $_SESSION['code_user']) {
+                                                        $disable = "disabled";
+                                                    } else {
+                                                        $disable = "";
                                                     }
 
-                                                    if ($Usuario['priv_user']==1) {
-                                                        $privilegios="Administrador";
-                                                    }elseif ($Usuario['priv_user']==2) {
-                                                        $privilegios="Vendedor/Mostrador";
-                                                    }else {
-                                                        $privilegios="Taller/Técnico";
+                                                    if ($Usuario['priv_user'] == 1) {
+                                                        $privilegios = "Administrador";
+                                                    } elseif ($Usuario['priv_user'] == 2) {
+                                                        $privilegios = "Vendedor/Mostrador";
+                                                    } else {
+                                                        $privilegios = "Taller/Técnico";
                                                     }
 
-                                                    if ($Usuario['nick_user']==null) {
+                                                    if ($Usuario['nick_user'] == null) {
                                                         $class = "class='table-danger'";
-                                                    }else {
+                                                    } else {
                                                         $class = "";
                                                     }
 
                                                     echo "
-                    <tr ". $class .">
+                    <tr " . $class . ">
                             <td>" . $Usuario['name_user'] . "</td>
                             <td>" . $Usuario['nick_user'] . "</td>
+                            <td>" . $Usuario['sucursal_user'] . "</td>
                             <td>" . $privilegios . "</td>
                             <td>
-                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnMod' data-toggle='modal' data-target='#modalMod'value=" . $Usuario["code_user"] . " ".$disable.">
+                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnMod' data-toggle='modal' data-target='#modalMod'value=" . $Usuario["code_user"] . " " . $disable . ">
                             <i class='fas fa-pencil-alt'></i></button>
-                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRest' data-toggle='modal' data-target='#modalRest'value=" . $Usuario["code_user"] . " ".$disable.">
+                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRest' data-toggle='modal' data-target='#modalRest'value=" . $Usuario["code_user"] . " " . $disable . ">
                             <i class='fas fa-sync-alt'></i></button>
-                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnDel' data-toggle='modal' data-target='#modalDel'value=" . $Usuario["code_user"] . " ".$disable.">
+                            <button type='button' class='btn btn-outline-light text-dark btn-sm BtnDel' data-toggle='modal' data-target='#modalDel'value=" . $Usuario["code_user"] . " " . $disable . ">
                             <i class='fas fa-trash-alt'></i></button>
                             </td>
                         </tr>
@@ -314,6 +342,22 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
             </div>
         </div>
     </div>
+
+    <script>
+        function FxUser() {
+
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+
+            var n = nombre.substr(0, 3);
+            var a = apellido.substr(0, 3);
+
+            var Upn = n.toUpperCase();
+            var Upa = a.toUpperCase();
+
+            document.getElementById("usuario").value = Upn + Upa;
+        }
+    </script>
 
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>

@@ -1,6 +1,6 @@
 <?php session_start();
 include("assets/controler/conexion.php"); 
-if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
+if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     # code...
 }else {
     header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");

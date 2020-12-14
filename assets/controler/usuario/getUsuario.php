@@ -45,7 +45,7 @@ echo '
         </div>
 
         <!--Campo usuario -->
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <label>Usuario:</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
@@ -54,6 +54,19 @@ echo '
                     </span>
                 </div>
                 <input type="text" class="form-control" placeholder="Usuario" name="formUseUsu" required value="'. $item['nick_user'] .'">
+            </div>
+        </div>
+
+        <!--Campo Sucursal -->
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <label>Sucursal:</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-store-alt"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Sucursal" name="formUseSuc" required value="'. $item['sucursal_user'] .'">
             </div>
         </div>
 

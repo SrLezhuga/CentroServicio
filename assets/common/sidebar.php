@@ -71,7 +71,7 @@
     </li>
 
     <!-- Nav Item - Prestamo Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>
+    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrestamo"
             aria-expanded="true" aria-controls="collapsePrestamo">
             <i class="fas fa-wrench"></i>
@@ -121,12 +121,13 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="usuario">Usuarios</a>
+                <a class="collapse-item" href="directorio">Directorio</a>
             </div>
         </div>
     </li>
 
      <!-- Nav Item - Refacciones Collapse Menu || -->
-     <li class="nav-item active" <?php if ($_SESSION['priv_user']==2 ) { echo 'style="display: none;"'; }?>>
+     <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1 ) { echo 'style="display: none;"'; }?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRefacciones"
             aria-expanded="true" aria-controls="collapseRefacciones">
             <i class="fas fa-dolly"></i>
@@ -139,6 +140,7 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="refaccion">Alta Refacciones</a>
+                <a class="collapse-item" href="listaRefaccion">Lista Refacciones</a>
                 <a class="collapse-item" href="servicio">Alta Servicios</a>
             </div>
         </div>

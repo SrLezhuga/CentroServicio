@@ -2,19 +2,11 @@
     include("../conexion.php");  
 
     $Opc = $_SESSION['RepInventario'];
-   
-
-    if ($Opc == "Con") {
-      
-    $queryDatosList = "SELECT * FROM tab_refaccion WHERE cant_refaccion > 0"; 
+         
+    $queryDatosList = "SELECT * FROM tab_refaccion WHERE marca_refaccion = '".$Opc."'"; 
     $rsDatosList = mysqli_query($con, $queryDatosList) or die ("Error de consulta"); 
-    }elseif ($Opc == "Sin") {
-      
-    $queryDatosList = "SELECT * FROM tab_refaccion WHERE cant_refaccion < 1"; 
-    $rsDatosList = mysqli_query($con, $queryDatosList) or die ("Error de consulta"); 
-    }
 
-    $querySumList = "SELECT sum(cant_refaccion), sum(costo_refaccion) FROM tab_refaccion"; 
+    $querySumList = "SELECT sum(cant_refaccion), sum(cant_refaccion*costo_refaccion) FROM tab_refaccion WHERE marca_refaccion = '".$Opc."'"; 
     $rsSumList = mysqli_query($con, $querySumList) or die ("Error de consulta"); 
     $SumList = mysqli_fetch_array($rsSumList);
 
@@ -87,7 +79,7 @@
                   </div>
                   <div class="col-3 offset-3 ">
                     <p class="display-2">'.$SumList[0].' partes/piezas.<br>
-                       $ '.$SumList[1].'.00</p>
+                       $ '.$SumList[1].'</p>
                   </div>
                   <div class="col-6 offset-6 text-right">
                     <p class="display-2"><b>Fecha:</b><br>
@@ -102,7 +94,9 @@
                                         <th>Descripción</th>
                                         <th>Marca</th>
                                         <th>Cantidad</th>
+                                        <th>Unidad</th>
                                         <th>Costo</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -113,7 +107,9 @@
                                     $item[$i]['desc_refaccion']=$DatosList['desc_refaccion'];
                                     $item[$i]['marca_refaccion']=$DatosList['marca_refaccion'];
                                     $item[$i]['cant_refaccion']=$DatosList['cant_refaccion'];
+                                    $item[$i]['unidad_refaccion']=$DatosList['unidad_refaccion'];
                                     $item[$i]['costo_refaccion']=$DatosList['costo_refaccion'];
+                                    $total=$item[$i]['cant_refaccion']*$item[$i]['costo_refaccion'];
 
                                   echo '
                                     <tr>
@@ -121,7 +117,9 @@
                                         <td>'.$item[$i]['desc_refaccion'].'</td>
                                         <td>'.$item[$i]['marca_refaccion'].'</td>
                                         <td>'.$item[$i]['cant_refaccion'].'</td>
-                                        <td>$ '.$item[$i]['costo_refaccion'].'.00</td>
+                                        <td>'.$item[$i]['unidad_refaccion'].'</td>
+                                        <td>$ '.$item[$i]['costo_refaccion'].'</td>
+                                        <td>$ '.$total.'</td>
                                     </tr> ';
                                     $i++;
                                     } 

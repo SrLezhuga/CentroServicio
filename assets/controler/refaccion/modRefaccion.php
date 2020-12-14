@@ -8,21 +8,23 @@ $refaccionCodigo        = $_POST['forRefCod'];
 $refaccionDescripcion   = $_POST['forRefDes'];
 $refaccionMarca         = $_POST['forRefMar'];
 $refaccionCantidad      = $_POST['forRefCan'];
+$refaccionUnidad        = $_POST['forRefUni'];
 $refaccionCosto         = $_POST['forRefCos'];
 
 // Consulta segura para evitar inyecciones SQL.
 
 $sql = "UPDATE tab_refaccion
-SET   cod_refaccion  = '".$refaccionCodigo."', 
-      desc_refaccion  = '".$refaccionDescripcion."',
+SET   cod_refaccion     = '".$refaccionCodigo."', 
+      desc_refaccion    = '".$refaccionDescripcion."',
       costo_refaccion   = '".$refaccionCosto."',
-      marca_refaccion  = '".$refaccionMarca."',
-      cant_refaccion  = '".$refaccionCantidad."'
-WHERE id_refaccion   = ".$refaccionId.";";
+      marca_refaccion   = '".$refaccionMarca."',
+      unidad_refaccion  = '".$refaccionUnidad."',
+      cant_refaccion    = '".$refaccionCantidad."'
+WHERE id_refaccion      = ".$refaccionId.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/refaccion?alert=1'");
+    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/listaRefaccion?alert=1'");
 }
 
 // close connection

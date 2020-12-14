@@ -606,7 +606,7 @@ img {
                   <a class="display-1">
                     Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
                     <b>Mayoreo Ferretero Atlas</b> no se hace responsable del producto. Cualquier revisión que no sea garantia, causará honorarios.
-                   </a>
+                   </a><br>
                 </div>
         </div>
     </body>
