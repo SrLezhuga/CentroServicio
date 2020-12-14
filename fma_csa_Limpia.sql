@@ -1,9 +1,7 @@
-# Host: localhost  (Version 5.5.5-10.4.14-MariaDB)
-# Date: 2020-11-28 07:09:09
+﻿# Host: localhost  (Version 5.5.5-10.4.14-MariaDB)
+# Date: 2020-12-14 02:21:51
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
-CREATE DATABASE fma_csa;
-USE fma_csa;
 
 #
 # Structure for table "tab_cliente"
@@ -20,8 +18,7 @@ CREATE TABLE `tab_cliente` (
   `rfc_cliente` varchar(15) NOT NULL,
   `mail_cliente` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cliente`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_herramienta"
@@ -35,8 +32,7 @@ CREATE TABLE `tab_herramienta` (
   `marca_herramienta` varchar(50) NOT NULL,
   `status_herramienta` varchar(50) NOT NULL,
   PRIMARY KEY (`Id_herramienta`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_marca"
@@ -78,10 +74,7 @@ CREATE TABLE `tab_orden` (
   PRIMARY KEY (`id_orden`) USING BTREE,
   KEY `code_user` (`code_user`) USING BTREE,
   KEY `id_cliente` (`id_cliente`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
-#Folio actual
-ALTER TABLE tab_orden AUTO_INCREMENT = 3500;
+) ENGINE=InnoDB AUTO_INCREMENT=3500 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_ordenrefaccion"
@@ -111,7 +104,7 @@ CREATE TABLE `tab_ordenservicio` (
   `desc_servicio` varchar(50) NOT NULL,
   `costo_servicio` int(11) NOT NULL,
   PRIMARY KEY (`id_servicio`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_prestamo"
@@ -130,7 +123,7 @@ CREATE TABLE `tab_prestamo` (
   `fech_entrada_prestamo` date NOT NULL,
   `status_prestamo` varchar(15) NOT NULL,
   PRIMARY KEY (`id_prestamo`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_refaccion"
@@ -142,10 +135,11 @@ CREATE TABLE `tab_refaccion` (
   `cod_refaccion` varchar(50) NOT NULL,
   `desc_refaccion` varchar(50) NOT NULL,
   `marca_refaccion` varchar(50) NOT NULL,
+  `unidad_refaccion` varchar(25) NOT NULL DEFAULT '',
   `cant_refaccion` int(11) NOT NULL,
-  `costo_refaccion` int(11) NOT NULL,
+  `costo_refaccion` double(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`id_refaccion`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_servicio"
@@ -158,7 +152,7 @@ CREATE TABLE `tab_servicio` (
   `desc_servicio` varchar(30) NOT NULL,
   `costo_servicio` int(11) NOT NULL,
   PRIMARY KEY (`id_servicio`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Structure for table "tab_users"
@@ -173,21 +167,22 @@ CREATE TABLE `tab_users` (
   `priv_user` int(1) NOT NULL,
   `conf_user` varchar(15) NOT NULL,
   `taller` int(11) NOT NULL,
+  `sucursal_user` varchar(25) NOT NULL DEFAULT '',
   PRIMARY KEY (`code_user`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 #
 # Data for table "tab_users"
 #
 
-INSERT INTO `tab_users` VALUES (1,'Administrador','CSA','8cb2237d0679ca88db6464eac60da96345513964',1,'1',0);
+INSERT INTO `tab_users` VALUES (1,'Administrador','CSA','8cb2237d0679ca88db6464eac60da96345513964',1,'1',24,'MFA');
 
 #
 # Procedure "Refacciones"
 #
 
-DROP PROCEDURE IF EXISTS Refacciones;
-CREATE PROCEDURE Refacciones(IN id INT)
+DROP PROCEDURE IF EXISTS `Refacciones`;
+CREATE PROCEDURE `Refacciones`(IN id INT)
 BEGIN
          SELECT R.cod_refaccion, R.desc_refaccion, R.marca_refaccion, R.costo_refaccion FROM tab_ordenrefaccion AS R
 JOIN tab_orden AS O
@@ -199,8 +194,8 @@ WHERE O.id_orden = id;
 # Procedure "ReporteStado"
 #
 
-DROP PROCEDURE IF EXISTS ReporteStado;
-CREATE PROCEDURE ReporteStado(IN list VARCHAR(15), fechIn VARCHAR(10), fechaOut VARCHAR(10))
+DROP PROCEDURE IF EXISTS `ReporteStado`;
+CREATE PROCEDURE `ReporteStado`(IN list VARCHAR(15), fechIn VARCHAR(10), fechaOut VARCHAR(10))
 BEGIN
 SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
 JOIN tab_cliente AS C
@@ -214,8 +209,8 @@ END;
 # Procedure "ReporteTodos"
 #
 
-DROP PROCEDURE IF EXISTS ReporteTodos;
-CREATE PROCEDURE ReporteTodos(IN fechIn VARCHAR(10), fechaOut VARCHAR(10))
+DROP PROCEDURE IF EXISTS `ReporteTodos`;
+CREATE PROCEDURE `ReporteTodos`(IN fechIn VARCHAR(10), fechaOut VARCHAR(10))
 BEGIN
 SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
 JOIN tab_cliente AS C
@@ -229,15 +224,11 @@ END;
 # Procedure "Servicios"
 #
 
-DROP PROCEDURE IF EXISTS Servicios;
-CREATE PROCEDURE Servicios(IN id INT)
+DROP PROCEDURE IF EXISTS `Servicios`;
+CREATE PROCEDURE `Servicios`(IN id INT)
 BEGIN
-
-         SELECT S.cod_servicio, S.desc_servicio, S.costo_servicio FROM tab_ordenservicio AS S
+SELECT S.cod_servicio, S.desc_servicio, S.costo_servicio FROM tab_ordenservicio AS S
 JOIN tab_orden AS O
-
 ON S.id_orden = O.id_orden
-
 WHERE O.id_orden = id;
-
 END;
