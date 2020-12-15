@@ -1,4 +1,4 @@
-<footer class="sticky-footer bg-grey">
+<footer class="sticky-footer bg-grey"  style="left: 0; bottom: 0; width: 100%; text-align: center;">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
             <span>
