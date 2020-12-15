@@ -218,12 +218,14 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                     <button type="button" class="btn btn-outline-danger btn-block " onclick="RegistrarExcel()" disabled id="btn_registrar"><i class="fas fa-save"></i> Guardar Datos</button>
                                                 </div>
                                             </div>
+                                            <a href="./assets/controler/exportar/plantilla.php"><i class="fas fa-file-csv"></i> Descargar Plantilla</a>
                                         </form>
                                         <br>
                                         <!-- DataTales -->
                                         <div class="col-12" id="div_tabla">
                                             <br>
                                         </div>
+                                        
                                     </fieldset>
 
 
@@ -297,6 +299,16 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                 );
 
             }
+            Swal.fire({
+                title: 'Cargando datos',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timer: 50000,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading();
+                }
+            });
             var formData = new FormData();
             var files = $("#txt_archivo")[0].files[0];
             formData.append('archivoexcel', files);
@@ -308,6 +320,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                 contentType: false,
                 processData: false,
                 success: function(resp) {
+                    swal.close();
                     $("#div_tabla").html(resp);
                     document.getElementById("btn_registrar").disabled = false;
                 }

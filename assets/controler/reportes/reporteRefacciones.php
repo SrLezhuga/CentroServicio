@@ -2,8 +2,10 @@
 session_start();
 
 $lista = $_POST['RepInventario'];
+$stock = $_POST['RepStock'];
 
 $_SESSION['RepInventario'] = $lista;
+$_SESSION['RepStock'] = $stock;
 
 require_once '../../vendor/dompdf/autoload.inc.php';
 
@@ -15,7 +17,7 @@ use Dompdf\Options;
 $options = new Options();
 $options->set('isRemoteEnabled', TRUE); 
 $dompdf = new Dompdf($options);
-
+ 
 if ($lista =='Todos') {
     ob_start();
     include_once 'generarRefaccionesAll.php';
@@ -49,4 +51,5 @@ $canvas->add_object($footer, "all");
 $dompdf->stream($lista." ".date('Y-m-d', strtotime("now")), array('Attachment'=>0));
 
 session_unset($_SESSION['RepInventario']);
+session_unset($_SESSION['RepStock']);
 ?>

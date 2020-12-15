@@ -160,7 +160,7 @@ $id = $pendiente['taller']; ?>
                                                                         if ($itemRef['cant_refaccion'] == 0) {
                                                                             echo "<option disabled>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . "</option>";
                                                                         } else {
-                                                                            echo "<option value='" . $itemRef['id_refaccion'] . "'>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . " | " . $itemRef['marca_refaccion'] . " | $ " . $itemRef['costo_refaccion'] . ".00</option>";
+                                                                            echo "<option value='" . $itemRef['id_refaccion'] . "'>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . " | " . $itemRef['marca_refaccion'] . " | $ " . $itemRef['costo_refaccion'] . "</option>";
                                                                         }
                                                                     } ?>
                                                                 </select>

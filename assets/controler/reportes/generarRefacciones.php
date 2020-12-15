@@ -1,12 +1,14 @@
 <?php
     include("../conexion.php");  
+    set_time_limit(300);
 
     $Opc = $_SESSION['RepInventario'];
+    $stock = $_SESSION['RepStock'];
          
-    $queryDatosList = "SELECT * FROM tab_refaccion WHERE marca_refaccion = '".$Opc."'"; 
+    $queryDatosList = "SELECT * FROM tab_refaccion WHERE marca_refaccion = '".$Opc."' AND cant_refaccion ".$stock; 
     $rsDatosList = mysqli_query($con, $queryDatosList) or die ("Error de consulta"); 
 
-    $querySumList = "SELECT sum(cant_refaccion), sum(cant_refaccion*costo_refaccion) FROM tab_refaccion WHERE marca_refaccion = '".$Opc."'"; 
+    $querySumList = "SELECT sum(cant_refaccion), sum(cant_refaccion*costo_refaccion) FROM tab_refaccion WHERE marca_refaccion = '".$Opc."' AND cant_refaccion ".$stock;  
     $rsSumList = mysqli_query($con, $querySumList) or die ("Error de consulta"); 
     $SumList = mysqli_fetch_array($rsSumList);
 

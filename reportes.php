@@ -68,6 +68,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                         <option value="Todos">Todos</option>
                                                         <option value="Reparada">Reparada</option>
                                                         <option value="Cancelada">Cancelada</option>
+                                                        <option value="Todas">Todas las pendientes</option>
                                                         <option value="En espera">Pendiente revisión</option>
                                                         <option value="PxP">Pendiente partes</option>
                                                         <option value="PxA">Pendiente aprobar</option>
@@ -110,27 +111,28 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
 
                         <br>
 
-                        <!-- Reporte Mostrador -->
+                        <!-- Reporte Comisiones -->
                         <div class="col-xl-4 col-md-4 mb-4">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Mostrador</h1>
+                                    <h1 class='h3 text-gray-800'>Comisiones</h1>
                                     <br>
                                     <form class="form" id="cleanForm" action="assets/controler/reportes/reporteMostrador.php" method="POST" target="_blank">
                                         <h5><b>Datos del reporte</b></h5>
                                         <div class="row">
                                             <div class="col-12">
-                                                <label>Tipo de pago:</label>
+                                                <label>Sucursales:</label>
                                                 <div class="input-group ">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
                                                             <i class="fas fa-stethoscope"></i>
                                                         </span>
                                                     </div>
-                                                    <select name="fromRepList" class="custom-select" required>
-                                                        <option value="EFECTIVO Y TARJETA">Efectivo y Tarjeta</option>
-                                                        <option value="EFECTIVO">Solo Efectivo</option>
-                                                        <option value="TARJETA">Solo Tarjeta</option>
+                                                    <select name="fromSucList" class="custom-select" required>
+                                                        <option value="Todas">Todas las sucursales</option>
+                                                        <option value="MFA">MFA</option>
+                                                        <option value="MILWAUKEE">MILWAUKEE</option>
+                                                        <option value="URREA">URREA</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -243,7 +245,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 <option value="DESc">Orden Z - A</option>
                                             </select>
                                         </div>
-                                        <br>
+                                        <br><br><br><br>
                                         <hr>
                                         <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
                                     </form>
@@ -280,7 +282,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <br>
+                                        <br><br><br><br>
                                         <hr>
                                         <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
                                     </form>
@@ -300,7 +302,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                         <h5><b>Datos del reporte</b></h5>
                                         <div class="row">
                                             <div class="col">
-                                                <label>Estado del inventario:</label>
+                                                <label>Marca:</label>
                                                 <div class="input-group ">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -315,6 +317,18 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                         while ($itemCli = mysqli_fetch_array($rsCli)) {
                                                             echo "<option value='" . $itemCli[0] . "'>" . $itemCli[0] . "</option>";
                                                         } ?>
+                                                    </select>
+                                                </div>
+                                                <label>Estado del inventario:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepStock" class="custom-select" required>
+                                                        <option value=">=1">Con Stock</option>
+                                                        <option value="=0">Sin Stock</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -353,7 +367,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <br>
+                                        <br><br><br><br>
                                         <hr>
                                         <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
                                     </form>

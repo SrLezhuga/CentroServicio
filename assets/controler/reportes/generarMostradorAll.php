@@ -3,7 +3,8 @@
 
     $fechaIni =  $_SESSION['fechIn'];
     $fechaSal =  $_SESSION['fechOut'];
-    $lista    =  $_SESSION['lista'];
+    $sucursal =  $_SESSION['lista'];
+    $total=0;
     
     $items = explode("-", $fechaIni);
     $dia=$items[2];
@@ -97,12 +98,12 @@
     
     $fechaFin =$dia . " de " . $m . " del " . $año;
     
-    $queryDatosList = "SELECT O.id_orden, C.nom_cliente, O.tipo_servicio, O.desc_herramienta, O.fech_entrada, U.name_user, O.status_orden FROM tab_orden AS O
-    JOIN tab_cliente AS C
-    ON O.id_cliente = C.id_cliente
-    JOIN tab_users AS U
-    ON O.code_user = U.code_user
-    WHERE O.status_orden = 'ENTREGADA' AND (O.fech_entrada BETWEEN '".$fechaIni."' AND '".$fechaSal."');"; 
+    $queryDatosList = "SELECT O.id_orden, U.name_user FROM tab_orden AS O 
+    JOIN tab_users AS U 
+    ON O.code_user = U.code_user 
+    WHERE O.tipo_servicio = 'Presupuesto' 
+    AND (O.status_orden = 'REPARADA' OR O.status_orden = 'ENTREGADA')
+    AND (O.fech_entrada BETWEEN '".$fechaIni."' AND '".$fechaSal."');"; 
     $rsDatosList = mysqli_query($con, $queryDatosList) or die ("Error de consulta"); 
     
     echo'
@@ -120,10 +121,10 @@
         <h1 class="display-4 text-center"><strong>MAYOREO FERRETERO ATLAS S.A. DE C.V.</strong><br>
         Centro de servicio</h1>
             <br>
-            <h1 class="display-2 text-center"><strong>REPORTE DE TIPO DE PAGO</strong></h1>
+            <h1 class="display-2 text-center"><strong>REPORTE DE COMISIONES</strong></h1>
             <div class="row" style="height: 4.5rem;">
               <div class="col-3">
-                <p class="display-2"><b>Tipo de pago:</b><br>'.$lista.'</p>
+                <p class="display-2"><b>Comisiones por sucursal:</b><br>'.$lista.'</p>
               </div>
               <div class="col-9 offset-3 text-right">
                 <p class="display-2"><b>Fecha:</b><br>
@@ -135,18 +136,25 @@
                             <thead class="thead-dark">
                                     <tr>
                                         <th>Folio</th>
-                                        <th>Cliente</th>
-                                        <th>Servicio</th>
-                                        <th>Herramienta</th>
-                                        <th>Fecha </th>
-                                        <th>Recepción </th>
-                                        <th>Status</th>
+                                        <th>Empleado</th>
+                                        <th>Costo Refacción</th>
+                                        <th>Costo Servicio</th>
+                                        <th>Total </th>
                                     </tr>
                                 </thead>
                                 <tbody>';
 
                                 $i=0;
                                 while($DatosList = mysqli_fetch_array($rsDatosList)){
+
+                                    $querySumRef = "SELECT SUM(costo_refaccion) AS SumRef FROM tab_ordenrefaccion WHERE id_orden = ".$DatosList['id_orden']; 
+                                    $rsSumRef = mysqli_query($con, $querySumRef) or die ("Error de consulta");  
+                                    $sumRef = mysqli_fetch_array($rsSumRef);
+
+                                    $querySumSer = "SELECT SUM(costo_servicio) AS SumSer FROM tab_ordenservicio WHERE id_orden = ".$DatosList['id_orden']; 
+                                    $rsSumSer = mysqli_query($con, $querySumSer) or die ("Error de consulta");  
+                                    $sumSer = mysqli_fetch_array($rsSumSer);
+
                                     $folio=$DatosList['id_orden'];
                                       if(strlen($folio)==1){
                                         $folio="0000".$folio;
@@ -157,27 +165,40 @@
                                       }else if(strlen($folio)==4){
                                         $folio="0".$folio;
                                       }
+
+                                      if ($sumRef['SumRef']==null) {
+                                        $item[$i]['SumRef']=0;
+                                      }else {
+                                        $item[$i]['SumRef']=$sumRef['SumRef'];
+                                      }
+                                      if ($sumSer['SumSer']==null) {
+                                        $item[$i]['SumSer']=0;
+                                      }else {
+                                        $item[$i]['SumSer']=$sumSer['SumSer'];
+                                      }
                                     $item[$i]['id_orden']=$folio;
-                                    $item[$i]['nom_cliente']=$DatosList['nom_cliente'];
-                                    $item[$i]['tipo_servicio']=$DatosList['tipo_servicio'];
-                                    $item[$i]['desc_herramienta']=$DatosList['desc_herramienta'];
-                                    $item[$i]['fech_entrada']=$DatosList['fech_entrada'];
                                     $item[$i]['name_user']=$DatosList['name_user'];
-                                    $item[$i]['status_orden']=$DatosList['status_orden'];
-                                   
+                                    $item[$i]['subtotal']=$sumRef['SumRef']+$sumSer['SumSer'];
+
                                   echo '
                                     <tr>
                                         <td>'.$item[$i]['id_orden'].'</td>
-                                        <td>'.$item[$i]['nom_cliente'].'</td>
-                                        <td>'.$item[$i]['tipo_servicio'].'</td>
-                                        <td>'.$item[$i]['desc_herramienta'].'</td>
-                                        <td>'.$item[$i]['fech_entrada'].'</td>
                                         <td>'.$item[$i]['name_user'].'</td>
-                                        <td>'.$item[$i]['status_orden'].'</td>
+                                        <td>$ '.$item[$i]['SumRef'].'</td>
+                                        <td>$ '.$item[$i]['SumSer'].'</td>
+                                        <td>$ '.$item[$i]['subtotal'].'</td>
                                     </tr> ';
+                                    $total= $total+$item[$i]['subtotal'];
                                     $i++;
                                     } 
-echo '
+echo '                              
+                                    <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total:</td>
+                                    <td>$ '.$total.'</td>
+                                    </tr>
                                 </tbody>
                             </table>
                     </div>  

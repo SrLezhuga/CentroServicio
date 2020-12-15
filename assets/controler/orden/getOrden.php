@@ -114,7 +114,6 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
       </div>
    </div>
    </fieldset>
-   <br>
    <fieldset class='border p-2'>
     <legend  class='w-auto'>Datos del Servicio:</legend>
       <div class='row'>
@@ -174,6 +173,16 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
             "</a>
                   </span>
                </div>
+               <!--Campo Serie -->
+                        <div class='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+                            <label>Serie:</label>
+                            <span class='input-group-text' style='background-color:white'>
+                                <i class='fas fa-tags'></i>
+                                <a>&nbsp;&nbsp;" .
+                                    $Orden['serie_herramienta'] .
+                                    "</a>
+                            </span>
+                        </div>
                <!--Campo Adicional -->
                <div class='col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12'>
                   <label>Adicional:</label>
@@ -201,6 +210,12 @@ while ($Orden = mysqli_fetch_array($rsOrden)) {
             nl2br($Orden['detalle_servicio']) .
             "
       </fieldset>
+      <fieldset class='border p-2'>
+            <legend class='w-auto'>Complementarios:</legend>
+            " .
+            nl2br($Orden['complementarios']) .
+            "
+        </fieldset>
       
 
       <fieldset class='border p-2'>

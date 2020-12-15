@@ -31,7 +31,10 @@
                     for ($row=2; $row <=$filas ; $row++) { 
                         $Codigo = $hoja->getCell('A'.$row)->getValue();
                         $Descripcion = $hoja->getCell('B'.$row)->getValue();
-                        $DescripcionEx = str_replace(",", "", $Descripcion);
+                        $DescripcionRem1 = str_replace("'","-",$Descripcion);
+                        $DescripcionRem2 = str_replace('"',"In",$DescripcionRem1);
+                        $DescripcionRem3 = str_replace("&","and",$DescripcionRem2);
+                        $DescripcionEx = str_replace(",", "", $DescripcionRem3);
                         $Marca = $hoja->getCell('C'.$row)->getValue();
                         $Cantidad = $hoja->getCell('D'.$row)->getValue();
                         $Unidad = $hoja->getCell('E'.$row)->getValue();

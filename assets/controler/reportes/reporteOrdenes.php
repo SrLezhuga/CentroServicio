@@ -436,8 +436,8 @@ img {
                         <label><b>Marca:</b></label>
                         <a>'.$Orden['marca_herramienta'].'</a>
                         <br />
-                        <label><b>Adicional:</b></label>
-                        <a>'.$Orden['tipo_herramienta'].'</a>
+                        <label><b>Serie:</b></label>
+                        <a>'.$Orden['serie_herramienta'].'</a>
                     </div>
                 </div>
             </fieldset>

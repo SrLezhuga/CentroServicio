@@ -105,9 +105,17 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                     <td>".$Orden['status_orden']."</td>
                                                     <td>".$Orden['tipo_servicio']."</td>
                                                     <td>".$Orden['tec_taller']."</td>
-                                                    <td> 
-                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
+                                                    <td>";
+                                                    if ($_SESSION['priv_user']==1) {
+                                                        echo "<button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
                                                         <i class='far fa-eye'></i></button>
+                                                        <button type='button' class='btn btn-outline-light text-dark btn-sm BtnLiberar' data-toggle='modal' data-target='#modalLiberar'value=".$Orden['id_orden'].">
+                                                        <i class='fas fa-unlock-alt'></i></button>";
+                                                    }else{
+                                                        echo "<button type='button' class='btn btn-outline-light text-dark btn-sm BtnOrden' data-toggle='modal' data-target='#modalOrden'value=".$Orden['id_orden'].">
+                                                        <i class='far fa-eye'></i></button>";
+                                                    }
+                                            echo "
                                                     </td>
                                                 </tr>
                                             "; 
@@ -181,6 +189,33 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div class="modal fade" id="modalLiberar">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-left-danger shadow">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="modal-title">Tarjeta Liberar</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="getLiberar">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                        Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
     // Modal tarjeta Orden
 
@@ -192,7 +227,29 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
             });
         });
     });
+
+    // Modal tarjeta Orden
+
+    $('.BtnLiberar').on('click', function() {
+        var id_button = $(this).val();
+        $('.getLiberar').load('./assets/controler/orden/getLiberar.php?id=' + id_button, function() {
+            $('#modalLiberar').modal({
+                show: true
+            });
+        });
+    });
     </script>
+
+    <!-- Alerts! -->
+    <?php if(isset($_GET['alert']) && $_GET['alert']==0){ ?>
+    <script>
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se libero la orden",
+                    "success"
+                );
+    </script>
+    <?php } ?>
 
 </body>
 

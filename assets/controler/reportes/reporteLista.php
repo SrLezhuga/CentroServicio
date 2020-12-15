@@ -24,6 +24,10 @@ if ($lista =='Todos') {
   ob_start();
   include_once 'generarAll.php';
   $html=ob_get_clean();
+}elseif ($lista =='Todas') {
+  ob_start();
+  include_once 'generarStatusReparadas.php';
+  $html=ob_get_clean();
 }else{
   ob_start();
   include_once 'generarStatus.php';

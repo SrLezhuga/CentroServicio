@@ -115,7 +115,7 @@
          <div class='col-12'>
             <div class='row'>
                <!--Campo Marca -->
-               <div class='col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+               <div class='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12'>
                   <label>Marca:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tag'></i>
@@ -123,15 +123,25 @@
                   </span>
                </div>
                <!--Campo Modelo -->
-               <div class='col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+               <div class='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12'>
                   <label>Modelo:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-tags'></i>
                   <a>&nbsp;&nbsp;".$Orden['mod_herramienta']."</a>
                   </span>
                </div>
+               <!--Campo Serie -->
+                        <div class='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+                            <label>Serie:</label>
+                            <span class='input-group-text' style='background-color:white'>
+                                <i class='fas fa-tags'></i>
+                                <a>&nbsp;&nbsp;" .
+                                    $Orden['serie_herramienta'] .
+                                    "</a>
+                            </span>
+                        </div>
                <!--Campo Adicional -->
-               <div class='col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+               <div class='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12'>
                   <label>Adicional:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-puzzle-piece'></i>
@@ -142,6 +152,12 @@
             </div>
             <div>
             </fieldset>
+            <fieldset class='border p-2'>
+            <legend class='w-auto'>Complementarios:</legend>
+            " .
+            nl2br($Orden['complementarios']) .
+            "
+        </fieldset>
             </div>
          </div>
       </div>

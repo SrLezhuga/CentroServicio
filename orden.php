@@ -140,7 +140,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <!--Campo Marca -->
-                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
+                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
                                                                 <label>Marca:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -162,7 +162,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                 </div>
                                                             </div>
                                                             <!--Campo Modelo -->
-                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
+                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
                                                                 <label>Modelo:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -173,8 +173,20 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                     <input type="text" class="form-control" placeholder="Modelo herramienta" name="forOrdMod" required>
                                                                 </div>
                                                             </div>
+                                                            <!--Campo Serie -->
+                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
+                                                                <label>Numero de serie:</label>
+                                                                <div class="input-group ">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">
+                                                                            <i class="fas fa-hashtag"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" placeholder="Serie herramienta" name="forOrdSerie" required>
+                                                                </div>
+                                                            </div>
                                                             <!--Campo Adicional -->
-                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
+                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
                                                                 <label>Adicional*:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -203,7 +215,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                     <legend class='w-auto'>Datos del Servicio:</legend>
                                                     <div class="row">
                                                         <!--Campo diagnostico -->
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col">
                                                             <label>Diagnóstico de la Herramienta:</label>
                                                             <div class="input-group ">
                                                                 <div class="input-group-prepend">
@@ -212,6 +224,18 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                     </span>
                                                                 </div>
                                                                 <textarea rows="2" cols="25" class="form-control" placeholder="Diagnóstico y observaciones de la herramienta entregada" name="forOrdDet" required></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <!--Campo complemento -->
+                                                        <div class="col">
+                                                            <label>Complementos de la Herramienta:</label>
+                                                            <div class="input-group ">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-file-alt"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <textarea rows="2" cols="25" class="form-control" placeholder="Accesorios y complementos de la herramienta entregada" name="forOrdComp" required></textarea>
                                                             </div>
                                                         </div>
                                                         <!--/. form detalles -->

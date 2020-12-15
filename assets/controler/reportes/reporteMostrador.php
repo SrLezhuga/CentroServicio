@@ -3,7 +3,7 @@ session_start();
 
 $fechaIni =  $_POST['forFecIni'];
 $fechaSal =  $_POST['forFecFin'];
-$lista    =  $_POST['fromRepList'];
+$lista    =  $_POST['fromSucList'];
 
 $_SESSION['fechIn']=$fechaIni;
 $_SESSION['fechOut']=$fechaSal;
@@ -20,7 +20,7 @@ $options = new Options();
 $options->set('isRemoteEnabled', TRUE);
 $dompdf = new Dompdf($options);
 
-if ($lista =='EFECTIVO Y TARJETA') {
+if ($lista =='Todas') {
   ob_start();
   include_once 'generarMostradorAll.php';
   $html=ob_get_clean();

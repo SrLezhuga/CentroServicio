@@ -294,6 +294,12 @@ img {
   padding-left: 10em;
   padding-top: 1em;
 }
+a {
+  font-size: 0.8rem;
+}
+label {
+  font-size: 0.8rem;
+}
     </style>
     <body>
         
@@ -302,203 +308,256 @@ img {
             <div class="row"  style="height: 3.5rem;">
                 <div class="col-8">
                     <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1>
-                    
                 </div>
                 <div class="col-4 offset-8 text-right">
                     <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
                     <a>'.$fechaLetra.'</a>
                 </div>
             </div>
-            <div class="row" style="height: 5.5rem;">
+            <div class="row" style="height: 4rem;">
                 <div class="col-8">
-                    <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
-                    <b>RFC MFA030403T73</b><br />
-                    Guadalupe Victoria #31<br />
+                  <a>
+                    <strong>Mayoreo Ferretero Atlas SA de CV</strong>
+                    <br />
+                    <b>RFC MFA030403T73</b>
+                    <br />
+                    Guadalupe Victoria #31
+                    <br />
                     Tel: 33450116 ext 134/124 
+                    <br />
+                  </a>
+                </div>
+                <div class="col-4 offset-8 text-right">
+                  <a>
+                    <br>
+                    <br>
+                    <br>
+                    <b>Mostrador</b>
+                    <br>
+                  </a>
+                </div>
+            </div>
+            <fieldset class="border p-2" style="height: 3.5rem;">
+                <legend class="w-auto"><a><strong>Datos del Cliente:</strong></a></legend>
+                <div class="row">
+                    <div class="col-6">
+                      <a>
+                        <b>Nombre:</b>'.$Cliente['nom_cliente'].'
+                        <br />
+                        <b>Domicilio:</b>'.$Cliente['dir_cliente'].'
+                        <br />
+                        <b>Municipio:</b>'.$Cliente['mun_cliente'].'
+                        <br />
+                        <b>Teléfono:</b>'.$Cliente['tel_cliente'].'
+                        <br />
+                      </a>
+                    </div>
+                    <div class="col-6 offset-6">
+                      <a>
+                        <b>RFC:</b>'.$Cliente['rfc_cliente'].'
+                        <br />
+                        <b>C.P:</b>'.$Cliente['cp_cliente'].'
+                        <br />
+                        <b>Correo:</b>'.$Cliente['mail_cliente'].'
+                        <br />
+                      </a>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="border p-2" style="height: 2.5rem;">
+                <legend class="w-auto"><a><strong>Datos del Servicio:</strong></a></legend>
+                <div class="row">
+                    <div class="col-6">
+                      <a>
+                        <b>Servicio:</b>'.$Orden['tipo_servicio'].'
+                        <br />
+                        <b>Herramienta:</b>'.$Orden['desc_herramienta'].'
+                        <br />
+                        <b>Modelo:</b>'.$Orden['mod_herramienta'].'
+                        <br />
+                      </a>
+                    </div>
+                    <div class="col-6 offset-6">
+                      <a>
+                        <b>Fecha:</b>
+                        '.$Orden['fech_entrada'].'
+                        <br />
+                        <b>Marca:</b>
+                        '.$Orden['marca_herramienta'].'
+                        <br />
+                        <b>Serie:</b>
+                        '.$Orden['serie_herramienta'].'
+                        <br />
+                      </a>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="border p-2" style="height: 2.5rem;">
+                <legend class="w-auto"><a><strong>Complementarios:</strong></a></legend>
+                  <a>
+                    '.$Orden['complementarios'].'
+                    <br />
+                  </a>
+            </fieldset>    
+            <div class="row"  style="height: 4.2rem;">
+              <div class="col-6 text-center" >
+                <a>
+                  <br>Mostrador
+                  <br>_______________________
+                  <br>'.$Mostrador['name_user'].'
+                  <br>
+                  <br>
+                </a>
+              </div>
+              <div class="col-6 offset-6 text-center" >
+                <a>
+                  <br>Cliente
+                  <br>_______________________
+                  <br>'.$Cliente['nom_cliente'].'
+                  <br>
+                  <br>
+                </a>
+              </div>
+            </div>
+            <div class="col-12">
+              <a class="display-1">
+                Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
+                recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                <b>Mayoreo Ferretero Atlas</b> no se hace responsable del producto. Cualquier revision que no sea garantia, causara
+                honorarios.
+                <br>
+              </a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div class="container-fluid img" >
+          <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
+              <div class="row"  style="height: 3.5rem;">
+                  <div class="col-8">
+                      <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1>
+                  </div>
+                  <div class="col-4 offset-8 text-right">
+                      <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
+                      <a>'.$fechaLetra.'</a>
+                  </div>
+              </div>
+              <div class="row" style="height: 4rem;">
+                  <div class="col-8">
+                    <a>
+                      <strong>Mayoreo Ferretero Atlas SA de CV</strong>
+                      <br />
+                      <b>RFC MFA030403T73</b>
+                      <br />
+                      Guadalupe Victoria #31
+                      <br />
+                      Tel: 33450116 ext 134/124 
+                      <br />
                     </a>
                   </div>
                   <div class="col-4 offset-8 text-right">
-                    <br>
-                    <br>
-                    <br>
-                    <a><b>Mostrador</b></a>
+                    <a>
+                      <br>
+                      <br>
+                      <br>
+                      <b>Cliente</b>
+                      <br>
+                    </a>
                   </div>
-            </div>
-            <fieldset class="border p-2" style="height: 4.2rem;">
-                <legend class="w-auto"><strong>Datos del Cliente:</strong></legend>
-                <div class="row">
-                    <div class="col-6">
-                        <label><b>Nombre:</b></label>
-                        <a>'.$Cliente['nom_cliente'].'</a>
-                        <br />
-                        <label><b>Domicilio:</b></label>
-                        <a>'.$Cliente['dir_cliente'].'</a>
-                        <br />
-                        <label><b>Municipio:</b></label>
-                        <a>'.$Cliente['mun_cliente'].'</a>
-                        <br />
-                        <label><b>Teléfono:</b></label>
-                        <a>'.$Cliente['tel_cliente'].'</a>
-                    </div>
-                    <div class="col-6 offset-6">
-                        <label><b>RFC:</b></label>
-                        <a>'.$Cliente['rfc_cliente'].'</a>
-                        <br />
-                        <label><b>C.P:</b></label>
-                        <a>'.$Cliente['cp_cliente'].'</a>
-                        <br />
-                        <label><b>Correo:</b></label>
-                        <a>'.$Cliente['mail_cliente'].'</a>
-                    </div>
+              </div>
+              <fieldset class="border p-2" style="height: 3.5rem;">
+                  <legend class="w-auto"><a><strong>Datos del Cliente:</strong></a></legend>
+                  <div class="row">
+                      <div class="col-6">
+                        <a>
+                          <b>Nombre:</b>'.$Cliente['nom_cliente'].'
+                          <br />
+                          <b>Domicilio:</b>'.$Cliente['dir_cliente'].'
+                          <br />
+                          <b>Municipio:</b>'.$Cliente['mun_cliente'].'
+                          <br />
+                          <b>Teléfono:</b>'.$Cliente['tel_cliente'].'
+                          <br />
+                        </a>
+                      </div>
+                      <div class="col-6 offset-6">
+                        <a>
+                          <b>RFC:</b>'.$Cliente['rfc_cliente'].'
+                          <br />
+                          <b>C.P:</b>'.$Cliente['cp_cliente'].'
+                          <br />
+                          <b>Correo:</b>'.$Cliente['mail_cliente'].'
+                          <br />
+                        </a>
+                      </div>
+                  </div>
+              </fieldset>
+              <fieldset class="border p-2" style="height: 2.5rem;">
+                  <legend class="w-auto"><a><strong>Datos del Servicio:</strong></a></legend>
+                  <div class="row">
+                      <div class="col-6">
+                        <a>
+                          <b>Servicio:</b>'.$Orden['tipo_servicio'].'
+                          <br />
+                          <b>Herramienta:</b>'.$Orden['desc_herramienta'].'
+                          <br />
+                          <b>Modelo:</b>'.$Orden['mod_herramienta'].'
+                          <br />
+                        </a>
+                      </div>
+                      <div class="col-6 offset-6">
+                        <a>
+                          <b>Fecha:</b>
+                          '.$Orden['fech_entrada'].'
+                          <br />
+                          <b>Marca:</b>
+                          '.$Orden['marca_herramienta'].'
+                          <br />
+                          <b>Serie:</b>
+                          '.$Orden['serie_herramienta'].'
+                          <br />
+                        </a>
+                      </div>
+                  </div>
+              </fieldset>
+              <fieldset class="border p-2" style="height: 2.5rem;">
+                  <legend class="w-auto"><a><strong>Complementarios:</strong></a></legend>
+                    <a>
+                      '.$Orden['complementarios'].'
+                      <br />
+                    </a>
+              </fieldset>    
+              <div class="row"  style="height: 4.2rem;">
+                <div class="col-6 text-center" >
+                  <a>
+                    <br>Mostrador
+                    <br>_______________________
+                    <br>'.$Mostrador['name_user'].'
+                    <br>
+                    <br>
+                  </a>
                 </div>
-            </fieldset>
-            <fieldset class="border p-2" style="height: 3.2rem;">
-                <legend class="w-auto"><strong>Datos del Servicio:</strong></legend>
-                <div class="row">
-                    <div class="col-8">
-                        <label><b>Servicio:</b></label>
-                        <a>'.$Orden['tipo_servicio'].'</a>
-                        <br />
-                        <label><b>Herramienta:</b></label>
-                        <a>'.$Orden['desc_herramienta'].'</a>
-                        <br />
-                        <label><b>Modelo:</b></label>
-                        <a>'.$Orden['mod_herramienta'].'</a>
-                    </div>
-                    <div class="col-4 offset-8">
-                        <label><b>Fecha:</b></label>
-                        <a>'.$Orden['fech_entrada'].'</a>
-                        <br />
-                        <label><b>Marca:</b></label>
-                        <a>'.$Orden['marca_herramienta'].'</a>
-                        <br />
-                        <label><b>Adicional:</b></label>
-                        <a>'.$Orden['tipo_herramienta'].'</a>
-                    </div>
+                <div class="col-6 offset-6 text-center" >
+                  <a>
+                    <br>Cliente
+                    <br>_______________________
+                    <br>'.$Cliente['nom_cliente'].'
+                    <br>
+                    <br>
+                  </a>
                 </div>
-            </fieldset>  
-                        <div class="row"  style="height: 6rem;">
-                            <div class="col-6 text-center" >
-                                <p>Mostrador<br>
-                                _______________________<br>
-                                '.$Mostrador['name_user'].'</p>
-                            </div>
-                            <div class="col-6 offset-6 text-center" >
-                                <p>Cliente<br>
-                                _______________________<br>
-                                '.$Cliente['nom_cliente'].'</p>
-                            </div>
-                        </div>
-                <div class="col-12">
-                  <a class="display-1">
-                    Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                    recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                    Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                    honorarios.
-                   </a>
-                </div>
-        </div>
-<br><hr><br>
-        <div class="container-fluid img" >
-            <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
-            <div class="row"  style="height: 3.5rem;">
-                <div class="col-8">
-                    <h1 class="display-4 text-right"><strong>Centro de servicio</strong></h1>
-                    
-                </div>
-                <div class="col-4 offset-8 text-right">
-                    <a class="display-2"><strong>FOLIO:'.$folio.'</strong></a><br>
-                    <a>'.$fechaLetra.'</a>
-                </div>
-            </div>
-            <div class="row" style="height: 5.5rem;">
-              <div class="col-8">
-                <a><strong>Mayoreo Ferretero Atlas SA de CV</strong><br />
-                <b>RFC MFA030403T73</b><br />
-                Guadalupe Victoria #31<br />
-                Tel: 33450116 ext 134/124 
+              </div>
+              <div class="col-12">
+                <a class="display-1">
+                  Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
+                  recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
+                  <b>Mayoreo Ferretero Atlas</b> no se hace responsable del producto. Cualquier revision que no sea garantia, causara
+                  honorarios.
+                  <br>
                 </a>
               </div>
-              <div class="col-4 offset-8 text-right">
-                <br>
-                <br>
-                <br>
-                <a><b>Cliente</b></a>
-              </div>
-            </div>
-            <fieldset class="border p-2" style="height: 4.2rem;">
-                <legend class="w-auto"><strong>Datos del Cliente:</strong></legend>
-                <div class="row">
-                    <div class="col-6">
-                        <label><b>Nombre:</b></label>
-                        <a>'.$Cliente['nom_cliente'].'</a>
-                        <br />
-                        <label><b>Domicilio:</b></label>
-                        <a>'.$Cliente['dir_cliente'].'</a>
-                        <br />
-                        <label><b>Municipio:</b></label>
-                        <a>'.$Cliente['mun_cliente'].'</a>
-                        <br />
-                        <label><b>Teléfono:</b></label>
-                        <a>'.$Cliente['tel_cliente'].'</a>
-                    </div>
-                    <div class="col-6 offset-6">
-                        <label><b>RFC:</b></label>
-                        <a>'.$Cliente['rfc_cliente'].'</a>
-                        <br />
-                        <label><b>C.P:</b></label>
-                        <a>'.$Cliente['cp_cliente'].'</a>
-                        <br />
-                        <label><b>Correo:</b></label>
-                        <a>'.$Cliente['mail_cliente'].'</a>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="border p-2" style="height: 3.2rem;">
-                <legend class="w-auto"><strong>Datos del Servicio:</strong></legend>
-                <div class="row">
-                    <div class="col-8">
-                        <label><b>Servicio:</b></label>
-                        <a>'.$Orden['tipo_servicio'].'</a>
-                        <br />
-                        <label><b>Herramienta:</b></label>
-                        <a>'.$Orden['desc_herramienta'].'</a>
-                        <br />
-                        <label><b>Modelo:</b></label>
-                        <a>'.$Orden['mod_herramienta'].'</a>
-                    </div>
-                    <div class="col-4 offset-8">
-                        <label><b>Fecha:</b></label>
-                        <a>'.$Orden['fech_entrada'].'</a>
-                        <br />
-                        <label><b>Marca:</b></label>
-                        <a>'.$Orden['marca_herramienta'].'</a>
-                        <br />
-                        <label><b>Adicional:</b></label>
-                        <a>'.$Orden['tipo_herramienta'].'</a>
-                    </div>
-                </div>
-            </fieldset>  
-                        <div class="row"  style="height: 6rem;">
-                            <div class="col-6 text-center" >
-                                <p>Mostrador<br>
-                                _______________________<br>
-                                '.$Mostrador['name_user'].'</p>
-                            </div>
-                            <div class="col-6 offset-6 text-center" >
-                                <p>Cliente<br>
-                                _______________________<br>
-                                '.$Cliente['nom_cliente'].'</p>
-                            </div>
-                        </div>
-                <div class="col-12">
-                  <a class="display-1">
-                    Por favor conserve este comprobante ya que de lo contrario no se podrá hacer entrega de su producto; Le recordamos
-                    recoger su producto dentro de los 30 días naturales después de haber sido reparado, pasado 90 días naturales,
-                    Mayoreo Ferretero Atlas no se hace responsable del producto. Cualquier revision que no sea garantia, causara
-                    honorarios.
-                   </a>
-                </div>
         </div>
     </body>
 </html>
