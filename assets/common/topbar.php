@@ -21,6 +21,11 @@
                     Configuración
                 </a>
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#ManualModal">
+                    <i class="fas fa-file-pdf fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Manuales
+                </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Salir
@@ -48,6 +53,95 @@
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary " type="button" data-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
                     <a class="btn btn-outline-danger  " href="../CentroServicio/assets/controler/lockout.php"><i class="fas fa-sign-out-alt"></i> Salir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Manual Modal-->
+<div class="modal fade" id="ManualModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-left-danger shadow ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Manuales de usuario</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Selecciona el manual que desea descargar.
+                    <br><br>
+                    <div class="row text-center">
+                        <?php if ($_SESSION['priv_user']==2) {
+                            echo '
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-store-alt"></i></h1>
+                                <a>Mostrador</a>
+                                <br>
+                                <a href="./assets/controler/manuales/mostrador.php"><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-users"></i></h1>
+                                <a>Administrador</a>
+                                <br>
+                                <a><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-toolbox"></i></h1>
+                                <a>Técnico</a>
+                                <br>
+                                <a><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            ';
+                        }elseif ($_SESSION['priv_user']==3) {
+                            echo '
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-store-alt"></i></h1>
+                                <a>Mostrador</a>
+                                <br>
+                                <a><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-users"></i></h1>
+                                <a>Administrador</a>
+                                <br>
+                                <a><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-toolbox"></i></h1>
+                                <a>Técnico</a>
+                                <br>
+                                <a href="./assets/controler/manuales/tecnico.php"><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>    
+                            ';
+                        }else {
+                            echo '
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-store-alt"></i></h1>
+                                <a>Mostrador</a>
+                                <br>
+                                <a href="./assets/controler/manuales/mostrador.php"><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-users"></i></h1>
+                                <a>Administrador</a>
+                                <br>
+                                <a href="./assets/controler/manuales/admin.php"><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            <div class="col-4">
+                                <h1 style="font-size: 3.5rem;"><i class="fas fa-toolbox"></i></h1>
+                                <a>Técnico</a>
+                                <br>
+                                <a href="./assets/controler/manuales/tecnico.php"><i class="fas fa-file-pdf"></i> Descargar</a>
+                            </div>
+                            ';
+                        }?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-danger " type="button" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
                 </div>
             </div>
         </div>

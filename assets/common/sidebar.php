@@ -12,9 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Informe Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInforme"
-            aria-expanded="true" aria-controls="collapseInforme">
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']!=1) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInforme" aria-expanded="true" aria-controls="collapseInforme">
             <i class="fas fa-fw fa-tachometer-alt"></i>
         </a>
         <div id="collapseInforme" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -30,9 +29,8 @@
     </li>
 
     <!-- Nav Item - Cliente Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCliente"
-            aria-expanded="true" aria-controls="collapseCliente">
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']==3) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCliente" aria-expanded="true" aria-controls="collapseCliente">
             <i class="fas fa-fw fa-address-book"></i>
         </a>
         <div id="collapseCliente" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -49,9 +47,8 @@
     </li>
 
     <!-- Nav Item - Orden Collapse Menu -->
-    <li class="nav-item active" >
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrden" aria-expanded="true"
-            aria-controls="collapseOrden">
+    <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrden" aria-expanded="true" aria-controls="collapseOrden">
             <i class="fas fa-fw fa-edit"></i>
 
         </a>
@@ -62,18 +59,18 @@
                     <span>Orden</span>
                 </div>
                 <!-- Item -->
-                <a class="collapse-item" href="orden" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Nueva orden</a>
+                <a class="collapse-item" href="orden" <?php if ($_SESSION[ 'priv_user']==3) { echo 'style="display: none;"'; }?>>Nueva orden</a>
+                <a class="collapse-item" href="buscar"<?php if ($_SESSION[ 'priv_user']==3) { echo 'style="display: none;"'; }?>>Buscar órdenes</a>
                 <a class="collapse-item" href="listaOrden">Lista órdenes</a>
-                <a class="collapse-item" href="listaPendiente" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Órdenes Prendientes</a>
-                <a class="collapse-item" href="listaCompleta" <?php if ($_SESSION['priv_user']==3) { echo 'style="display: none;"'; }?>>Órdenes Completas</a>
+                <a class="collapse-item" href="listaPendiente" <?php if ($_SESSION[ 'priv_user']==3) { echo 'style="display: none;"'; }?>>Órdenes Prendientes</a>
+                <a class="collapse-item" href="listaCompleta" <?php if ($_SESSION[ 'priv_user']==3) { echo 'style="display: none;"'; }?>>Órdenes Completas</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Prestamo Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrestamo"
-            aria-expanded="true" aria-controls="collapsePrestamo">
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']!=1) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrestamo" aria-expanded="true" aria-controls="collapsePrestamo">
             <i class="fas fa-wrench"></i>
         </a>
         <div id="collapsePrestamo" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -90,9 +87,8 @@
     </li>
 
     <!-- Nav Item - Reportes Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
-            aria-expanded="true" aria-controls="collapseReportes">
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']!=1) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes" aria-expanded="true" aria-controls="collapseReportes">
             <i class="fas fa-fw fa-clipboard"></i>
         </a>
         <div id="collapseReportes" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -108,9 +104,8 @@
     </li>
 
     <!-- Nav Item - Administrador Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministrador"
-            aria-expanded="true" aria-controls="collapseAdministrador">
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']!=1) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministrador" aria-expanded="true" aria-controls="collapseAdministrador">
             <i class="fas fa-fw fa-user-cog"></i>
         </a>
         <div id="collapseAdministrador" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -121,15 +116,15 @@
                 </div>
                 <!-- Item -->
                 <a class="collapse-item" href="usuario">Usuarios</a>
+                <a class="collapse-item" href="sucursales">Sucursales</a>
                 <a class="collapse-item" href="directorio">Directorio</a>
             </div>
         </div>
     </li>
 
-     <!-- Nav Item - Refacciones Collapse Menu || -->
-     <li class="nav-item active" <?php if ($_SESSION['priv_user']!=1 ) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRefacciones"
-            aria-expanded="true" aria-controls="collapseRefacciones">
+    <!-- Nav Item - Refacciones Collapse Menu || -->
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']!=1 ) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRefacciones" aria-expanded="true" aria-controls="collapseRefacciones">
             <i class="fas fa-dolly"></i>
         </a>
         <div id="collapseRefacciones" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -142,14 +137,14 @@
                 <a class="collapse-item" href="refaccion">Alta Refacciones</a>
                 <a class="collapse-item" href="listaRefaccion">Lista Refacciones</a>
                 <a class="collapse-item" href="servicio">Alta Servicios</a>
+                <a class="collapse-item" href="marca">Alta Marca</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Taller Collapse Menu -->
-    <li class="nav-item active" <?php if ($_SESSION['priv_user']==2) { echo 'style="display: none;"'; }?>>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTaller" aria-expanded="true"
-            aria-controls="collapseTaller">
+    <li class="nav-item active" <?php if ($_SESSION[ 'priv_user']==2) { echo 'style="display: none;"'; }?>>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTaller" aria-expanded="true" aria-controls="collapseTaller">
             <i class="fas fa-toolbox"></i>
 
         </a>
@@ -167,3 +162,43 @@
     </li>
 
 </ul>
+
+
+<!-- Modal -->
+<div id="Creador" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content border-left-danger shadow">
+            <div class="modal-body">
+                <h4 class="modal-title text-center"><b>Centro de Servicio</b></h4>
+                <br>
+                <div class="row">
+                    <div class="col-5">
+                        <img class="img-profile rounded-circle" src="http://192.168.0.98/CentroServicio/assets/img/Avatar/0.png" style="width: 100px; height: 100px;">
+                    </div>
+                    <div class="col"> 
+                        <p>
+                            <b>Creado por:</b>
+                            <br>
+                            Brandon Lechuga.
+                            <br>
+                            <b>Para:</b>
+                            <br>
+                            Mayoreo Ferretero.
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("keydown", function(e) {
+        if (e.altKey && e.which === 49) {
+            $('#Creador').modal('toggle');
+        }
+    });
+</script>
