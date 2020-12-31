@@ -15,7 +15,7 @@ WHERE Id_herramienta   = ".$id_herramienta.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/herramienta?alert=1'");
+    header("Location: http://" . $base_url . "/CentroServicio/herramienta?alert=1'");
 }
 
 mysqli_close($con);

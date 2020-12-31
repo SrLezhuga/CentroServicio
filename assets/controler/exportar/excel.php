@@ -26,9 +26,7 @@ $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A1', 'CODIGO')
             ->setCellValue('B1', 'DESCRIPCION')
             ->setCellValue('C1', 'MARCA')
-            ->setCellValue('D1', 'EXISTENCIA')
-            ->setCellValue('E1', 'UNIDAD')
-            ->setCellValue('F1', 'COSTO');
+            ->setCellValue('D1', 'COSTO');
 
 
 $i = 2;
@@ -38,9 +36,7 @@ $refacciones = getQuery();
             ->setCellValue("A$i", $row['cod_refaccion'])
             ->setCellValue("B$i", $row['desc_refaccion'])
             ->setCellValue("C$i", $row['marca_refaccion'])
-            ->setCellValue("D$i", $row['cant_refaccion'])
-            ->setCellValue("E$i", $row['unidad_refaccion'])
-            ->setCellValue("F$i", $row['costo_refaccion']);
+            ->setCellValue("D$i", $row['costo_refaccion']);
         $i++;
     }
 

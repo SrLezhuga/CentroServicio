@@ -40,51 +40,64 @@ echo "
             </div>
         </div>
 
-    </div>
-
-    <div class='row'>
-    <!--Campo municipio -->
-    <div class='col-lg-5 col-md-5 col-sm-12 col-xs-12'>
-        <label>Municipio:</label>
-        <div class='input-group'>
-            <div class='input-group-prepend'>
-                <span class='input-group-text'>
-                    <i class='fas fa-map-marker-alt'></i>
-                </span>
-            </div>
-            <input type='text' class='form-control' placeholder='Municipio' name='formCliMun'  value='".$item['mun_cliente']."' required />
-        </div>
-    </div>
-
-    <!--Campo Codigo Postal -->
-    <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
-        <label>Código Postal:</label>
-        <div class='input-group'>
-            <div class='input-group-prepend'>
-                <span class='input-group-text'>
-                    <i class='fas fa-hashtag'></i>
-                </span>
-            </div>
-            <input type='text' class='form-control' placeholder='Código Postal' name='formCliCP' value='".$item['cp_cliente']."'  required />
-        </div>
-    </div>
-
-    <!--Campo Teléfono -->
+        <!--Campo Col -->
         <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
-            <label>Teléfono:</label>
+            <label>Colonia:</label>
             <div class='input-group '>
                 <div class='input-group-prepend'>
                     <span class='input-group-text'>
-                        <i class='fas fa-phone-alt'></i>
+                        <i class='fas fa-map-marker-alt'></i>
                     </span>
                 </div>
-                <input type='tel' class='form-control' placeholder='Teléfono cliente' name='formCliTel' value='".$item['tel_cliente']."' required>
+                <input type='text' class='form-control'
+                    placeholder='Colonia' name='formCliCol' value='".$item['col_cliente']."' required>
             </div>
         </div>
+
+        <!--Campo municipio -->
+        <div class='col-lg-5 col-md-5 col-sm-12 col-xs-12'>
+            <label>Municipio:</label>
+            <div class='input-group'>
+                <div class='input-group-prepend'>
+                    <span class='input-group-text'>
+                        <i class='fas fa-map-marker-alt'></i>
+                    </span>
+                </div>
+                <input type='text' class='form-control' placeholder='Municipio' name='formCliMun'  value='".$item['mun_cliente']."' required />
+            </div>
+        </div>
+
+        <!--Campo Codigo Postal -->
+        <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
+            <label>Código Postal:</label>
+            <div class='input-group'>
+                <div class='input-group-prepend'>
+                    <span class='input-group-text'>
+                        <i class='fas fa-hashtag'></i>
+                    </span>
+                </div>
+                <input type='text' class='form-control' placeholder='Código Postal' name='formCliCP' value='".$item['cp_cliente']."'  required />
+            </div>
+        </div>
+
+    
 
     </div>
 
     <div class='row'>
+
+    <!--Campo Teléfono -->
+    <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
+        <label>Teléfono:</label>
+        <div class='input-group '>
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='fas fa-phone-alt'></i>
+                </span>
+            </div>
+            <input type='tel' class='form-control' placeholder='Teléfono cliente' name='formCliTel' value='".$item['tel_cliente']."' required>
+        </div>
+    </div>
 
     <!--Campo Correo -->
     <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
@@ -100,7 +113,7 @@ echo "
     </div>
 
         <!--Campo RFC -->
-        <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+        <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
             <label>RFC:</label>
             <div class='input-group '>
                 <div class='input-group-prepend'>

@@ -2,7 +2,7 @@
     function conectar(){
         $servidor = "localhost";
         $usuario = "root";
-        $contra = "";
+        $contra = "May0r30F3rr3t3r0.2021";
         $db = "fma_csa";
 
         $conexion = new mysqli($servidor,$usuario,$contra,$db);

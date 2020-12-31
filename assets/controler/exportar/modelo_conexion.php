@@ -10,7 +10,7 @@ class conexion{
     {
         $this->servidor = "localhost";
         $this->usuario = "root";
-        $this->contra = "";
+        $this->contra = "May0r30F3rr3t3r0.2021";
         $this->db = "fma_csa";
     }
     function conectar(){

@@ -21,8 +21,6 @@
                             <th>Codigo</th>
                             <th>Descripción</th>
                             <th>Marca</th>
-                            <th>Existencia</th>
-                            <th>Unidad</th>
                             <th>Costo</th>
                         </tr>
                     </thead>
@@ -34,15 +32,14 @@
                         $DescripcionRem1 = str_replace("'","-",$Descripcion);
                         $DescripcionRem2 = str_replace('"',"In",$DescripcionRem1);
                         $DescripcionRem3 = str_replace("&","and",$DescripcionRem2);
-                        $DescripcionEx = str_replace(",", "", $DescripcionRem3);
+                        $DescripcionRem4 = str_replace('\\','/',$DescripcionRem3);
+                        $DescripcionRem5 = str_replace('>','-',$DescripcionRem4);
+                        $DescripcionEx = str_replace(",", "", $DescripcionRem5);
                         $Marca = $hoja->getCell('C'.$row)->getValue();
-                        $Cantidad = $hoja->getCell('D'.$row)->getValue();
-                        $Unidad = $hoja->getCell('E'.$row)->getValue();
-                        $UnidadEx = str_replace(",", "", $Unidad);
-                        $Costo = $hoja->getCell('F'.$row)->getValue();
+                        $Costo = $hoja->getCell('D'.$row)->getValue();
                         $CostoEx = str_replace(",", "", $Costo);
 
-                        $query = "SELECT COUNT(*) AS contador, id_refaccion AS id, cod_refaccion AS codigo, desc_refaccion AS descripcion, marca_refaccion AS marca, cant_refaccion AS cantidad, unidad_refaccion AS unidad, costo_refaccion AS costo FROM tab_refaccion WHERE cod_refaccion = '".$Codigo."'";
+                        $query = "SELECT COUNT(*) AS contador, id_refaccion AS id, cod_refaccion AS codigo, desc_refaccion AS descripcion, marca_refaccion AS marca, costo_refaccion AS costo FROM tab_refaccion WHERE cod_refaccion = '".$Codigo."'";
                         $resultado = $con->query($query);
                         $respuesta = $resultado->fetch_assoc();
                         if ($respuesta['contador']=="0") {
@@ -55,9 +52,7 @@
                             echo '<td>'.$Codigo.'</td>'; 
                             echo '<td>'.$DescripcionEx.'</td>';        
                             echo '<td>'.$Marca.'</td>'; 
-                            echo '<td>'.$Cantidad.'</td>'; 
-                            echo '<td>'.$UnidadEx.'</td>'; 
-                            echo '<td>'.$CostoEx.'</td>'; 
+                            echo '<td>$ '.$CostoEx.'</td>'; 
                             echo '</tr>';
                             }
                         }else {
@@ -65,9 +60,7 @@
                             if ($Codigo == $respuesta['codigo'] && 
                                 $DescripcionEx == $respuesta['descripcion'] && 
                                 $Marca == $respuesta['marca'] && 
-                                $Cantidad == $respuesta['cantidad'] && 
-                                $UnidadEx == $respuesta['unidad'] && 
-                                $CostoEx == "$".$respuesta['costo'] ) {
+                                $CostoEx == $respuesta['costo'] ) {
                                 # code...
                             }else{
                             echo '<tr class="table-warning">';
@@ -75,9 +68,7 @@
                             echo '<td>'.$Codigo.'</td>'; 
                             echo '<td>'.$DescripcionEx.'</td>';        
                             echo '<td>'.$Marca.'</td>'; 
-                            echo '<td>'.$Cantidad.'</td>'; 
-                            echo '<td>'.$UnidadEx.'</td>'; 
-                            echo '<td>'.$CostoEx.'</td>'; 
+                            echo '<td>$ '.$CostoEx.'</td>'; 
                             echo '</tr>';
                             }
                         }

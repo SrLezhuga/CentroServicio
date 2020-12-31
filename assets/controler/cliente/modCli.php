@@ -11,6 +11,7 @@ $clienteRfc        = $_POST['formCliRfc'];
 $clienteCP         = $_POST['formCliCP'];
 $clienteMunicipio  = $_POST['formCliMun'];
 $clienteCorreo     = $_POST['formCliMail'];
+$clienteColonia    = $_POST['formCliCol'];
 
 // Consulta segura para evitar inyecciones SQL.
 
@@ -21,12 +22,13 @@ SET   nom_cliente  = '".$clienteNombre."',
       cp_cliente   = '".$clienteCP."',
       tel_cliente  = '".$clienteTelefono."',
       rfc_cliente  = '".$clienteRfc."',
+      col_cliente  = '".$clienteColonia."',
       mail_cliente = '".$clienteCorreo."'
 WHERE id_cliente   = ".$clienteId.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/listaCliente?alert=0'");
+    header("Location: http://" . $base_url . "/CentroServicio/listaCliente?alert=0'");
 }
 
 // close connection

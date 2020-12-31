@@ -13,7 +13,7 @@ $status_herrramienta   = "DISPONIBLE";
 $sql = "INSERT INTO tab_herramienta VALUES ('','$cod_herramienta','$desc_herramienta','$marca_herramienta','$status_herrramienta')";
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/herramienta?alert=0'");
+    header("Location: http://" . $base_url . "/CentroServicio/herramienta?alert=0'");
 }
 
 // close connection
