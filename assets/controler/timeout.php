@@ -16,7 +16,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) &&
     session_unset();
     session_destroy();
     session_start();
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index?alert=1");
+    header("Location: http://" . $base_url . "/CentroServicio/index?alert=1");
 }
 
 /**

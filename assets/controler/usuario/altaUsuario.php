@@ -17,7 +17,7 @@ $usuarioNombres = $usuarioNombre ." ". $usuarioApellido;
 echo $sql = "INSERT INTO tab_users VALUES (NULL,'$usuarioNombres','$usuarioUsuario',SHA1('$usuarioContra'), $usuarioPriv, '1', 0 , '$usuarioSucursal')";
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/usuario.php?alert=0'");
+    header("Location: http://" . $base_url . "/CentroServicio/usuario.php?alert=0'");
 }
 
 // close connection

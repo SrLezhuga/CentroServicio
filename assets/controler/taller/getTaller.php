@@ -23,6 +23,8 @@
        while ($Cliente = mysqli_fetch_array($rsCliente)) {
            
    echo "
+   <img class='img-fluid mx-auto d-block' src='http://192.168.0.98/CentroServicio/assets/img/Logo/logo.webp' 
+      style='position: absolute; z-index: 0; opacity: 0.15; filter: grayscale(1);' onContextMenu='return false;' draggable='false'> 
    <h3 style='color: crimson; text-align: right;'><b>Folio: </b>".$folio."</h3>
    <fieldset class='border p-2'>
     <legend  class='w-auto'>Datos del Cliente:</legend>
@@ -87,7 +89,7 @@
          <div class='col-12'>
             <div class='row'>
                <!--Campo servicio -->
-               <div class='col-xl-6 col-lg-9 col-md-6 col-sm-12 col-xs-6'>
+               <div class='col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12'>
                   <label>Tipo de servicio:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-cogs'></i>
@@ -95,7 +97,7 @@
                   </span>
                </div>
                <!--Campo Fecha -->
-               <div class='col-xl-6 col-lg-9 col-md-6 col-sm-12 col-xs-6'>
+               <div class='col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12'>
                   <label>Fecha:</label>
                   <span class='input-group-text' style='background-color:white'>
                   <i class='fas fa-calendar-alt'></i>

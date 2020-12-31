@@ -111,12 +111,12 @@
     <html>
       <head>
         <title> Centro de Servicio MFA | Reporte</title>
-        <link rel="icon" href="http://localhost/CentroServicio/assets/img/Logo/MFA.ico" />
-        <link rel="stylesheet" href="http://localhost/CentroServicio/assets/controler/reportes/styles.css">
+        <link rel="icon" href="http://192.168.0.98/CentroServicio/assets/img/Logo/MFA.ico" />
+        <link rel="stylesheet" href="http://192.168.0.98/CentroServicio/assets/controler/reportes/styles.css">
       </head>
         <body>
         <div class="row header"  style="height: 2.5rem;">
-        <img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" />
+        <img src="http://192.168.0.98/CentroServicio/assets/img/Logo/logo.png" />
         </div>  
         <div class="container-fluid">
         <h1 class="display-4 text-center"><strong>MAYOREO FERRETERO ATLAS S.A. DE C.V.</strong><br>

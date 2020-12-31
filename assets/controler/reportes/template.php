@@ -12,7 +12,7 @@
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
 <tr>
 <td align="center" bgcolor="#f44336" style="padding: 10px 0 10px 0; color: #ffffff; font-family: Arial, sans-serif; font-size: 38px; line-height: 32px;">
-<img src="http://localhost/CentroServicio/assets/img/Logo/logo.png" width="100" height="100" style="display: block;" />
+<img src="http://192.168.0.98/CentroServicio/assets/img/Logo/logo.png" width="100" height="100" style="display: block;" />
 Mayoreo Ferretero Atlas
 <br>
 S.A. de C.V.
@@ -81,28 +81,28 @@ style="color: #858796; font-family: Arial, sans-serif; font-size: 14px;">
 <tr>
 <td>
 <a href="https://twitter.com/SISTEATLAS?lang=es">
-<img src="http://localhost/CentroServicio/assets/img/Logo/tw.png" alt="Twitter" width="38" height="38"
+<img src="http://192.168.0.98/CentroServicio/assets/img/Logo/tw.png" alt="Twitter" width="38" height="38"
 style="display: block;" border="0" />
 </a>
 </td>
 <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
 <td>
 <a href="https://www.facebook.com/mayoreoferreatlasgdl/">
-<img src="http://localhost/CentroServicio/assets/img/Logo/fb.png" alt="Facebook" width="38" height="38"
+<img src="http://192.168.0.98/CentroServicio/assets/img/Logo/fb.png" alt="Facebook" width="38" height="38"
 style="display: block;" border="0" />
 </a>
 </td>
 <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
 <td>
 <a href="https://www.youtube.com/channel/UCvOGiYvRYUUTkRZC35t28Qg">
-<img src="http://localhost/CentroServicio/assets/img/Logo/yt.png" alt="YouTube" width="38" height="38"
+<img src="http://192.168.0.98/CentroServicio/assets/img/Logo/yt.png" alt="YouTube" width="38" height="38"
 style="display: block;" border="0" />
 </a>
 </td>
 <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
 <td>
 <a href="https://api.whatsapp.com/send?phone=523315731134&fbclid=IwAR0YsC6-ff7ymrT2dyP3KaFyzSDecIoL_6SAivv3ULqBFsmhAMFF6grgcpA">
-<img src="http://localhost/CentroServicio/assets/img/Logo/wp.png" alt="Whatsapp" width="38" height="38"
+<img src="http://192.168.0.98/CentroServicio/assets/img/Logo/wp.png" alt="Whatsapp" width="38" height="38"
 style="display: block;" border="0" />
 </a>
 </td>

@@ -19,7 +19,7 @@ if (mysqli_query($con, $sql)) {
 
     if (mysqli_query($con, $sql)) {
         header("HTTP/1.0 404 Not Found");
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/prestamo?alert=1'");
+        header("Location: http://" . $base_url . "/CentroServicio/prestamo?alert=1'");
     }
 
 }

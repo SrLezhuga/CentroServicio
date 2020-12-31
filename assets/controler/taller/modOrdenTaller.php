@@ -15,7 +15,7 @@ WHERE id_orden = ".$IdOrden.";";
 
 if (mysqli_query($con, $sql)) {
     header("HTTP/1.0 404 Not Found");
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=0'");
+    header("Location: http://" . $base_url . "/CentroServicio/taller?alert=0'");
 }
 
 // close connection

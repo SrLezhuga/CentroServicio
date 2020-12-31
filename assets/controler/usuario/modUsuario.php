@@ -17,7 +17,7 @@ $sql = "UPDATE tab_users
 
         if (mysqli_query($con, $sql)) {
             header("HTTP/1.0 404 Not Found");
-            header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/usuario?alert=1'");
+            header("Location: http://" . $base_url . "/CentroServicio/usuario?alert=1'");
         }
 
 ?>

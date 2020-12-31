@@ -20,7 +20,7 @@ $listSer = "SELECT * FROM tab_servicio WHERE id_servicio = $ServicioId";
 $listUp = "INSERT INTO tab_ordenservicio VALUES (NULL, $OrdenId , '$Codigo', '$Descipcion', $Costo)";     
     if (mysqli_query($con, $listUp)) {
         header("HTTP/1.0 404 Not Found");
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/taller?alert=1'");
+        header("Location: http://" . $base_url . "/CentroServicio/taller?alert=1'");
 }
 
 // close connection

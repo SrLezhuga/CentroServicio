@@ -4,80 +4,28 @@ require_once '../../vendor/PHPMailer/src/Exception.php';
 require_once '../../vendor/PHPMailer/src/PHPMailer.php';
 require_once '../../vendor/PHPMailer/src/SMTP.php';
 
-require_once '../../vendor/dompdf/autoload.inc.php';
-
-$destinatario="Lechuga";
-
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
-use Dompdf\Options;
-
-// instantiate and use the dompdf clas
-$options = new Options();
-$options->set('isRemoteEnabled', TRUE);
-$dompdf = new Dompdf($options);
-
-$html="Hola mundo";
 
 
-$dompdf->loadHtml($html);
-
-// (Optional) Setup the paper size and orientation
-$dompdf->setPaper('Letter', 'portrait');
-
-// Render the HTML as PDF
-$dompdf->render();
-
-// Output the generated PDF to Browser
-
-$output = $dompdf->output(); 
-
-$dompdf->stream('document.pdf',array('Attachment'=>0));
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-//Crear una instancia de PHPMailer
-$mail = new PHPMailer();
-//Definir que vamos a usar SMTP
-$mail->IsSMTP();
-//Esto es para activar el modo depuración. En entorno de pruebas lo mejor es 2, en producción siempre 0
-// 0 = off (producción)
-// 1 = client messages
-// 2 = client and server messages
-$mail->SMTPDebug  = 0;
-//Ahora definimos gmail como servidor que aloja nuestro SMTP
-$mail->Host       = 'smtp.gmail.com';
-//El puerto será el 587 ya que usamos encriptación TLS
-$mail->Port       = 587;
-//Definmos la seguridad como TLS
-$mail->SMTPSecure = 'tls';
-//Tenemos que usar gmail autenticados, así que esto a TRUE
-$mail->SMTPAuth   = true;
-//Definimos la cuenta que vamos a usar. Dirección completa de la misma
-$mail->Username   = "lechupedia@gmail.com";
-//Introducimos nuestra contraseña de gmail
-$mail->Password   = "Poiuytrewq123";
-//Definimos el remitente (dirección y, opcionalmente, nombre)
-$mail->SetFrom('lechupedia@gmail.com', 'Mi nombre');
-//Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
-$mail->AddAddress('brihand.lech@gmail.com', 'El Destinatario');
-//Definimos el tema del email
-$mail->Subject = 'Esto es un correo de prueba';
-//Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
+$folio="000612";
+$remitente="Centro de Servicio MFA";
+$clienteMail="brihand.lech@gmail.com";
+$destinatario="Lechuga";
+$titulo="Orden folio: ".$folio;
 $body = '
 <body style="margin: 0; padding: 0;">
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td>
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="800">
 <tr>
 <td align="center" bgcolor="#f44336" style="padding: 10px 0 10px 0; color: #ffffff; font-family: Arial, sans-serif; font-size: 38px; line-height: 32px;">
-<img src="cid:fma" width="100" height="100" style="display: block;" />
-Mayoreo Ferretero Atlas
-<br>
-S.A. de C.V.
+<img src="cid:fma" width="150" height="150" style="display: block;" />
+<img src="cid:txt" width="300" style="display: block;" />
 </td>
 </tr>
 <tr>
@@ -86,11 +34,15 @@ S.A. de C.V.
 <tr>
 <td>
 Estimado/a '.$destinatario .':
-<br>Se envio una copia de la  orden con el folio XXXXX 
+<br>Se le informa que la orden con el folio '.$folio.' ya esta lista y en espera de ser recogida
+<br>Favor de pasar a recogerla a la brevedad.
+<br>&nbsp;
+<br>Recuerde, pasado 90 días naturales, <b>Mayoreo Ferretero Atlas</b> no se hace
+responsable del producto.
 <br>&nbsp;
 <br>Si tiene dudas, póngase en contacto con el Centro de Servicio.
 <br> &nbsp;
-<br> Mayoreo Ferretero Atlas le agradece su preferencia.
+<br> <b>Mayoreo Ferretero Atlas</b> le agradece su preferencia.
 <br> &nbsp;
 </td>
 </tr>
@@ -103,7 +55,7 @@ style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
 <tr>
 <td style="padding: 20px 0 30px 0;"
 style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-Guadalupe Victoria #31<br>
+Guadalupe Victoria #55<br>
 Tel: 33450116 ext 134/124<br>
 csa@mayoreoferreteroatlas.com<br>
 Lunes a Viernes: 08:30am - 06:00pm<br>
@@ -124,7 +76,7 @@ Mayoreo Ferretero Atlas
 </a>
 <br> &nbsp;
 <br> No responda a este correo electrónico. 
-<br>Para comunicarse con nosotros utilize nuestras redes sociales o comuniquese con las sucursales de Mayoreo Ferretero Atlas.
+<br>Para comunicarse con nosotros utilice nuestras redes sociales o comuníquese con las sucursales de <b>Mayoreo Ferretero Atlas</b>.
 </td>
 </tr>
 </table>
@@ -181,20 +133,49 @@ style="display: block;" border="0" />
 </table>
 </body>
 ';
+$filename = 'Orden'.$folio.'.pdf';
+        $encoding = 'base64';
+        $type = 'application/pdf';
+
+//Crear una instancia de PHPMailer
+$mail = new PHPMailer();
+//Definir que vamos a usar SMTP
+$mail->IsSMTP();
+//Esto es para activar el modo depuración. En entorno de pruebas lo mejor es 2, en producción siempre 0
+// 0 = off (producción)
+// 1 = client messages
+// 2 = client and server messages
+$mail->SMTPDebug  = 0;
+//Ahora definimos gmail como servidor que aloja nuestro SMTP
+$mail->Host       = 'smtp.gmail.com';
+//El puerto será el 587 ya que usamos encriptación TLS
+$mail->Port       = 587;
+//Definmos la seguridad como TLS
+$mail->SMTPSecure = 'tls';
+//Tenemos que usar gmail autenticados, así que esto a TRUE
+$mail->SMTPAuth   = true;
+//Definimos la cuenta que vamos a usar. Dirección completa de la misma
+$mail->Username   = "csa.mayoreoferreteroatlas@gmail.com";
+//Introducimos nuestra contraseña de gmail
+$mail->Password   = "M@y0r30F3rr3t3r0";
+//Definimos el remitente (dirección y, opcionalmente, nombre)
+$mail->SetFrom('csa@mayoreoferreteroatlas.com', $remitente);
+//Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
+$mail->AddAddress($clienteMail, $destinatario);
+//Definimos el tema del email
+$mail->Subject = $titulo;
+//Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
+$mail->Body = $body;
+//Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
+$mail->AltBody = $body;
+$mail->CharSet = 'UTF-8';
+// Attachments
 $mail->addEmbeddedImage(dirname(__FILE__).'/img/logo.png','fma');
+$mail->addEmbeddedImage(dirname(__FILE__).'/img/logo-mfa.png','txt');
 $mail->addEmbeddedImage(dirname(__FILE__).'/img/fb.png','fb');
 $mail->addEmbeddedImage(dirname(__FILE__).'/img/tw.png','tw');
 $mail->addEmbeddedImage(dirname(__FILE__).'/img/yt.png','yt');
 $mail->addEmbeddedImage(dirname(__FILE__).'/img/wp.png','wp');
-$mail->Body = $body;
-//Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
-$mail->AltBody = $body;
-// Attachments
-$filename = 'MyDocument.pdf';
-        $encoding = 'base64';
-        $type = 'application/pdf';
-
-        $mail->AddStringAttachment($output,$filename,$encoding,$type);
 //Enviamos el correo
 if(!$mail->Send()) {
   echo "Error: " . $mail->ErrorInfo;

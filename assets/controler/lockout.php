@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/index?alert=0");
+header("Location: http://192.168.0.98/CentroServicio/index?alert=0");
 
 ?>

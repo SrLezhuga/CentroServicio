@@ -18,18 +18,18 @@ $Pass['pass_user'];
 
 if ($Pass['pass_user']==$encry) {
     if ($passN1==$passN2) {
-            $sql = "UPDATE tab_users
-            SET   pass_user  = SHA1($passN1)
+           echo $sql = "UPDATE tab_users
+            SET   pass_user  = SHA1('$passN1')
             WHERE code_user   = ".$user.";";
         if (mysqli_query($con, $sql)) {
             header("HTTP/1.0 404 Not Found");
-            header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/ajustes?alert=2'");
+            header("Location: http://" . $base_url . "/CentroServicio/ajustes?alert=2'");
         }
     }else {
-        header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/ajustes?alert=1'");
+        header("Location: http://" . $base_url . "/CentroServicio/ajustes?alert=1'");
     }
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/ajustes?alert=0'");
+    header("Location: http://" . $base_url . "/CentroServicio/ajustes?alert=0'");
 }
 
 // close connection

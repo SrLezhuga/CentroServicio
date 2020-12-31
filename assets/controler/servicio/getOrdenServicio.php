@@ -38,7 +38,7 @@ echo "
         <label>Marca:</label>
         <span class='input-group-text' style='background-color: white;'>
         <i class='fas fa-dollar-sign'></i>
-          <a>&nbsp;&nbsp;".$item['costo_servicio'].".00</a>
+          <a>&nbsp;&nbsp;".$item['costo_servicio']."</a>
         </span>
       </div></div>
     </div>

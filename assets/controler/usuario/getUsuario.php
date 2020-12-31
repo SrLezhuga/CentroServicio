@@ -56,7 +56,7 @@ echo '
                 <input type="text" class="form-control" placeholder="Usuario" name="formUseUsu" required value="'. $item['nick_user'] .'">
             </div>
         </div>
-
+ 
         <!--Campo Sucursal -->
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <label>Sucursal:</label>
@@ -66,8 +66,20 @@ echo '
                         <i class="fas fa-store-alt"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Sucursal" name="formUseSuc" required value="'. $item['sucursal_user'] .'">
-            </div>
+                <select name="formUseSuc" class="custom-select" required>';
+                $listSuc = "SELECT * FROM tab_sucursal ORDER BY nom_sucursal ASC";
+                $rsSuc = mysqli_query($con, $listSuc) or die("Error de consulta");
+                while ($itemSuc = mysqli_fetch_array($rsSuc)) {
+                    if ($item['sucursal_user']==$itemSuc['nom_sucursal']) {
+                        $selected="selected";
+                    }else{
+                        $selected="";
+                    }
+                    echo "<option value='" . $itemSuc[1] . "' $selected >" . $itemSuc[1] . "</option>";
+                } 
+                echo '
+                </select>
+                </div>
         </div>
 
         <!--Campo Contraseña -->
