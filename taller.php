@@ -4,7 +4,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['priv_user'] == 3) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 
 $ordenPendiente = "SELECT taller FROM tab_users WHERE code_user=" . $_SESSION['code_user'];
@@ -105,9 +105,9 @@ $id = $pendiente['taller']; ?>
                                                 </legend>
                                                 <div class="row">
                                                     <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                        <label>Ver Folio de la Orden:</label>
+                                                        <label>Orden:</label>
                                                         <button type="button" class="btn btn-outline-secondary btn-block BtnOrdenTaller" data-toggle="modal" data-target="#modalOrdenTaller" value=<?php echo $id; ?>><i class="fas fa-eye"></i>
-                                                            Ver Orden</button>
+                                                            Ver</button>
                                                     </div>
                                                     <div class="col-xl-8 col-md-8 col-sm-12 col-lg-8">
                                                         <label>Estado de la Orden:</label>
@@ -131,8 +131,8 @@ $id = $pendiente['taller']; ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                        <label>Actualizar Orden:</label>
-                                                        <button type='button' class='btn btn-outline-danger btn-block BtnStatus' data-toggle='modal' data-target='#modalStatusOrden ' value='<?php echo $id; ?>'>
+                                                        <label>Orden:</label>
+                                                        <button type='submit' class='btn btn-outline-danger btn-block BtnStatus' data-toggle='modal' data-target='#modalStatusOrden ' value='<?php echo $id; ?>'>
                                                             <i class='fas fa-sync-alt'>Actualizar</i></button>
                                                     </div>
                                                 </div>
@@ -154,23 +154,19 @@ $id = $pendiente['taller']; ?>
                                                                 </div>
                                                                 <select name="fromRefId" class="mi-selector custom-select" required>
                                                                     <option value="" selected disabled>Seleccione refaccion</option>
-                                                                    <?php $listRef = "SELECT * FROM tab_refaccion ORDER BY cant_refaccion ASC";
+                                                                    <?php $listRef = "SELECT * FROM tab_refaccion ORDER BY desc_refaccion ASC";
                                                                     $rsRef = mysqli_query($con, $listRef) or die("Error de consulta");
                                                                     while ($itemRef = mysqli_fetch_array($rsRef)) {
-                                                                        if ($itemRef['cant_refaccion'] == 0) {
-                                                                            echo "<option disabled>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . "</option>";
-                                                                        } else {
                                                                             echo "<option value='" . $itemRef['id_refaccion'] . "'>" . $itemRef['cod_refaccion'] . " | " . $itemRef['desc_refaccion'] . " | " . $itemRef['marca_refaccion'] . " | $ " . $itemRef['costo_refaccion'] . "</option>";
-                                                                        }
                                                                     } ?>
                                                                 </select>
                                                                 <input type="hidden" name="formOrdId" required value=<?php echo $id; ?>>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-2 col-md-2 col-sm-2 col-lg-2">
-                                                            <label>Agregar:</label>
+                                                            <label>Refacción:</label>
                                                             <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-cog"></i>
-                                                                Refacción</button>
+                                                            Agregar</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -204,9 +200,9 @@ $id = $pendiente['taller']; ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-2 col-md-2 col-sm-2 col-lg-2">
-                                                            <label>Agregar:</label>
+                                                            <label>Servicio:</label>
                                                             <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-concierge-bell"></i>
-                                                                Servicio</button>
+                                                            Agregar</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -240,7 +236,7 @@ $id = $pendiente['taller']; ?>
                                                                 <tr>
                                                                     <td>" . $servicio['cod_servicio'] . "</td>
                                                                     <td>" . $servicio['desc_servicio'] . "</td>
-                                                                    <td>$ " . $servicio['costo_servicio'] . ".00</td>
+                                                                    <td>$ " . $servicio['costo_servicio'] . "</td>
                                                                     <td> 
                                                                         <button type='button' class='btn btn-outline-light text-dark btn-sm BtnServicio' data-toggle='modal' data-target='#modalDownServicio 'value='" . $id . "|" . $servicio['cod_servicio'] . "'>
                                                                         <i class='fas fa-trash-alt'></i></button>
@@ -282,7 +278,7 @@ $id = $pendiente['taller']; ?>
                                                                             <td>" . $refaccion['cod_refaccion'] . "</td>        
                                                                             <td>" . $refaccion['desc_refaccion'] . "</td>
                                                                             <td>" . $refaccion['marca_refaccion'] . "</td>
-                                                                            <td>$ " . $refaccion['costo_refaccion'] . ".00</td>
+                                                                            <td>$ " . $refaccion['costo_refaccion'] . "</td>
                                                                             <td> 
                                                                                 <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccion' data-toggle='modal' data-target='#modalDownRefaccion 'value='" . $id . "|" . $codigoRefaccion . "'>
                                                                                 <i class='fas fa-trash-alt'></i></button>
@@ -316,14 +312,13 @@ $id = $pendiente['taller']; ?>
                                                                         $queryDetalle = "SELECT detalle_servicio FROM tab_orden WHERE id_Orden=" . $id . ";";
                                                                         $rsDetalle = mysqli_query($con, $queryDetalle) or die("Error de consulta");
                                                                         $Detalle = mysqli_fetch_array($rsDetalle); ?>
-                                                                        <textarea rows="2" class="form-control" placeholder="Diagnostico y observaciones de la herramienta" name="forObs" required><?php echo $Detalle[0]; ?></textarea>
+                                                                        <textarea rows="3" class="form-control" placeholder="Diagnostico y observaciones de la herramienta" name="forObs" required><?php echo $Detalle[0]; ?></textarea>
                                                                         <input type="hidden" required name="formMun" value=<?php echo $id; ?>>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-xl-2 col-md-2 col-sm-12 col-lg-2">
-                                                                    <label>Agregar Nota:</label>
-                                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-alt"></i> Agregar
-                                                                        Observación
+                                                                    <label>Actualizar:</label>
+                                                                    <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-alt"></i> Nota
                                                                     </button>
                                                                 </div>
                                                             </div>

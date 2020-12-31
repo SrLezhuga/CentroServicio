@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                     <h1 class='h3 text-gray-800'>Nueva Refacción</h1>
                                     <br>
 
-                                    <form class="form" id="cleanForm" action="assets/controler/refaccion/altarefaccion.php" method="POST">
+                                    <form class="form" id="cleanForm" action="assets/controler/refaccion/altaRefaccion.php" method="POST">
 
                                         <!-- form refaccion -->
                                         <fieldset class='border p-2'>
@@ -109,42 +109,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                             <?php $listMarca = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
                                                             $rsMarca = mysqli_query($con, $listMarca) or die("Error de consulta");
                                                             while ($itemMarca = mysqli_fetch_array($rsMarca)) {
-                                                                echo "<option value='" . $itemMarca[0] . "'>" . $itemMarca[0] . "</option>";
+                                                                echo "<option value='" . $itemMarca[1] . "'>" . $itemMarca[1] . "</option>";
                                                             } ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <!--Campo Cantidad -->
-                                                <div class="col">
-                                                    <label>Cantidad:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-hashtag"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="number" class="form-control" placeholder="Cantidad en stock" max="50" min="1" name="forRefCan" required>
-                                                    </div>
-                                                </div>
-
-                                                <!--Campo Unidad -->
-                                                <div class="col">
-                                                    <label>Unidad:</label>
-                                                    <div class="input-group ">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="fas fa-puzzle-piece"></i>
-                                                            </span>
-                                                        </div>
-                                                        <select name="forRefUni" class="custom-select" required>
-                                                            <option value="" selected disabled>seleccione unidad
-                                                            </option>
-                                                            <option value="PIEZA">PIEZA</option>
-                                                            <option value="CAJA">CAJA</option>
-                                                            <option value="OTRO">OTRO</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -303,7 +269,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                 title: 'Cargando datos',
                 allowEscapeKey: false,
                 allowOutsideClick: false,
-                timer: 50000,
+                timer: 500000,
                 showConfirmButton: false,
                 willOpen: () => {
                     swal.showLoading();
@@ -334,7 +300,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                 title: 'Cargando datos',
                 allowEscapeKey: false,
                 allowOutsideClick: false,
-                timer: 50000,
+                timer: 500000,
                 showConfirmButton: false,
                 willOpen: () => {
                     swal.showLoading();
@@ -346,8 +312,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
             var arreglo_codigo = new Array();
             var arreglo_descripcion = new Array();
             var arreglo_marca = new Array();
-            var arreglo_cantidad = new Array();
-            var arreglo_unidad = new Array();
             var arreglo_costo = new Array();
 
             $("#tabla_detalle tbody#tbody_tabla_detalle tr").each(function() {
@@ -355,9 +319,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                 arreglo_codigo.push($(this).find("td").eq(1).text());
                 arreglo_descripcion.push($(this).find("td").eq(2).text());
                 arreglo_marca.push($(this).find("td").eq(3).text());
-                arreglo_cantidad.push($(this).find("td").eq(4).text());
-                arreglo_unidad.push($(this).find("td").eq(5).text());
-                arreglo_costo.push($(this).find("td").eq(6).text());
+                arreglo_costo.push($(this).find("td").eq(4).text());
                 contador++;
             });
 
@@ -373,8 +335,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
             var codigo = arreglo_codigo.toString();
             var descripcion = arreglo_descripcion.toString();
             var marca = arreglo_marca.toString();
-            var cantidad = arreglo_cantidad.toString();
-            var unidad = arreglo_unidad.toString();
             var costo = arreglo_costo.toString();
 
             $.ajax({
@@ -385,8 +345,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                     codi: codigo,
                     desc: descripcion,
                     marc: marca,
-                    cant: cantidad,
-                    unid: unidad,
                     cost: costo
                 }
             }).done(function(resp) {
@@ -419,24 +377,22 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
-            toastr["success"]("Se registró la refacción")
-        </script>
-    <?php }
-    if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
-        <script>
-            toastr["success"]("Se modificó la refacción")
-        </script>
-    <?php }
-    if (isset($_GET['alert']) && $_GET['alert'] == 2) { ?>
-        <script>
-            toastr["success"]("Se eliminó la refacción")
+        Swal.fire(
+                    "Mensaje de confirmación",
+                    "Se registró la refacción",
+                    "success"
+                );
         </script>
     <?php } ?>
     <script>
         //Limpiar formularios
         function clean() {
             document.getElementById("cleanForm").reset();
-            toastr["success"]("Formulario vacío")
+            Swal.fire(
+                    "Mensaje de confirmación",
+                    "Formulario vacío",
+                    "success"
+                );
         }
     </script>
 </body>

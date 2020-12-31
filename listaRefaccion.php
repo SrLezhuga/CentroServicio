@@ -2,7 +2,7 @@
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -62,8 +62,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                     <th>Codigo</th>
                                                     <th>Descripción</th>
                                                     <th>Marca</th>
-                                                    <th>Cantidad</th>
-                                                    <th>Unidad</th>
                                                     <th>Costo</th>
                                                     <th>Acción</th>
                                                 </tr>
@@ -74,19 +72,18 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                                                         $rsrefaccion = mysqli_query($con, $queryrefaccion) or die ("Error de consulta"); 
                                                             while ($refaccion = mysqli_fetch_array($rsrefaccion)) {
 
-                                                                if($refaccion['cant_refaccion']==0){
+                                                                /*if($refaccion['cant_refaccion']==0){
                                                                     echo "<tr class='table-danger' style='color: brown;'>";
                                                                     $disable="";
                                                                 }else{
                                                                     echo "<tr>";
                                                                     $disable="disabled";
-                                                                }
+                                                                }*/
+                                                                $disable="";
                                                                 echo "
                                                                         <td>".$refaccion['cod_refaccion']."</td>        
                                                                         <td>".$refaccion['desc_refaccion']."</td>
                                                                         <td>".$refaccion['marca_refaccion']."</td>
-                                                                        <td>".$refaccion['cant_refaccion']."</td>
-                                                                        <td>".$refaccion['unidad_refaccion']."</td>
                                                                         <td>$ ".$refaccion['costo_refaccion']."</td>
                                                                         <td> 
                                                                             <button type='button' class='btn btn-outline-light text-dark btn-sm BtnRefaccionMod' data-toggle='modal' data-target='#modalRefaccionMod'value='".$refaccion['id_refaccion']."'>
@@ -233,7 +230,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     <script>
         Swal.fire(
                     "Mensaje de confirmación",
-                    "SSe eliminó la refacción",
+                    "Se eliminó la refacción",
                     "success"
                 );
     </script>

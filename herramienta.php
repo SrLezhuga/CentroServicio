@@ -1,9 +1,9 @@
 <?php session_start();
-include("assets/controler/conexion.php");
-if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
+include "assets/controler/conexion.php";
+if ((isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) || $_SESSION['priv_user'] == 2) {
     # code...
-}else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+} else {
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
 <head>
     <title> Centro de Servicio MFA | Préstamos</title>
-    <?php include_once("assets/common/header.php"); ?>
+    <?php include_once "assets/common/header.php"; ?>
 </head>
 
 <body id="page-top">
@@ -20,7 +20,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include("assets/common/sidebar.php"); ?>
+        <?php include "assets/common/sidebar.php"; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -30,7 +30,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include("assets/common/topbar.php"); ?>
+                <?php include "assets/common/topbar.php"; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -100,11 +100,13 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                         <select name="forHerMar" class="custom-select" required>
                                                             <option value="" selected disabled>Seleccione marca</option>
                                                             <option value="GENERICA">GENERICA</option>
-                                                            <?php $listCli = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
-                                                            $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
+                                                            <?php
+                                                            $listCli = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
+                                                            ($rsCli = mysqli_query($con, $listCli)) or die("Error de consulta");
                                                             while ($itemCli = mysqli_fetch_array($rsCli)) {
-                                                                echo "<option value='" . $itemCli[0] . "'>" . $itemCli[0] . "</option>";
-                                                            } ?>
+                                                                echo "<option value='" . $itemCli[1] . "'>" . $itemCli[1] . "</option>";
+                                                            }
+                                                            ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -158,28 +160,45 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                             <tbody>
                                                 <?php
                                                 $queryHerramienta = "SELECT * FROM tab_herramienta";
-                                                $rsHerramienta = mysqli_query($con, $queryHerramienta) or die("Error de consulta");
+                                                ($rsHerramienta = mysqli_query($con, $queryHerramienta)) or die("Error de consulta");
                                                 while ($Herramienta = mysqli_fetch_array($rsHerramienta)) {
                                                     if ($Herramienta['status_herramienta'] == "DISPONIBLE") {
-                                                        $disable="";
-                                                    }else {
-                                                        $disable="disabled";
+                                                        $disable = "";
+                                                    } else {
+                                                        $disable = "disabled";
                                                     }
                                                     echo "
                                             <tr>
-                                                    <td>" . $Herramienta['cod_herramienta'] . "</td>
-                                                    <td>" . $Herramienta['desc_herramienta'] . "</td>
-                                                    <td>" . $Herramienta['marca_herramienta'] . "</td>
-                                                    <td>" . $Herramienta['status_herramienta'] . "</td>
+                                                    <td>" .
+                                                        $Herramienta['cod_herramienta'] .
+                                                        "</td>
+                                                    <td>" .
+                                                        $Herramienta['desc_herramienta'] .
+                                                        "</td>
+                                                    <td>" .
+                                                        $Herramienta['marca_herramienta'] .
+                                                        "</td>
+                                                    <td>" .
+                                                        $Herramienta['status_herramienta'] .
+                                                        "</td>
                                                     <td>
-                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" . $Herramienta['Id_herramienta'] . " " . $disable . ">
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnHerramienta' data-toggle='modal' data-target='#modalHerramienta'value=" .
+                                                        $Herramienta['Id_herramienta'] .
+                                                        " " .
+                                                        $disable .
+                                                        ">
                                                     <i class='fas fa-pencil-alt'></i></button>
-                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnDel' data-toggle='modal' data-target='#modalDel'value=" . $Herramienta['Id_herramienta'] . " " . $disable . ">
+                                                    <button type='button' class='btn btn-outline-light text-dark btn-sm BtnDel' data-toggle='modal' data-target='#modalDel'value=" .
+                                                        $Herramienta['Id_herramienta'] .
+                                                        " " .
+                                                        $disable .
+                                                        ">
                                                     <i class='fas fa-trash-alt'></i></i></button>
                                                     </td>
                                                 </tr>
                                             ";
-                                                } ?>
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -204,7 +223,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php include_once("assets/common/foter.php"); ?>
+            <?php include_once "assets/common/foter.php"; ?>
             <!-- End of Footer -->
 
         </div>

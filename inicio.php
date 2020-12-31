@@ -2,7 +2,7 @@
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2 ||  $_SESSION['priv_user']==3 ) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 include("assets/controler/conexion.php"); ?>
 <!DOCTYPE html>
@@ -58,15 +58,48 @@ include("assets/controler/conexion.php"); ?>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <?php 
-                                                    $user = $_SESSION['name_user'];
-                                                    $countPendientes = "SELECT COUNT(*) FROM tab_orden WHERE  status_orden = 'PxP' OR status_orden = 'PxA' OR status_orden = 'AUTORIZADA PxP' OR status_orden = 'EN TALLER'";
-                                                    $rsPendientes = mysqli_query($con, $countPendientes) or die("Error de consulta");
-                                                    $itemPendientes = mysqli_fetch_array($rsPendientes);
-                                                    $pendientes = $itemPendientes[0];
-                                                 ?>
+                                                <script type="text/javascript">
+                                                $(document).ready(function() {
+                                                    function changeNumber() {
+                                                        value = $('#pendiente').text();
+                                                        value = $('#espera').text();
+                                                        value = $('#completa').text();
+                                                        value = $('#total').text();
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "./assets/controler/inicio/pendiente.php",
+                                                            success: function(data) {
+                                                                $('#pendiente').text(data);
+                                                            }
+                                                        });
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "./assets/controler/inicio/espera.php",
+                                                            success: function(data) {
+                                                                $('#espera').text(data);
+                                                            }
+                                                        });
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "./assets/controler/inicio/completa.php",
+                                                            success: function(data) {
+                                                                $('#completa').text(data);
+                                                            }
+                                                        });
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "./assets/controler/inicio/total.php",
+                                                            success: function(data) {
+                                                                $('#total').text(data);
+                                                            }
+                                                        });
+                                                    }
+                                                    setInterval(changeNumber, 3000);
+                                                });
+                                                </script>
                                                     <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $pendientes; ?></div>
+                                                        <span id="pendiente">0</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,15 +121,9 @@ include("assets/controler/conexion.php"); ?>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <?php 
-                                                    $user = $_SESSION['name_user'];
-                                                    $countPendientes = "SELECT COUNT(*) FROM tab_orden WHERE  status_orden = 'EN ESPERA'";
-                                                    $rsPendientes = mysqli_query($con, $countPendientes) or die("Error de consulta");
-                                                    $itemPendientes = mysqli_fetch_array($rsPendientes);
-                                                    $pendientes = $itemPendientes[0];
-                                                 ?>
                                                     <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $pendientes; ?></div>
+                                                        <span id="espera">0</span>    
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,15 +145,9 @@ include("assets/controler/conexion.php"); ?>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <?php 
-                                                    $user = $_SESSION['name_user'];
-                                                    $countCompletas = "SELECT COUNT(*) FROM tab_orden WHERE status_orden = 'ENTREGADA' OR status_orden = 'CANCELADA' OR status_orden = 'REPARADA'";
-                                                    $rsCompletas = mysqli_query($con, $countCompletas) or die("Error de consulta");
-                                                    $itemCompletas = mysqli_fetch_array($rsCompletas);
-                                                    $completas=$itemCompletas[0];
-                                                 ?>
                                                     <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $completas; ?></div>
+                                                        <span id="completa">0</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,14 +170,9 @@ include("assets/controler/conexion.php"); ?>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <?php 
-                                                    $countTotal = "SELECT COUNT(*) FROM tab_orden WHERE  status_orden != 'ENTREGADA' OR status_orden != 'CANCELADA' OR status_orden != 'REPARADA'";
-                                                    $rsTotal = mysqli_query($con, $countTotal) or die("Error de consulta");
-                                                    $itemTotal = mysqli_fetch_array($rsTotal);
-                                                    $total=$itemTotal[0];
-                                                 ?>
                                                     <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $total; ?></div>
+                                                        <span id="total">0</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

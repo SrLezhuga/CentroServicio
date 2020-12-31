@@ -2,7 +2,7 @@
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -92,8 +92,22 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
 
                                             <div class="row">
 
+                                                <!--Campo Col -->
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                    <label>Colonia:</label>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-map-marker-alt"></i>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Colonia" name="formCliCol"  required>
+                                                    </div>
+                                                </div>
+
                                                 <!--Campo municipio -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                                     <label>Municipio:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -120,6 +134,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                     </div>
                                                 </div>
 
+                                            </div>
+
+                                            <div class="row">
+
+                                            
                                                 <!--Campo Teléfono -->
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label>Teléfono:</label>
@@ -134,10 +153,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row">
-
                                                 <!--Campo Correo -->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <label>Correo:</label>
@@ -148,12 +163,12 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="email" class="form-control"
-                                                            placeholder="Correo cliente" name="formCliMail" required>
+                                                            placeholder="Correo cliente" name="formCliMail" value="Sin@Correo.com" required>
                                                     </div>
                                                 </div>
 
                                                 <!--Campo RFC -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label>Rfc:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -162,14 +177,18 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Rfc cliente" name="formCliRfc" required>
+                                                            placeholder="Rfc cliente" name="formCliRfc" value="Sin capturar" required>
                                                     </div>
                                                 </div>
 
                                                 <!-- /. form cliente -->
+                                                
                                             </div>
 
                                             <br>
+                                            <div class="alert alert-info" style="text-align: center;">
+                                                        <strong>Nota:</strong> Si el cliente no cuenta con RFC o Correo este se capturara con valores por defecto.
+                                                    </div>
                                             <hr>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -180,7 +199,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                 <br>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <button type="submit" class="btn btn-outline-danger btn-block"><i
-                                                            class="fas fa-paper-plane"></i> Enviar</button>
+                                                            class="fas fa-paper-plane"></i> Guardar</button>
                                                 </div>
                                             </div>
 

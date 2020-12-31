@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -130,9 +130,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                     </div>
                                                     <select name="fromSucList" class="custom-select" required>
                                                         <option value="Todas">Todas las sucursales</option>
-                                                        <option value="MFA">MFA</option>
-                                                        <option value="MILWAUKEE">MILWAUKEE</option>
-                                                        <option value="URREA">URREA</option>
+                                                        <?php $listSuc = "SELECT * FROM tab_sucursal ORDER BY nom_sucursal ASC";
+                                                        $rsSuc = mysqli_query($con, $listSuc) or die("Error de consulta");
+                                                        while ($itemSuc = mysqli_fetch_array($rsSuc)) {
+                                                            echo "<option value='" . $itemSuc[1] . "'>" . $itemSuc[1] . "</option>";
+                                                        } ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -225,8 +227,91 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                         </div>
                         <br>
 
+                        <!-- Formulario orden -->
+                        <div class="col-xl-6 col-md-6 mb-3">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Refacciones</h1>
+                                    <br>
+                                    <form class="form" id="cleanForm" action="assets/controler/reportes/reporteRefacciones.php" method="POST" target="_blank">
+                                        <h5><b>Datos del reporte</b></h5>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Marca:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepInventario" class="custom-select" required>
+                                                        <option value="Todos" selected >Todas las marcas </option>
+                                                        <?php $listCli = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
+                                                        $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
+                                                        while ($itemCli = mysqli_fetch_array($rsCli)) {
+                                                            echo "<option value='" . $itemCli[1] . "'>" . $itemCli[1] . "</option>";
+                                                        } ?>
+                                                    </select>
+                                                </div>
+                                                <label>Estado del inventario:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepStock" class="custom-select" required>
+                                                        <option value=">=1">Con Stock</option>
+                                                        <option value="=0" disabled>Sin Stock</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <br>
+
+                        <!-- Formulario orden -->
+                        <div class="col-xl-6 col-md-6 mb-3">
+                            <div class="card border-left-danger shadow ">
+                                <div class="card-body">
+                                    <h1 class='h3 text-gray-800'>Servicios</h1>
+                                    <br>
+                                    <form class="form" id="cleanForm" action="assets/controler/reportes/reporteServicios.php" method="POST" target="_blank">
+                                        <h5><b>Datos del reporte</b></h5>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Servicios:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-stethoscope"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select name="RepServicio" class="custom-select" required>
+                                                        <option value="Todos">Todos los servicios</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br><br><br><br>
+                                        <hr>
+                                        <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
                         <!-- Reporte Clientes -->
-                        <div class="col-xl-3 col-md-3 mb-3">
+                        <div class="col-xl-6 col-md-6 mb-3">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
                                     <h1 class='h3 text-gray-800'>Clientes</h1>
@@ -245,7 +330,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 <option value="DESc">Orden Z - A</option>
                                             </select>
                                         </div>
-                                        <br><br><br><br>
+                                        <br>
                                         <hr>
                                         <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
                                     </form>
@@ -257,7 +342,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                         <br>
 
                         <!-- Formulario orden -->
-                        <div class="col-xl-3 col-md-3 mb-3">
+                        <div class="col-xl-6 col-md-6 mb-3">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
                                     <h1 class='h3 text-gray-800'>Usuarios</h1>
@@ -282,101 +367,14 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <br><br><br><br>
-                                        <hr>
-                                        <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-
-                        <!-- Formulario orden -->
-                        <div class="col-xl-3 col-md-3 mb-3">
-                            <div class="card border-left-danger shadow ">
-                                <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Refacciones</h1>
-                                    <br>
-                                    <form class="form" id="cleanForm" action="assets/controler/reportes/reporteRefacciones.php" method="POST" target="_blank">
-                                        <h5><b>Datos del reporte</b></h5>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Marca:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-stethoscope"></i>
-                                                        </span>
-                                                    </div>
-                                                    <select name="RepInventario" class="custom-select" required>
-                                                        <option value="Todos" selected >Todas las marcas </option>
-                                                        <option value="MFA">MFA</option>
-                                                        <?php $listCli = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
-                                                        $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
-                                                        while ($itemCli = mysqli_fetch_array($rsCli)) {
-                                                            echo "<option value='" . $itemCli[0] . "'>" . $itemCli[0] . "</option>";
-                                                        } ?>
-                                                    </select>
-                                                </div>
-                                                <label>Estado del inventario:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-stethoscope"></i>
-                                                        </span>
-                                                    </div>
-                                                    <select name="RepStock" class="custom-select" required>
-                                                        <option value=">=1">Con Stock</option>
-                                                        <option value="=0">Sin Stock</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <br>
                                         <hr>
                                         <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
                                     </form>
                                 </div>
                             </div>
-                            <br>
-                        </div>
-
-                        <br>
-
-                        <!-- Formulario orden -->
-                        <div class="col-xl-3 col-md-3 mb-3">
-                            <div class="card border-left-danger shadow ">
-                                <div class="card-body">
-                                    <h1 class='h3 text-gray-800'>Servicios</h1>
-                                    <br>
-                                    <form class="form" id="cleanForm" action="assets/controler/reportes/reporteServicios.php" method="POST" target="_blank">
-                                        <h5><b>Datos del reporte</b></h5>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Estado orden:</label>
-                                                <div class="input-group ">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-stethoscope"></i>
-                                                        </span>
-                                                    </div>
-                                                    <select name="RepServicio" class="custom-select" required>
-                                                        <option value="Todos">Todos los servicios</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br><br><br><br>
-                                        <hr>
-                                        <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-file-pdf"></i> Generar Reporte</button>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                         <br>
-
-
 
 
                     </div>

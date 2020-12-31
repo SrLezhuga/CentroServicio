@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -233,16 +233,26 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                             <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
                                 <label>Pago:</label>
                                 <div class='input-group '>
-
-                                    <input type='checkbox' checked data-toggle='toggle' data-width='240' name='pago' data-onstyle='outline-danger' data-offstyle='outline-secondary' data-on="<i class='far fa-money-bill-alt'></i> Efectivo" data-off="<i class='far fa-credit-card'></i> Tarjeta">
+                                    
+                                <select name="pago" class="custom-select" required>
+                                    <option value="EFECTIVO" selected>EFECTIVO</option>
+                                    <option value="TARJETA">TARJETA</option>
+                                    <option value="TRASFERENCIA">TRASFERENCIA</option>
+                                    <option value="CREDITO">CREDITO</option>
+                                    <option value="SIN CARGO">SIN CARGO</option>
+                                </select>
                                 </div>
                             </div>
 
                             <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
-                                <label>Factura:</label>
+                                <label>Condición de pago:</label>
                                 <div class='input-group '>
-
-                                    <input type='checkbox' checked data-toggle='toggle' data-width='240' name='factura' data-onstyle='outline-danger' data-offstyle='outline-secondary' data-on="<i class='fas fa-check'></i> Cobrar IVA" data-off="<i class='fas fa-times'></i> No Cobrar">
+                                    
+                                <select name="condicion" class="custom-select" required>
+                                    <option value="CREDITO" >CREDITO</option>
+                                    <option value="CONTADO" selected>CONTADO</option>
+                                    <option value="POSPAGO">A SUCURSAL</option>
+                                </select>
                                 </div>
                             </div>
 

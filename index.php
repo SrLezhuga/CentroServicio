@@ -5,19 +5,16 @@
     <?php include("assets/common/bg.php"); ?>
     <?php include("assets/common/header.php"); ?>
     <script src="assets/js/demo/loader.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js?render=6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg'>
-    </script>
-    <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6Lc4P90ZAAAAAIIZIT6Xzgj68ERCLrSTvj_Zu9Sg', {
-                    action: 'formulario'
-                })
-                .then(function(token) {
-                    var recaptchaResponse = document.getElementById('recaptchaResponse');
-                    recaptchaResponse.value = token;
-                });
-        });
-    </script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6Ld2YwoaAAAAAHACD-K2IigvgXaHHjPCwIBRBu7q'></script>
+<script>
+   grecaptcha.ready(function() {
+   grecaptcha.execute('6Ld2YwoaAAAAAHACD-K2IigvgXaHHjPCwIBRBu7q', {action: 'homepage'})
+     .then(function(token) {
+     document.getElementById('g-recaptcha-response').value=token;
+   });
+ });
+</script>
+
     <title> Centro de Servicio MFA | Login</title>
 </head>
 
@@ -55,7 +52,8 @@
                                         <h1 class="h4 text-gray-900 mb-4">Centro de servicio</h1>
                                     </div>
                                     <form class="user" action="./assets/controler/login.php" method="POST">
-                                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                                        <!-- Input Oculto del recaptcha-->
+                                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> 
                                         <div class="input-group ">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
@@ -74,7 +72,6 @@
                                             <input type="password" class="form-control form-control-lg" name="formPass" placeholder="Contraseña" aria-describedby="passwordHelpInline" required>
                                         </div>
                                         <br>
-
                                         <button type="submit" class="btn btn-outline-danger btn-block btn-lg"><i class="fas fa-sign-in-alt"></i> Inicio Sesión</button>
                                     </form>
                                 </div>

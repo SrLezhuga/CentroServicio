@@ -2,7 +2,7 @@
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==2 ||  $_SESSION['priv_user']==3 ) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -217,7 +217,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
     $('.BtnFolio').on('click', function() {
         var id_button = $(this).val();
 
-        window.open("http://localhost/CentroServicio/assets/controler/reportes/reimprimirFolio.php?folio=" + id_button, "_blank");
+        window.open("http://192.168.0.98/CentroServicio/assets/controler/reportes/reimprimirFolio.php?folio=" + id_button, "_blank");
     });
     </script>
 

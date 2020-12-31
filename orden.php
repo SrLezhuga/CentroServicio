@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['priv_user'] == 2) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <!--Campo servicio -->
-                                                            <div class="col-xl-4 col-md-6 col-sm-6 col-lg-4">
+                                                            <div class="col-xl-8 col-md-8 col-sm-8 col-lg-8">
                                                                 <label>Tipo de servicio:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -112,7 +112,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                 </div>
                                                             </div>
                                                             <!--Campo Fecha -->
-                                                            <div class="col-xl-4 col-md-6 col-sm-6 col-lg-4">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Fecha:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -124,7 +124,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                 </div>
                                                             </div>
                                                             <!--Campo Herramienta -->
-                                                            <div class="col-xl-4 col-md-12 col-sm-12 col-lg-4">
+                                                            <div class="col-xl-8 col-md-8 col-sm-6 col-lg-8">
                                                                 <label>Herramienta:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -135,12 +135,8 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                     <input type="text" class="form-control" placeholder="Descripción herramienta" name="forOrdHer" required>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="row">
                                                             <!--Campo Marca -->
-                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-6 col-lg-4">
                                                                 <label>Marca:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -152,17 +148,20 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                         <option value="" selected disabled>Seleccione
                                                                             marca
                                                                         </option>
-                                                                        <option value="GENERICA">GENERICA</option>
                                                                         <?php $listCli = "SELECT * FROM tab_marca ORDER BY marca_herramienta ASC";
                                                                         $rsCli = mysqli_query($con, $listCli) or die("Error de consulta");
                                                                         while ($itemCli = mysqli_fetch_array($rsCli)) {
-                                                                            echo "<option value='" . $itemCli[0] . "'>" . $itemCli[0] . "</option>";
+                                                                            echo "<option value='" . $itemCli[1] . "'>" . $itemCli[1] . "</option>";
                                                                         } ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row">
                                                             <!--Campo Modelo -->
-                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Modelo:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -174,7 +173,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                 </div>
                                                             </div>
                                                             <!--Campo Serie -->
-                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Numero de serie:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -182,11 +181,11 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                             <i class="fas fa-hashtag"></i>
                                                                         </span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" placeholder="Serie herramienta" name="forOrdSerie" required>
+                                                                    <input type="text" class="form-control" placeholder="Serie herramienta" name="forOrdSerie" value="Sin Capturar" required>
                                                                 </div>
                                                             </div>
                                                             <!--Campo Adicional -->
-                                                            <div class="col-xl-3 col-md-3 col-sm-3 col-lg-3">
+                                                            <div class="col-xl-4 col-md-4 col-sm-4 col-lg-4">
                                                                 <label>Adicional*:</label>
                                                                 <div class="input-group ">
                                                                     <div class="input-group-prepend">
@@ -194,7 +193,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                                             <i class="fas fa-puzzle-piece"></i>
                                                                         </span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" placeholder="Adicional" name="forOrdAdd" required>
+                                                                    <input type="text" class="form-control" placeholder="Adicional" name="forOrdAdd" value="Sin Capturar" required>
                                                                 </div>
                                                             </div>
                                                             <!--/. form producto -->
@@ -284,39 +283,40 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
         function cleanOrden() {
             document.getElementById("cleanFormOrden").reset();
             Swal.fire(
-                    "Mensaje de confirmación",
-                    "Formulario vacío",
-                    "success"
-                );
+                "Mensaje de confirmación",
+                "Formulario vacío",
+                "success"
+            );
         }
 
         function cleanCliente() {
             document.getElementById("cleanFormCliente").reset();
             Swal.fire(
-                    "Mensaje de confirmación",
-                    "Formulario vacío",
-                    "success"
-                );
+                "Mensaje de confirmación",
+                "Formulario vacío",
+                "success"
+            );
         }
     </script>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) { ?>
         <script>
             Swal.fire(
-                    "Mensaje de confirmación",
-                    "Se registro el Cliente",
-                    "success"
-                );
+                "Mensaje de confirmación",
+                "Se registro el Cliente",
+                "success"
+            );
         </script>
     <?php } ?>
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>
         <script>
             Swal.fire(
-                    "Mensaje de confirmación",
-                    "Orden generada",
-                    "success"
-                );
+                "Mensaje de confirmación",
+                "Orden generada",
+                "success"
+            );
+
             function folio() {
-                window.open("http://localhost/CentroServicio/assets/controler/reportes/generarTalonario.php", "_blank");
+                window.open("http://192.168.0.98/CentroServicio/assets/controler/reportes/generarTalonario.php", "_blank");
             }
             setTimeout(folio, 2000);
         </script>
@@ -346,6 +346,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                         <fieldset class='border p-2'>
                             <legend class='w-auto'>Datos del Cliente:</legend>
                             <div class="row">
+
                                 <!--Campo cliente -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <label>Cliente:</label>
@@ -358,6 +359,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                         <input type="text" class="form-control" placeholder="Nombre cliente" name="formCliNom" required>
                                     </div>
                                 </div>
+
                                 <!--Campo Domicilio -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <label>Domicilio:</label>
@@ -370,11 +372,26 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                         <input type="text" class="form-control" placeholder="Domicilio cliente" name="formCliDom" required>
                                     </div>
                                 </div>
+
                             </div>
+
                             <div class="row">
 
-                                <!--Campo municipio -->
+                                <!--Campo Col -->
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label>Colonia:</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Colonia" name="formCliCol" required>
+                                    </div>
+                                </div>
+
+                                <!--Campo municipio -->
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                     <label>Municipio:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
@@ -387,20 +404,25 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                 </div>
 
                                 <!--Campo Codigo Postal -->
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label>Codigo Postal:</label>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <label>Código Postal:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="fas fa-hashtag"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" pattern='[0-9]{5}' placeholder="Codigo Postal" name="formCliCP" title="C.P: XXXXX" required>
+                                        <input type="text" class="form-control" placeholder="Código Postal" name="formCliCP" pattern='[0-9]{5}' required>
                                     </div>
                                 </div>
 
+                            </div>
+
+                            <div class="row">
+
+
                                 <!--Campo Teléfono -->
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Teléfono:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
@@ -412,8 +434,6 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="row">
                                 <!--Campo Correo -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <label>Correo:</label>
@@ -423,25 +443,28 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['
                                                 <i class="fas fa-at"></i>
                                             </span>
                                         </div>
-                                        <input type="email" class="form-control" placeholder="Correo cliente" name="formCliMail" required>
+                                        <input type="email" class="form-control" placeholder="Correo cliente" name="formCliMail" value="Sin@Correo.com" required>
                                     </div>
                                 </div>
+
                                 <!--Campo RFC -->
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <label>RFC:</label>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <label>Rfc:</label>
                                     <div class="input-group ">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="fas fa-address-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="RFC cliente" name="formCliRfc" required>
+                                        <input type="text" class="form-control" placeholder="Rfc cliente" name="formCliRfc" value="Sin capturar" required>
                                     </div>
                                 </div>
-                                <!-- /. form cliente -->
                             </div>
                         </fieldset>
                         <br>
+                        <div class="alert alert-info" style="text-align: center;">
+                            <strong>Nota:</strong> Si el cliente no cuenta con RFC o Correo este se capturara con valores por defecto.
+                        </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <button type="button" onClick=cleanCliente() class="btn btn-outline-secondary btn-block"><i class="fas fa-eraser"></i>

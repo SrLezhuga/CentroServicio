@@ -4,7 +4,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1 ||  $_SESSION['priv_user'] == 2 ||  $_SESSION['priv_user'] == 3) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 
 $queryUser = "SELECT * FROM tab_users WHERE code_user =" . $_SESSION['code_user'];
@@ -115,11 +115,11 @@ $items      =  explode("-", $user['conf_user']);
                                                     <br>
                                                     <hr>
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <button type="button" onClick=clean() class="btn btn-outline-secondary btn-block"><i class="fas fa-eraser"></i> Borrar</button>
                                                         </div>
-                                                        <br>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <br><br>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                             <button type="submit" class="btn btn-outline-danger btn-block"><i class="fas fa-save"></i> Actualizar</button>
                                                         </div>
                                                     </div>
@@ -245,7 +245,7 @@ $items      =  explode("-", $user['conf_user']);
             }).then((result) => {
                 if (result.isConfirmed) {
                     function actualizar() {
-                        window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
+                        window.open("http://192.168.0.98/CentroServicio/assets/controler/lockout.php", "_self");
                     }
                     setTimeout(actualizar, 1000);
                 }
@@ -264,7 +264,7 @@ $items      =  explode("-", $user['conf_user']);
             }).then((result) => {
                 if (result.isConfirmed) {
                     function actualizar() {
-                        window.open("http://localhost/CentroServicio/assets/controler/lockout.php", "_self");
+                        window.open("http://192.168.0.98/CentroServicio/assets/controler/lockout.php", "_self");
                     }
                     setTimeout(actualizar, 1000);
                 }

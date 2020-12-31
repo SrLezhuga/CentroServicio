@@ -2,7 +2,7 @@
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['priv_user']==3 ) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                             <div class="row">
 
                                                 <!--Campo Código -->
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <label>Código:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -91,7 +91,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ||  $_SESSION['pr
                                                     </div>
                                                 </div>
                                                 <!--Campo Costo -->
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <label>Costo:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">

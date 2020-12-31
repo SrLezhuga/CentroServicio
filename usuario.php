@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
 
 
                                                 <!--Campo Nombre -->
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                     <label>Nombres:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -76,7 +76,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 </div>
 
                                                 <!--Campo Apellido -->
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                     <label>Apellidos:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -89,7 +89,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                 </div>
 
                                                 <!--Campo usuario -->
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                     <label>Usuario:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -97,12 +97,12 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                                 <i class="fas fa-user-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="text" id="usuario" class="form-control" onclick="FxUser()" placeholder="Usuario" name="formUseUsu" required>
+                                                        <input type="text" id="usuario" class="form-control" onclick="FxUser()" onblur="comprobarUsuario()" placeholder="Usuario" name="formUseUsu" required>
                                                     </div>
                                                 </div>
 
                                                 <!--Campo Sucursal -->
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                     <label>Sucursal:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -110,12 +110,20 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                                 <i class="fas fa-store-alt"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="Sucursal" name="formUseSuc" required>
+                                                        <select name="formUseSuc" class="custom-select" required>
+                                                            <option value="" selected disabled>SELECCIONE UNA
+                                                            </option>
+                                                            <?php $listSuc = "SELECT * FROM tab_sucursal ORDER BY nom_sucursal ASC";
+                                                            $rsSuc = mysqli_query($con, $listSuc) or die("Error de consulta");
+                                                            while ($itemSuc = mysqli_fetch_array($rsSuc)) {
+                                                                echo "<option value='" . $itemSuc[1] . "'>" . $itemSuc[1] . "</option>";
+                                                            } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                                 <!--Campo Contraseña -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                     <label>Contraseña:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -123,12 +131,12 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
                                                                 <i class="fas fa-key"></i>
                                                             </span>
                                                         </div>
-                                                        <input type="password" class="form-control" placeholder="Contraseña" name="formUseCon" aria-describedby="passwordHelpInline" required>
+                                                        <input type="password" class="form-control" placeholder="Contraseña" name="formUseCon" min="6" max="12" aria-describedby="passwordHelpInline" required>
                                                     </div>
                                                 </div>
 
                                                 <!--Campo Privilegios -->
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                     <label>Privilegios:</label>
                                                     <div class="input-group ">
                                                         <div class="input-group-prepend">
@@ -358,6 +366,29 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
             document.getElementById("usuario").value = Upn + Upa;
         }
     </script>
+
+<script>
+function comprobarUsuario() {
+	
+	jQuery.ajax({
+	url: "./assets/controler/usuario/validarUsuario.php",
+	data:'usuario='+$("#usuario").val(),
+	type: "POST",
+	success:function(data){
+        if (data==0) {
+            toastr["success"]("Usuario disponible");
+        }else{
+            toastr["error"]("Usuario no disponible");
+            document.getElementById("usuario").value = "";
+        }
+	},
+	error:function (){
+        alert(data);
+    }
+    });
+    
+}
+</script>
 
     <!-- Alerts! -->
     <?php if (isset($_GET['alert']) && $_GET['alert'] == 0) { ?>

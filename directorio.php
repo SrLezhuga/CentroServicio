@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
     # code...
 } else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -65,20 +65,26 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user'] == 1) {
 
                         echo'
                         <!-- Team member -->
-                        <div class="col-3">
+                        <div class="col-4">
                             <div class="image-flip">
                                 <div class="mainflip flip-0">
                                     <div class="frontside">
-                                        <div class="card border-left-danger shadow">
+                                        <div class="card border-left-danger shadow" style="min-height: 175px;">
                                             <div class="card-body text-center">
-                                                <p><img class=" img-fluid" src="https://localhost/CentroServicio/assets/img/Avatar/'.$Usuario['conf_user'].'.png" alt="card image"></p>
-                                                <h4 class="card-title" style="font-size: 1.2rem;">'.$Usuario['name_user'].'</h4>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <p><img class=" img-fluid" src="http://192.168.0.98/CentroServicio/assets/img/Avatar/'.$Usuario['conf_user'].'.png" alt="card image"></p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h4 class="card-title" style="font-size: 1.2rem;">'.$Usuario['name_user'].'</h4>
+                                                    </div>
+                                                </div>
                                                 <p class="card-text">'.$privilegios.'</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="backside">
-                                        <div class="card border-left-danger">
+                                        <div class="card border-left-danger" style="min-height: 175px;">
                                             <div class="card-body text-center mt-4">
                                                 <h4 class="card-title">'.$Usuario['sucursal_user'].'</h4>
                                                 <p class="card-text">Teléfono:<br>Correo:</p>

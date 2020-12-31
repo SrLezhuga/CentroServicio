@@ -3,7 +3,7 @@ include("assets/controler/conexion.php");
 if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
     # code...
 }else {
-    header("Location: http://" . $_SERVER['HTTP_HOST'] . "/CentroServicio/404'");
+    header("Location: http://" . $base_url . "/CentroServicio/404'");
 }
 ?>
 <!DOCTYPE html>
@@ -176,7 +176,7 @@ if (isset($_SESSION['priv_user']) && $_SESSION['priv_user']==1 ) {
                     <div class="row">
 
                         <!-- Card -->
-                        <div class="col">
+                        <div class="col-12">
                             <div class="card border-left-danger shadow ">
                                 <div class="card-body">
                                     <div class="row">
